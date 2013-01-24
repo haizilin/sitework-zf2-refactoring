@@ -1,0 +1,30 @@
+<?php $projectDetails = $project->getprojectDetails()->getFirst() ?>
+<div id="projectDetails">
+    <h2><?= $projectDetails->getLabel() ?></h2>
+    <div class="listElem">
+        <div class="contact">
+            <?php $client = $project->getContactRelatedByFkContactClientId() ?>
+            <?php if (!empty($client)): ?>
+            <dl class="client attrib">
+                <dt><?= $this->translate('client') ?>:</dt>
+                <dd><?php echo $client->getLabel() ?></dd>
+            </dl>
+            <?php endif ?>
+
+            <?php  $employer = $project->getContactRelatedByFkContactEmployerId() ?>
+            <?php if (!empty($employer)): ?>
+            <dl class="employer attrib">
+                <dt><?= $this->translate('employer') ?>:</dt>
+                <dd><?php echo $employer->getLabel() ?></dd>
+            </dl>
+            <?php endif ?>
+        </div>
+
+        <div class="links">
+            <dl class="url attrib">
+                <dt><?= $this->translate('url') ?>:</dt>
+                <dd><a class="extUlr" href="<?= $project->getUrl() ?>" class="more"><?= $project->getUrl() ?></a></dd>
+            </dl>
+        </div>
+    </div>
+</div>

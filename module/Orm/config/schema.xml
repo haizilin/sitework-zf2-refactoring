@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<database name="PropelOrm" defaultIdMethod="native" namespace="Orm\Model\PropelOrm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:noNamespaceSchemaLocation="http://xsd.propelorm.org/1.6/database.xsd">
+
+    <!-- languages -->
+    <table name="language" phpName="Language">
+        <column name="id" type="INTEGER" required="true" primaryKey="true" autoIncrement="true"/>
+        <column name="locale" type="VARCHAR" size="5" required="true"/>
+        <column name="active" type="BOOLEAN" default="true" required="true" />
+    </table>
+
+    <!-- Contacts (clients and employers) -->
+    <table name="contact" phpName="Contact">
+        <column name="id" type="INTEGER" required="true" primaryKey="true" autoIncrement="true"/>
+        <column name="label" type="VARCHAR" size="255" required="true"/>
+    </table>
+
+    <!-- categories -->
+    <table name="category" phpName="Category">
+        <column name="id" type="INTEGER" required="true" primaryKey="true" autoIncrement="true"/>
+        <column name="active" type="BOOLEAN" default="true" required="true" />
+    </table>
+
+    <table name="category_detail" phpName="CategoryDetail">
+        <column name="fk_category_id" type="INTEGER" required="true" primaryKey="true"/>
+        <column name="fk_lang_id" type="INTEGER" required="true" primaryKey="true"/>
+        <column name="label" type="VARCHAR" size="255"/>
+
+        <foreign-key name="category_lang" foreignTable="language" onDelete="CASCADE">
+            <reference local="fk_lang_id" foreign="id"/>
+        </foreign-key>
+
+</table>
+
+    <!-- services and technologies -->
+    <table name="service" phpName="Service">
+        <column name="id" type="INTEGER" required="true" primaryKey="true" autoIncrement="true"/>
+        <column name="fk_category_id" type="INTEGER" required="true"/>
+        <column name="pos" type="INTEGER" required="true"/>
+        <column name="active" type="BOOLEAN" default="true" required="true" />
+
+        <foreign-key name="service_category" foreignTable="category">
+            <reference local="fk_category_id" foreign="id"/>
+        </foreign-key>
+    </table>
+
+    <table name="service_detail" phpName="ServiceDetail">
+        <column name="fk_service_id" type="INTEGER" required="true" primaryKey="true"/>
+        <column name="fk_lang_id" type="INTEGER" required="true" primaryKey="true"/>
+        <column name="description" type="LONGVARCHAR" required="true"/>
+
+        <foreign-key name="service_index" foreignTable="service" onDelete="CASCADE">
+            <reference local="fk_service_id" foreign="id"/>
+        </foreign-key>
+        <foreign-key name="service_lang" foreignTable="language" onDelete="CASCADE">
+            <reference local="fk_lang_id" foreign="id"/>
+        </foreign-key>
+    </table>
+
+    <!-- projects -->
+    <table name="project" phpName="Project">
+        <column name="id" type="INTEGER" required="true" primaryKey="true" autoIncrement="true"/>
+        <column name="fk_contact_client_id" type="INTEGER" required="false" default="null"/>
+        <column name="fk_contact_employer_id" type="INTEGER" required="false" default="null"/>
+        <column name="started_at" type="DATE" required="true"/>
+        <column name="finished_at" type="DATE"/>
+        <column name="url" type="VARCHAR" size="255"/>
+        <column name="img" type="VARCHAR" size="255"/>
+        <column name="active" type="BOOLEAN" default="true" required="true" />
+
+        <foreign-key name="project_client" foreignTable="contact">
+            <reference local="fk_contact_client_id" foreign="id"/>
+        </foreign-key>
+        <foreign-key name="project_employer" foreignTable="contact">
+            <reference local="fk_contact_employer_id" foreign="id"/>
+        </foreign-key>
+    </table>
+
+    <table name="project_detail" phpName="ProjectDetail">
+        <column name="fk_project_id" type="INTEGER" required="true" primaryKey="true"/>
+        <column name="fk_lang_id" type="INTEGER" required="true" primaryKey="true"/>
+        <column name="label" type="VARCHAR" size="255" required="true"/>
+        <column name="description" type="LONGVARCHAR"/>
+
+        <foreign-key name="project_index" foreignTable="project" onDelete="CASCADE">
+            <reference local="fk_project_id" foreign="id"/>
+        </foreign-key>
+        <foreign-key name="project_lang" foreignTable="language" onDelete="CASCADE">
+            <reference local="fk_lang_id" foreign="id"/>
+        </foreign-key>
+    </table>
+
+</database>

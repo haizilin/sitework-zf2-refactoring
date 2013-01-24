@@ -1,0 +1,69 @@
+<?= $this->doctype('HTML5'); ?>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <?= $this->headTitle('Sitework.de - ' . $this->translate('PHP Development'))->setSeparator(' - ')->setAutoEscape(false) ?>
+        <?= $this->headMeta()->appendName('viewport', 'width=device-width, initial-scale=1.0') ?>
+        <?= $this->headLink(array('rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/images/favicon.ico'))
+                 //->prependStylesheet($this->basePath() . '/css/bootstrap-responsive.css')
+                 ->prependStylesheet($this->basePath() . '/css/bootstrap.css')
+                 ->prependStylesheet($this->basePath() . '/css/style.css') ?>
+        <?= $this->headScript()->prependFile($this->basePath() . '/js/html5.js', 'text/javascript', array('conditional' => 'lt IE 9',))
+                 ->prependFile($this->basePath() . '/js/sw.js')
+                 ->prependFile($this->basePath() . '/js/bootstrap.min.js')
+                 ->prependFile($this->basePath() . '/js/3rdparty/jquery-ui-1.9.2.min.js')
+                 ->prependFile($this->basePath() . '/js/3rdparty/jquery-1.8.3.min.js')
+        ?>
+    </head>
+    <body>
+        <header>
+            <div class="navbar">
+                <div class="colRight">
+
+                    <nav class="tabs">
+                        <?= $this->navigation()->menu(new Zend\Navigation\Navigation($this->navigation('default_navigation')->getPages()))->setUlClass('nav') ?>
+                    </nav>
+
+                    <nav class="social">
+                        <ul class="nav">
+                            <li><a class="icon icXing" title="XING" href="http://www.xing.com/profile/Matthias_Kruschke">XING</a></li>
+                            <li><a class="icon icLinkedin" title="LinkedIn" href="http://www.linkedin.com/pub/matthias-kruschke/42/a10/7a2">LinkedIn</a></li>
+                            <li><a class="icon icFacebook" title="facebook" href="http://www.facebook.com/matthias.kruschke">facebook</a></li>
+                            <li><a class="icon icTwitter" title="twitter" href="http://twitter.com/sitewalker">Twitter</a></li>
+                        </ul>
+                    </nav>
+
+                </div>
+                <!--a class="navBtn" data-toggle="collapse" data-target=".navCollapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </a-->
+
+                <a class="logo" href="<?= $this->url('home') ?>">
+                    <span class="title">Sitework.de</span>
+                    <hr/>
+                    <span class="subTitle"><?= $this->translate('PHP Development') ?></span>
+                </a>
+
+            </div>
+        </header>
+
+        <div id="page">
+            <div id="sidebar"><div class="content"><?= $this->sidebar ?></div></div>
+            <div id="main"><div class="content"><?= $this->content ?></div></div>
+        </div>
+
+        <footer>
+            <div class="navbar">
+                <div class="copy">&copy; 2009 - 2012 Mattthias Kruschke</div>
+                <nav>
+                    <?= $this->navigation()->menu(new Zend\Navigation\Navigation($this->navigation('footer_navigation')->getPages()))->setUlClass('nav') ?>
+                </nav>
+            </div>
+        </footer>
+
+        <?= $this->inlineScript() ?>
+    </body>
+</html>

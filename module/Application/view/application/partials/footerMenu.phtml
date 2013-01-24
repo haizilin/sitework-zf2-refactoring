@@ -1,0 +1,7 @@
+<?php if(!empty($this->container) && $this->container->hasPages()): ?>
+    <ul class="nav-footer">
+        <?php foreach($this->container->getPages() as $page): ?>
+            <li><?= $page->__toString() ?></li>
+        <?php endforeach ?>
+    </ul>
+<?php endif ?>
