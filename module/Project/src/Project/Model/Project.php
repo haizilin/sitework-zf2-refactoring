@@ -14,16 +14,9 @@ class Project
     public function getTeaser($langId = 2) {
         return PropelOrm\ProjectQuery::create()
             ->filterByActive(1)
-            ->useProjectDetailQuery()
+            ->joinprojectDetail()
+            ->useprojectDetailQuery()
             ->filterByFkLangId($langId)
             ->endUse();
-    }
-
-    public function getDetails($id = 1, $langId = 2) {
-        return PropelOrm\ProjectQuery::create()
-            ->useProjectDetailQuery()
-            ->filterByFkLangId($langId)
-            ->endUse()
-            ->findPk($id);
     }
 }

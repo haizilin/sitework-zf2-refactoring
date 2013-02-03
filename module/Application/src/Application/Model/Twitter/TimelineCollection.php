@@ -49,7 +49,7 @@ class TimelineCollection {
      * @param int $b
      * @return mixed
      */
-    public function getTweets($a = 0, $b = 7) {
+    public function getTweets($a = 0, $b = 8) {
         if ($b > 0 && $a < count($this->_data->tweets)) {
             $res = array_slice($this->_data->tweets, $a, $b);
         } else {

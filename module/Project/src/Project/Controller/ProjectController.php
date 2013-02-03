@@ -8,34 +8,27 @@ class ProjectController extends AbstractActionController
 {
     public function indexAction () {
 
-        $prjModel = new Model\Project;
-        $teasers = $prjModel->getTeaser()->find();
+        $view = new ViewModel();
 
         $sidebar = new ViewModel();
+        $prjModel = new Model\Project;
+        $teasers = $prjModel->getTeaser()->find();
+        // \Zend\Debug\Debug::dump($teasers);die;
         $sidebar->setVariable('project', $teasers);
         $sidebar->setTemplate('project/partials/sidebar.project.teaser.phtml');
         $this->layout()->addChild($sidebar, 'sidebar');
 
-        $content = new ViewModel();
-        $content->setVariable('project', $teasers);
 
-        return $content;
+
+
+        return new ViewModel();
     }
 
-    public function detailAction () {
-        $id = $this->getEvent()->getRouteMatch()->getParam('id');
-        $prjModel = new Model\Project;
-        $project = $prjModel->getDetails($id);
-
+    public function detailsAction () {
         $sidebar = new ViewModel();
-        $sidebar->setVariable('project', $project);
-        $sidebar->setTemplate('project/partials/sidebar.project.detail.phtml');
+        $sidebar->setTemplate('project/partials/sidebar.project.details.phtml');
         $this->layout()->addChild($sidebar, 'sidebar');
-
-        $content = new ViewModel();
-        $content->setVariable('project', $project);
-
-        return $content;
+        return new ViewModel();
     }
 
     public function addAction () {

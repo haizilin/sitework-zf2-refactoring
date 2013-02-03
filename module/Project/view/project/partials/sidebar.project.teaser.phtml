@@ -1,26 +1,10 @@
-<div id="sidebarProject" class="sidebar">
-    <h2><?= $this->translate('projects gallery') ?></h2>
-    <div id="projectSidebarSlider">
-        <div class="panel">
-            <?php
-                $n = 0;
-                foreach($this->project as $project):
-                    $n++;
-                    if ($n%2 && $n <= count($this->project)):
-                        echo '</div><div class="panel">';
-                    endif;
-            ?>
-            <?php $projectDetails = $project->getprojectDetails()->getFirst() ?>
-            <section class="slideElem">
-                <div class="panelHeader"><h3><?= $projectDetails->getLabel() ?></h3></div>
-                <div class="panelBody"><a href="<?= $this->url('project', array('action' => 'detail', 'id' => $project->getId())) ?>" class="img"><img src="<?php echo '/images/project/' . $this->image(array('src' => BASE_PATH . '/public/images/project/' . $project->getImg(), 'x' => 265)) ?>" alt="<?= $projectDetails->getLabel() ?>"/></a></div>
-            </section>
-            <?php endforeach ?>
-        </div>
-    </div>
-</div>
-<script type="text/javascript">
-    $(document).ready(function() {
-        SW.projectCycle();
-    });
-</script>
+<h2><?= $this->translate('Projects') ?></h2>
+<dl>
+    <?php foreach($this->project as $project): ?>
+    <dt>ID:</dt>
+    <dd><?= $project->getId() ?></dd>
+
+    <dt>Label:</dt>
+    <dd><?= $project->getprojectDetails()->getFirst()->getLabel() ?></dd>
+    <?php endforeach ?>
+</dl>

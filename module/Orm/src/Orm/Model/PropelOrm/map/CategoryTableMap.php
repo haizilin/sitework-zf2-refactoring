@@ -21,38 +21,38 @@ use \TableMap;
 class CategoryTableMap extends TableMap
 {
 
-    /**
-     * The (dot-path) name of this class
-     */
-    const CLASS_NAME = 'PropelOrm.map.CategoryTableMap';
+	/**
+	 * The (dot-path) name of this class
+	 */
+	const CLASS_NAME = 'PropelOrm.map.CategoryTableMap';
 
-    /**
-     * Initialize the table attributes, columns and validators
-     * Relations are not initialized by this method since they are lazy loaded
-     *
-     * @return void
-     * @throws PropelException
-     */
-    public function initialize()
-    {
-        // attributes
-        $this->setName('category');
-        $this->setPhpName('Category');
-        $this->setClassname('Orm\\Model\\PropelOrm\\Category');
-        $this->setPackage('PropelOrm');
-        $this->setUseIdGenerator(true);
-        // columns
-        $this->addPrimaryKey('id', 'Id', 'INTEGER', true, null, null);
-        $this->addColumn('active', 'Active', 'BOOLEAN', true, 1, true);
-        // validators
-    } // initialize()
+	/**
+	 * Initialize the table attributes, columns and validators
+	 * Relations are not initialized by this method since they are lazy loaded
+	 *
+	 * @return     void
+	 * @throws     PropelException
+	 */
+	public function initialize()
+	{
+		// attributes
+		$this->setName('category');
+		$this->setPhpName('Category');
+		$this->setClassname('Orm\\Model\\PropelOrm\\Category');
+		$this->setPackage('PropelOrm');
+		$this->setUseIdGenerator(true);
+		// columns
+		$this->addPrimaryKey('ID', 'Id', 'INTEGER', true, null, null);
+		$this->addColumn('ACTIVE', 'Active', 'BOOLEAN', true, 1, true);
+		// validators
+	} // initialize()
 
-    /**
-     * Build the RelationMap objects for this table relationships
-     */
-    public function buildRelations()
-    {
-        $this->addRelation('Service', 'Orm\\Model\\PropelOrm\\Service', RelationMap::ONE_TO_MANY, array('id' => 'fk_category_id', ), null, null, 'Services');
-    } // buildRelations()
+	/**
+	 * Build the RelationMap objects for this table relationships
+	 */
+	public function buildRelations()
+	{
+		$this->addRelation('Service', 'Orm\\Model\\PropelOrm\\Service', RelationMap::ONE_TO_MANY, array('id' => 'fk_category_id', ), null, null, 'Services');
+	} // buildRelations()
 
 } // CategoryTableMap

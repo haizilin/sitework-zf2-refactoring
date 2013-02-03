@@ -8,7 +8,7 @@ use Orm\Model\PropelOrm\om\BaseService;
 /**
  * Skeleton subclass for representing a row from the 'service' table.
  *
- *
+ * 
  *
  * You should add additional methods to this class to meet the
  * application requirements.  This class will only be generated as
@@ -16,6 +16,6 @@ use Orm\Model\PropelOrm\om\BaseService;
  *
  * @package    propel.generator.PropelOrm
  */
-class Service extends BaseService
-{
-}
+class Service extends BaseService {
+
+} // Service

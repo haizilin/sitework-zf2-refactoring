@@ -8,7 +8,7 @@ use Orm\Model\PropelOrm\om\BaseContactPeer;
 /**
  * Skeleton subclass for performing query and update operations on the 'contact' table.
  *
- *
+ * 
  *
  * You should add additional methods to this class to meet the
  * application requirements.  This class will only be generated as
@@ -16,6 +16,6 @@ use Orm\Model\PropelOrm\om\BaseContactPeer;
  *
  * @package    propel.generator.PropelOrm
  */
-class ContactPeer extends BaseContactPeer
-{
-}
+class ContactPeer extends BaseContactPeer {
+
+} // ContactPeer

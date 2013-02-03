@@ -42,23 +42,13 @@ return array(
                     ),
                 ),
             ),
-            'login' => array(
+            'twitter' => array(
                 'type'    => 'Zend\Mvc\Router\Http\Literal',
                 'options' => array(
-                    'route'    => '/login',
+                    'route'    => '/twitter',
                     'defaults' => array(
                         'controller'    => 'Application\Controller\Index',
-                        'action'        => 'login',
-                    ),
-                ),
-            ),
-            'logout' => array(
-                'type'    => 'Zend\Mvc\Router\Http\Literal',
-                'options' => array(
-                    'route'    => '/logout',
-                    'defaults' => array(
-                        'controller'    => 'Application\Controller\Index',
-                        'action'        => 'logout',
+                        'action'        => 'twitter',
                     ),
                 ),
             ),
@@ -128,8 +118,7 @@ return array(
             'application/index/contact'    => __DIR__ . '/../view/application/index/contact.phtml',
             'application/index/imprint'    => __DIR__ . '/../view/application/index/imprint.phtml',
             'application/index/disclaimer' => __DIR__ . '/../view/application/index/disclaimer.phtml',
-            'application/index/login'      => __DIR__ . '/../view/application/index/login.phtml',
-            'application/index/logout'     => __DIR__ . '/../view/application/index/login.phtml',
+            'application/index/twitter'    => __DIR__ . '/../view/application/index/twitter.phtml',
             'error/404'                    => __DIR__ . '/../view/error/404.phtml',
             'error/index'                  => __DIR__ . '/../view/error/index.phtml',
         ),
@@ -140,8 +129,6 @@ return array(
     'view_helpers' => array(
         'invokables' => array(
             'mailto' => 'Application\View\Helper\Mailto',
-            'image' => 'Application\View\Helper\Image',
-            'dateformat' => 'Application\View\Helper\Dateformat',
         ),
     ),
 );

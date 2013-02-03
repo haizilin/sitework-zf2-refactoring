@@ -61,8 +61,8 @@ class Connection {
             );
         }
 
-        if (array_key_exists('sslcapath', (array) $options)) {
-            $this->_consumer->getHttpClient()->setOptions(array('sslcapath' => $options['sslcapath']));
+        if (array_key_exists('sslcapath', (array) $this->_options)) {
+            $this->_consumer->getHttpClient()->setOptions($this->_options);
         }
 
         // connect to twitter
@@ -76,10 +76,21 @@ class Connection {
             \Zend\Debug\Debug::dump($this->_consumer);
         }
 
+
+        if ($connection->isAuthorised()) {
+            die('yes');
+            return $connection;
+        }
+/*
+        // on fail try to connect with a new requested AccessToken
+        $options['accessToken'] = $this->_getAccessToken(false);
+        $connection = new Twitter\Twitter($options, $this->_consumer);
+
         if ($connection->isAuthorised()) {
             return $connection;
         }
-
+*/
+        die('no');
         return null;
     }
 
