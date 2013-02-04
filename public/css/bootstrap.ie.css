@@ -1,0 +1,6 @@
+button, input { *overflow: visible; }
+.clearfix { *zoom: 1; }
+.btn, header, footer {
+    background-image: -ms-linear-gradient(top, #a7a9ab, #565d6d);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#a7a9ab', endColorstr='#565d6d', GradientType=0);
+}
