@@ -12,7 +12,7 @@ class ProjectController extends AbstractActionController
         $view = new ViewModel();
         $sidebar = new ViewModel();
         $prjModel = new Model\Project;
-        $projects = $prjModel->getTeaser()->find();
+        $projects = $prjModel->getQuery()->find();
         $sidebar->setVariable('projects', $projects);
         $sidebar->setTemplate('project/partials/sidebar.project.teaser.phtml');
         $this->layout()->addChild($sidebar, 'sidebar');
@@ -20,10 +20,19 @@ class ProjectController extends AbstractActionController
     }
 
     public function detailsAction () {
-        $view = new ViewModel();
+
+        $prjModel = new Model\Project;
+
         $sidebar = new ViewModel();
-        $sidebar->setTemplate('project/partials/sidebar.project.details.phtml');
+        $projects = $prjModel->getQuery()->find();
+        $sidebar->setVariable('projects', $projects);
+        $sidebar->setTemplate('project/partials/sidebar.project.teaser.phtml');
         $this->layout()->addChild($sidebar, 'sidebar');
+
+        $view = new ViewModel();
+        $project = $prjModel->getQuery()->findOneBy('id', $this->getEvent()->getRouteMatch()->getParam('id', 1));
+        $view->setVariable('project', $project);
+
         return $view;
     }
 

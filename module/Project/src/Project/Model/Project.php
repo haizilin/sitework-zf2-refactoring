@@ -11,9 +11,11 @@ class Project
 
     }
 
-    public function getTeaser($langId = 2) {
+    public function getQuery($langId = 2) {
         return PropelOrm\ProjectQuery::create()
             ->filterByActive(1)
+            ->joinContactRelatedByFkContactClientId()
+            ->joinContactRelatedByFkContactClientId()
             ->joinProjectDetail()
             ->useProjectDetailQuery()
             ->filterByFkLangId($langId)
