@@ -46,10 +46,6 @@ return array(
                 'label' => 'Disclaimer',
                 'route' => 'disclaimer',
             ),
-            array(
-                'label' => 'Login',
-                'route' => 'login',
-            ),
         ),
     )
 );

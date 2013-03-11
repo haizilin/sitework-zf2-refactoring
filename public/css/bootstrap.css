@@ -1,12 +1,3 @@
-/*!
- * Bootstrap v2.1.1
- *
- * Copyright 2012 Twitter, Inc
- * Licensed under the Apache License v2.0
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Designed and built with all the love in the world @twitter by @mdo and @fat.
- */
 article, aside, details, figcaption, figure, footer, header, hgroup, nav, section { display: block; }
 html { font-size: 100%; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; min-height:100%; }
 a:focus { outline: thin dotted #333; outline: 5px auto -webkit-focus-ring-color; outline-offset: -2px; }
@@ -149,11 +140,15 @@ footer .active a { text-decoration:underline; }
 .sidebar h2 { padding:15px 0 0 5px; margin:0 5px 5px 5px; }
 .sidebar ul,
 .sidebar dl { padding:0 5px 5px 10px; }
+.sidebar li { padding:5px; border-top:1px dotted #000; }
 
 #sidebarContact dt { font-size:14px; padding:5px 10px; font-weight:bold; overflow:hidden; border-top:1px dotted #000; }
 #sidebarContact dd { font-size:12px; padding:5px 5px 5px 25px; }
 #sidebarContact .label { font-weight:bold;float:left;width:75px; }
 
-#sidebarIndex li { padding:5px; border-top:1px dotted #000; }
 #sidebarIndex .date { font-style: italic; font-weight:bold; font-size: 11px; }
 #sidebarIndex .text {  }
+
+#sidebarProjectTeaser span { display:block; padding:2px 0; }
+#sidebarProjectTeaser .pLabel { font-weight:bold; }
+#sidebarProjectTeaser .pCreated, #sidebarProjectTeaser .pUrl { font-style:italic;  }

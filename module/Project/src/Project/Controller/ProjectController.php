@@ -4,31 +4,27 @@ namespace Project\Controller;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 use Project\Model;
+use Zend\Debug\Debug;
+
 class ProjectController extends AbstractActionController
 {
     public function indexAction () {
-
         $view = new ViewModel();
-
         $sidebar = new ViewModel();
         $prjModel = new Model\Project;
-        $teasers = $prjModel->getTeaser()->find();
-        // \Zend\Debug\Debug::dump($teasers);die;
-        $sidebar->setVariable('project', $teasers);
+        $projects = $prjModel->getTeaser()->find();
+        $sidebar->setVariable('projects', $projects);
         $sidebar->setTemplate('project/partials/sidebar.project.teaser.phtml');
         $this->layout()->addChild($sidebar, 'sidebar');
-
-
-
-
-        return new ViewModel();
+        return $view;
     }
 
     public function detailsAction () {
+        $view = new ViewModel();
         $sidebar = new ViewModel();
         $sidebar->setTemplate('project/partials/sidebar.project.details.phtml');
         $this->layout()->addChild($sidebar, 'sidebar');
-        return new ViewModel();
+        return $view;
     }
 
     public function addAction () {

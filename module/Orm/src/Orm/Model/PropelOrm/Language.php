@@ -8,7 +8,7 @@ use Orm\Model\PropelOrm\om\BaseLanguage;
 /**
  * Skeleton subclass for representing a row from the 'language' table.
  *
- * 
+ *
  *
  * You should add additional methods to this class to meet the
  * application requirements.  This class will only be generated as
@@ -16,6 +16,6 @@ use Orm\Model\PropelOrm\om\BaseLanguage;
  *
  * @package    propel.generator.PropelOrm
  */
-class Language extends BaseLanguage {
-
-} // Language
+class Language extends BaseLanguage
+{
+}

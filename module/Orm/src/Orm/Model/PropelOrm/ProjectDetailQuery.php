@@ -8,7 +8,7 @@ use Orm\Model\PropelOrm\om\BaseProjectDetailQuery;
 /**
  * Skeleton subclass for performing query and update operations on the 'project_detail' table.
  *
- * 
+ *
  *
  * You should add additional methods to this class to meet the
  * application requirements.  This class will only be generated as
@@ -16,6 +16,6 @@ use Orm\Model\PropelOrm\om\BaseProjectDetailQuery;
  *
  * @package    propel.generator.PropelOrm
  */
-class ProjectDetailQuery extends BaseProjectDetailQuery {
-
-} // ProjectDetailQuery
+class ProjectDetailQuery extends BaseProjectDetailQuery
+{
+}

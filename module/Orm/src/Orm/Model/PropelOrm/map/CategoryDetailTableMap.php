@@ -21,39 +21,39 @@ use \TableMap;
 class CategoryDetailTableMap extends TableMap
 {
 
-	/**
-	 * The (dot-path) name of this class
-	 */
-	const CLASS_NAME = 'PropelOrm.map.CategoryDetailTableMap';
+    /**
+     * The (dot-path) name of this class
+     */
+    const CLASS_NAME = 'PropelOrm.map.CategoryDetailTableMap';
 
-	/**
-	 * Initialize the table attributes, columns and validators
-	 * Relations are not initialized by this method since they are lazy loaded
-	 *
-	 * @return     void
-	 * @throws     PropelException
-	 */
-	public function initialize()
-	{
-		// attributes
-		$this->setName('category_detail');
-		$this->setPhpName('CategoryDetail');
-		$this->setClassname('Orm\\Model\\PropelOrm\\CategoryDetail');
-		$this->setPackage('PropelOrm');
-		$this->setUseIdGenerator(false);
-		// columns
-		$this->addPrimaryKey('FK_CATEGORY_ID', 'FkCategoryId', 'INTEGER', true, null, null);
-		$this->addForeignPrimaryKey('FK_LANG_ID', 'FkLangId', 'INTEGER' , 'language', 'ID', true, null, null);
-		$this->addColumn('LABEL', 'Label', 'VARCHAR', false, 255, null);
-		// validators
-	} // initialize()
+    /**
+     * Initialize the table attributes, columns and validators
+     * Relations are not initialized by this method since they are lazy loaded
+     *
+     * @return void
+     * @throws PropelException
+     */
+    public function initialize()
+    {
+        // attributes
+        $this->setName('category_detail');
+        $this->setPhpName('CategoryDetail');
+        $this->setClassname('Orm\\Model\\PropelOrm\\CategoryDetail');
+        $this->setPackage('PropelOrm');
+        $this->setUseIdGenerator(false);
+        // columns
+        $this->addPrimaryKey('fk_category_id', 'FkCategoryId', 'INTEGER', true, null, null);
+        $this->addForeignPrimaryKey('fk_lang_id', 'FkLangId', 'INTEGER' , 'language', 'id', true, null, null);
+        $this->addColumn('label', 'Label', 'VARCHAR', false, 255, null);
+        // validators
+    } // initialize()
 
-	/**
-	 * Build the RelationMap objects for this table relationships
-	 */
-	public function buildRelations()
-	{
-		$this->addRelation('Language', 'Orm\\Model\\PropelOrm\\Language', RelationMap::MANY_TO_ONE, array('fk_lang_id' => 'id', ), 'CASCADE', null);
-	} // buildRelations()
+    /**
+     * Build the RelationMap objects for this table relationships
+     */
+    public function buildRelations()
+    {
+        $this->addRelation('Language', 'Orm\\Model\\PropelOrm\\Language', RelationMap::MANY_TO_ONE, array('fk_lang_id' => 'id', ), 'CASCADE', null);
+    } // buildRelations()
 
 } // CategoryDetailTableMap

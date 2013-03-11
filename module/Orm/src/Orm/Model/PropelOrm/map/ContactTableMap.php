@@ -21,39 +21,39 @@ use \TableMap;
 class ContactTableMap extends TableMap
 {
 
-	/**
-	 * The (dot-path) name of this class
-	 */
-	const CLASS_NAME = 'PropelOrm.map.ContactTableMap';
+    /**
+     * The (dot-path) name of this class
+     */
+    const CLASS_NAME = 'PropelOrm.map.ContactTableMap';
 
-	/**
-	 * Initialize the table attributes, columns and validators
-	 * Relations are not initialized by this method since they are lazy loaded
-	 *
-	 * @return     void
-	 * @throws     PropelException
-	 */
-	public function initialize()
-	{
-		// attributes
-		$this->setName('contact');
-		$this->setPhpName('Contact');
-		$this->setClassname('Orm\\Model\\PropelOrm\\Contact');
-		$this->setPackage('PropelOrm');
-		$this->setUseIdGenerator(true);
-		// columns
-		$this->addPrimaryKey('ID', 'Id', 'INTEGER', true, null, null);
-		$this->addColumn('LABEL', 'Label', 'VARCHAR', true, 255, null);
-		// validators
-	} // initialize()
+    /**
+     * Initialize the table attributes, columns and validators
+     * Relations are not initialized by this method since they are lazy loaded
+     *
+     * @return void
+     * @throws PropelException
+     */
+    public function initialize()
+    {
+        // attributes
+        $this->setName('contact');
+        $this->setPhpName('Contact');
+        $this->setClassname('Orm\\Model\\PropelOrm\\Contact');
+        $this->setPackage('PropelOrm');
+        $this->setUseIdGenerator(true);
+        // columns
+        $this->addPrimaryKey('id', 'Id', 'INTEGER', true, null, null);
+        $this->addColumn('label', 'Label', 'VARCHAR', true, 255, null);
+        // validators
+    } // initialize()
 
-	/**
-	 * Build the RelationMap objects for this table relationships
-	 */
-	public function buildRelations()
-	{
-		$this->addRelation('ProjectRelatedByFkContactClientId', 'Orm\\Model\\PropelOrm\\Project', RelationMap::ONE_TO_MANY, array('id' => 'fk_contact_client_id', ), null, null, 'ProjectsRelatedByFkContactClientId');
-		$this->addRelation('ProjectRelatedByFkContactEmployerId', 'Orm\\Model\\PropelOrm\\Project', RelationMap::ONE_TO_MANY, array('id' => 'fk_contact_employer_id', ), null, null, 'ProjectsRelatedByFkContactEmployerId');
-	} // buildRelations()
+    /**
+     * Build the RelationMap objects for this table relationships
+     */
+    public function buildRelations()
+    {
+        $this->addRelation('ProjectRelatedByFkContactClientId', 'Orm\\Model\\PropelOrm\\Project', RelationMap::ONE_TO_MANY, array('id' => 'fk_contact_client_id', ), null, null, 'ProjectsRelatedByFkContactClientId');
+        $this->addRelation('ProjectRelatedByFkContactEmployerId', 'Orm\\Model\\PropelOrm\\Project', RelationMap::ONE_TO_MANY, array('id' => 'fk_contact_employer_id', ), null, null, 'ProjectsRelatedByFkContactEmployerId');
+    } // buildRelations()
 
 } // ContactTableMap

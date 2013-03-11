@@ -8,7 +8,7 @@ use Orm\Model\PropelOrm\om\BaseCategory;
 /**
  * Skeleton subclass for representing a row from the 'category' table.
  *
- * 
+ *
  *
  * You should add additional methods to this class to meet the
  * application requirements.  This class will only be generated as
@@ -16,6 +16,6 @@ use Orm\Model\PropelOrm\om\BaseCategory;
  *
  * @package    propel.generator.PropelOrm
  */
-class Category extends BaseCategory {
-
-} // Category
+class Category extends BaseCategory
+{
+}

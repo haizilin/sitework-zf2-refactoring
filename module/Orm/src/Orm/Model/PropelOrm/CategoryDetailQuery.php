@@ -8,7 +8,7 @@ use Orm\Model\PropelOrm\om\BaseCategoryDetailQuery;
 /**
  * Skeleton subclass for performing query and update operations on the 'category_detail' table.
  *
- * 
+ *
  *
  * You should add additional methods to this class to meet the
  * application requirements.  This class will only be generated as
@@ -16,6 +16,6 @@ use Orm\Model\PropelOrm\om\BaseCategoryDetailQuery;
  *
  * @package    propel.generator.PropelOrm
  */
-class CategoryDetailQuery extends BaseCategoryDetailQuery {
-
-} // CategoryDetailQuery
+class CategoryDetailQuery extends BaseCategoryDetailQuery
+{
+}

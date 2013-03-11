@@ -1,7 +1,15 @@
-<h2><?= $this->translate('Projects') ?></h2>
-<dl>
-    <?php foreach($this->project as $project): ?>
-    <dt><?= $project->getprojectDetails()->getFirst()->getLabel() ?></dt>
-    <dd><?= $project->getStartedAt() ?></dd>
-    <?php endforeach ?>
-</dl>
+<div id="sidebarProjectTeaser">
+    <h2><?= $this->translate('Projects') ?></h2>
+    <ul>
+        <?php foreach($this->projects as $project): ?>
+        <li>
+            <span class="pLabel"><?= $project->getProjectDetails()->getFirst()->getLabel() ?></span>
+            <span class="pCreated">
+                <?php $date = new DateTime($project->getStartedAt(), new DateTimeZone(date_default_timezone_get())) ?>
+                <?= sprintf($this->translate('started at: %s'), $this->dateFormat($date, IntlDateFormatter::TRADITIONAL, IntlDateFormatter::NONE, Locale::getDefault())) ?>
+            </span>
+            <span class="pUrl"><a href="<?= $project->getUrl() ?>"><?= $project->getUrl() ?></a></span>
+        </li>
+        <?php endforeach ?>
+    </ul>
+</div>

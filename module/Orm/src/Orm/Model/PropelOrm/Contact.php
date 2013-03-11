@@ -8,7 +8,7 @@ use Orm\Model\PropelOrm\om\BaseContact;
 /**
  * Skeleton subclass for representing a row from the 'contact' table.
  *
- * 
+ *
  *
  * You should add additional methods to this class to meet the
  * application requirements.  This class will only be generated as
@@ -16,6 +16,6 @@ use Orm\Model\PropelOrm\om\BaseContact;
  *
  * @package    propel.generator.PropelOrm
  */
-class Contact extends BaseContact {
-
-} // Contact
+class Contact extends BaseContact
+{
+}

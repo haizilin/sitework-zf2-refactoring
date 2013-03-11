@@ -27,7 +27,7 @@ if (is_file(__DIR__ . '/autoload.php')) {
     $loader->add('ZendRest',    VENDOR_PATH . '/ZendRest');
     $loader->add('ZendRest',    VENDOR_PATH . '/ZendRest');
     $loader->add('Propel',      VENDOR_PATH . '/Propel');
-    $loader->add('Pear',        VENDOR_PATH . '/Pear');
+    //$loader->add('Pear',        VENDOR_PATH . '/Pear');
 
 }
 
