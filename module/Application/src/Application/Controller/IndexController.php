@@ -19,22 +19,13 @@ class IndexController extends AbstractActionController
     public function indexAction() {
         $view = new ViewModel();
 
-        $twitter = new Model\Twitter\Connection(array(
-            'callbackUrl' => 'http://127.0.0.1/sitework/dev/public/',
-            'siteUrl' => 'https://api.twitter.com/1/',
-            'consumerKey' => '1VnhWeamouah6iK9ubTvA',
-            'consumerSecret' => 'LCYo2NbcRb64cARq63bn7EExmSCAsWYxvIZ0h1YMI',
-            'sslcapath' => '/etc/ssl/certs'
-        ));
+        $twitter = new Model\Twitter\Twitter();
 
         if ($twitter) {
-            $xml = $twitter->statusUserTimeline(array('screen_name' => 'sitewalker', 'page' => 1, 'count' => 10));
-        } else {
-            $xml = file_get_contents(BASE_PATH . '/data/user_timeline.xml');
+            $data = $twitter->statusUserTimeline('sitewalker', 1, 10);
         }
 
-
-        $timelineCollection = new Model\Twitter\TimelineCollection($xml, 'json');
+        $timelineCollection = new Model\Twitter\TimelineCollection($data, 'json');
 
         $sidebar = new ViewModel();
         $sidebar->setVariable('twitterCollection', $timelineCollection);
@@ -50,7 +41,6 @@ class IndexController extends AbstractActionController
         $sidebar->setTemplate('application/partials/sidebar.contact.phtml');
         $this->layout()->addChild($sidebar, 'sidebar');
 
-        $view = new ViewModel();
         $form = new ContactForm();
         $form->prepareElements();
 
