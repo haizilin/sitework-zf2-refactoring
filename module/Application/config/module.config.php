@@ -121,4 +121,19 @@ return array(
             'mailto' => 'Application\View\Helper\Mailto',
         ),
     ),
+    'cache' => array(
+        'adapter' => array(
+            'name' => 'filesystem',
+            'namespaceIsPrefix' => true,
+            'options' => array(
+                'cache_dir' => __DIR__ . '/../../../data/cache',
+                'ttl' => 100
+            ),
+        ),
+        'plugins' => array(
+            'exception_handler' => array(
+                'throw_exceptions' => false
+            ),
+        )
+    ),
 );

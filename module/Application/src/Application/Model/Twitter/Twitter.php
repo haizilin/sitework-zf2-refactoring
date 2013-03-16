@@ -7,8 +7,8 @@ namespace Application\Model\Twitter;
 
 use Zend\Cache;
 use Zend\Http\Request;
+use Zend\Stdlib\Parameters;
 use Zend\Http\Client;
-use Zend\Http\Client\Exception;
 
 class Twitter
 {
@@ -16,29 +16,29 @@ class Twitter
     private $_statusUserTimelineFallback = null;
     private $_cache = null;
 
-    public function __construct() {
-        $this->_cache = Cache\StorageFactory::factory(array(
-            'adapter' => array(
-                'name' => 'filesystem',
-                'namespaceIsPrefix' => true,
-            ),
-            'plugins' => array(
-                // Don't throw exceptions on cache errors
-                'exception_handler' => array(
-                    'throw_exceptions' => false
-                ),
-            )
-        ));
+    public function __construct($config = array()) {
+        if (array_key_exists('cache', $config)) {
+            $this->_cache = Cache\StorageFactory::factory($config['cache']);
+        }
     }
 
     public function statusUserTimeline($screenName, $page = 1, $count = 10) {
-        $response = $this->_cache->getItem('statusUserTimeline', $cached);
-        if (!$cached && !empty($this->_statusUserTimelineUrl) && !empty($screenName)) {
-            $url = $this->_statusUserTimelineUrl
-                . '?screen_name=' . $screenName
-                . '&page=' . $page
-                . '&count=' . $count;
-            $response = @file_get_contents($url);
+
+        if (!is_null($this->_cache)) {
+            $response = $this->_cache->getItem('statusUserTimeline', $cached);
+        }
+
+        if (empty($cached) && !empty($this->_statusUserTimelineUrl) && !empty($screenName)) {
+            $request = new Request();
+            $request->setUri($this->_statusUserTimelineUrl);
+            $request->setQuery(new Parameters(array(
+                'screen_name' => $screenName,
+                'page' => $page,
+                'count' => $count
+            )));
+            $client = new Client();
+            $client->setAdapter('Zend\Http\Client\Adapter\Curl');
+            $response = $client->send($request)->getBody();
             $this->_cache->setItem('statusUserTimeline', $response);
         }
 
