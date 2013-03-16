@@ -10,19 +10,13 @@ use Zend\Http\Request;
 use Zend\Http\Client;
 use Zend\Http\Client\Exception;
 
-class Twitter {
-
-    private $_options = null;
-
-    private $_statusUserTimelineFallback = null;
+class Twitter
+{
     private $_statusUserTimelineUrl = 'https://api.twitter.com/1/statuses/user_timeline.json';
-
+    private $_statusUserTimelineFallback = null;
     private $_cache = null;
 
-    const CACHE_TTL = 100;
-
-    public function __construct($options = array()) {
-        $this->_options = $options;
+    public function __construct() {
         $this->_cache = Cache\StorageFactory::factory(array(
             'adapter' => array(
                 'name' => 'filesystem',
