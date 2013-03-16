@@ -383,7 +383,7 @@ class Twitter extends Client\RestClient
         $path .= '.json';
 
         $response = $this->get($path, $_params);
-        return new Client\Result($response->getBody());
+        return $response->getBody();
     }
 
     /**

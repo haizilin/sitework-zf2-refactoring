@@ -22,14 +22,13 @@ class Connection {
             $this->_connection = null;
         }
 
-        //if (empty($this->_connection)) {
+        if (empty($this->_connection)) {
             try {
                 $this->_connection = $this->_connect($options);
             } catch (\Exception $e) {
-                echo $e->getMessage();
-                die;
+                return null;
             }
-        //}
+        }
     }
 
     public function statusUserTimeline($options = array()) {
@@ -77,21 +76,15 @@ class Connection {
         }
 
 
-        if ($connection->isAuthorised()) {
-            die('yes');
+        if (!empty($connection)) {
             return $connection;
         }
-/*
+
         // on fail try to connect with a new requested AccessToken
         $options['accessToken'] = $this->_getAccessToken(false);
         $connection = new Twitter\Twitter($options, $this->_consumer);
 
-        if ($connection->isAuthorised()) {
-            return $connection;
-        }
-*/
-        die('no');
-        return null;
+        return $connection;
     }
 
     // create accessToken
@@ -118,6 +111,7 @@ class Connection {
 
         // reset options
         $this->_options = null;
+
         // check requirements and set options to request data
         $tmpOptions = array();
 
@@ -128,6 +122,14 @@ class Connection {
                 return false;
             }
         }
+
+        // add additional options
+        foreach ($options as $k => $option) {
+            if (!array_key_exists($k, $tmpOptions)) {
+                $tmpOptions[$k] = $option;
+            }
+        }
+
         $this->_options = $tmpOptions;
 
         return true;

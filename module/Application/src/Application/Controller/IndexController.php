@@ -18,23 +18,23 @@ class IndexController extends AbstractActionController
 {
     public function indexAction() {
         $view = new ViewModel();
-/*
+
         $twitter = new Model\Twitter\Connection(array(
-            'callbackUrl' => 'http://zf2.sitework.de',
+            'callbackUrl' => 'http://127.0.0.1/sitework/dev/public/',
             'siteUrl' => 'https://api.twitter.com/1/',
             'consumerKey' => '1VnhWeamouah6iK9ubTvA',
             'consumerSecret' => 'LCYo2NbcRb64cARq63bn7EExmSCAsWYxvIZ0h1YMI',
+            'sslcapath' => '/etc/ssl/certs'
         ));
 
         if ($twitter) {
-            $xml = $twitter->statusUserTimeline(array('screen_name' => 'sitewalker', 'page' => 1, 'count' => 3));
+            $xml = $twitter->statusUserTimeline(array('screen_name' => 'sitewalker', 'page' => 1, 'count' => 10));
         } else {
-*/
             $xml = file_get_contents(BASE_PATH . '/data/user_timeline.xml');
-        //}
+        }
 
 
-        $timelineCollection = new Model\Twitter\TimelineCollection($xml, 'xml');
+        $timelineCollection = new Model\Twitter\TimelineCollection($xml, 'json');
 
         $sidebar = new ViewModel();
         $sidebar->setVariable('twitterCollection', $timelineCollection);

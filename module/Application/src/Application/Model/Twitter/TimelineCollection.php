@@ -32,7 +32,7 @@ class TimelineCollection {
             return false;
         }
 
-        return $this->_buldCollection($parsedResponse);
+        return $this->_buildCollection($parsedResponse);
     }
 
     /**
@@ -49,7 +49,7 @@ class TimelineCollection {
      * @param int $b
      * @return mixed
      */
-    public function getTweets($a = 0, $b = 8) {
+    public function getTweets($a = 0, $b = 10) {
         if ($b > 0 && $a < count($this->_data->tweets)) {
             $res = array_slice($this->_data->tweets, $a, $b);
         } else {
@@ -131,7 +131,7 @@ class TimelineCollection {
      * @param $parsedResponse
      * @return bool
      */
-    private function _buldCollection($parsedResponse = null) {
+    private function _buildCollection($parsedResponse = null) {
 
         // check requirements
         if (!is_array($parsedResponse)) {
