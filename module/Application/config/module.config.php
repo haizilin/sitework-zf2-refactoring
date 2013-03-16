@@ -121,13 +121,13 @@ return array(
             'mailto' => 'Application\View\Helper\Mailto',
         ),
     ),
-    'cache' => array(
+    'cache' => Zend\Cache\StorageFactory::factory(array(
         'adapter' => array(
             'name' => 'filesystem',
             'namespaceIsPrefix' => true,
             'options' => array(
                 'cache_dir' => __DIR__ . '/../../../data/cache',
-                'ttl' => 100
+                'ttl' => 1000
             ),
         ),
         'plugins' => array(
@@ -135,5 +135,5 @@ return array(
                 'throw_exceptions' => false
             ),
         )
-    ),
+    )),
 );

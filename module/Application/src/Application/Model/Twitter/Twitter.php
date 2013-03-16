@@ -18,7 +18,7 @@ class Twitter
 
     public function __construct($config = array()) {
         if (array_key_exists('cache', $config)) {
-            $this->_cache = Cache\StorageFactory::factory($config['cache']);
+            $this->_cache = $config['cache'];
         }
     }
 
