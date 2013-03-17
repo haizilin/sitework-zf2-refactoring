@@ -17,13 +17,14 @@ if (!defined('VENDOR_PATH')) {
     define('VENDOR_PATH', $vendorPath);
 }
 
+ini_set('include_path', implode(PATH_SEPARATOR, array(ini_get('include_path'), VENDOR_PATH . '/Pear')));
+
 // Composer autoloading
 if (is_file(__DIR__ . '/autoload.php')) {
 
     $loader = include           VENDOR_PATH . '/autoload.php';
     $loader->add('Zend',        VENDOR_PATH . '/Zend');
     $loader->add('Propel',      VENDOR_PATH . '/Propel');
-    //$loader->add('Pear',        VENDOR_PATH . '/Pear');
 
 }
 
