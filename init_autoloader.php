@@ -22,10 +22,6 @@ if (is_file(__DIR__ . '/autoload.php')) {
 
     $loader = include           VENDOR_PATH . '/autoload.php';
     $loader->add('Zend',        VENDOR_PATH . '/Zend');
-    $loader->add('ZendOAuth',   VENDOR_PATH . '/ZendOAuth');
-    $loader->add('ZendService', VENDOR_PATH . '/ZendService');
-    $loader->add('ZendRest',    VENDOR_PATH . '/ZendRest');
-    $loader->add('ZendRest',    VENDOR_PATH . '/ZendRest');
     $loader->add('Propel',      VENDOR_PATH . '/Propel');
     //$loader->add('Pear',        VENDOR_PATH . '/Pear');
 
@@ -37,9 +33,6 @@ if (!class_exists('Zend\Loader\AutoloaderFactory')) {
     Zend\Loader\AutoloaderFactory::factory(array('Zend\Loader\StandardAutoloader' => array(
         'namespaces'      => array(
             'Zend'        => VENDOR_PATH . '/Zend',
-            'ZendOAuth'   => VENDOR_PATH . '/ZendOAuth',
-            'ZendService' => VENDOR_PATH . '/ZendService',
-            'ZendRest'    => VENDOR_PATH . '/ZendRest',
             'Propel'      => VENDOR_PATH . '/Propel',
         ),
         'fallback_autoloader' => true
