@@ -11,7 +11,6 @@ use \PropelException;
 use \PropelPDO;
 use Orm\Model\PropelOrm\CategoryPeer;
 use Orm\Model\PropelOrm\Service;
-use Orm\Model\PropelOrm\ServiceDetailPeer;
 use Orm\Model\PropelOrm\ServicePeer;
 use Orm\Model\PropelOrm\map\ServiceTableMap;
 
@@ -386,9 +385,6 @@ abstract class BaseServicePeer
      */
     public static function clearRelatedInstancePool()
     {
-        // Invalidate objects in ServiceDetailPeer instance pool,
-        // since one or more of them may be deleted by ON DELETE CASCADE/SETNULL rule.
-        ServiceDetailPeer::clearInstancePool();
     }
 
     /**

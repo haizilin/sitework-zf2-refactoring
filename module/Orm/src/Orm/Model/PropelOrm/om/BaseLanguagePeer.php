@@ -9,11 +9,8 @@ use \PDOStatement;
 use \Propel;
 use \PropelException;
 use \PropelPDO;
-use Orm\Model\PropelOrm\CategoryDetailPeer;
 use Orm\Model\PropelOrm\Language;
 use Orm\Model\PropelOrm\LanguagePeer;
-use Orm\Model\PropelOrm\ProjectDetailPeer;
-use Orm\Model\PropelOrm\ServiceDetailPeer;
 use Orm\Model\PropelOrm\map\LanguageTableMap;
 
 /**
@@ -382,15 +379,6 @@ abstract class BaseLanguagePeer
      */
     public static function clearRelatedInstancePool()
     {
-        // Invalidate objects in CategoryDetailPeer instance pool,
-        // since one or more of them may be deleted by ON DELETE CASCADE/SETNULL rule.
-        CategoryDetailPeer::clearInstancePool();
-        // Invalidate objects in ServiceDetailPeer instance pool,
-        // since one or more of them may be deleted by ON DELETE CASCADE/SETNULL rule.
-        ServiceDetailPeer::clearInstancePool();
-        // Invalidate objects in ProjectDetailPeer instance pool,
-        // since one or more of them may be deleted by ON DELETE CASCADE/SETNULL rule.
-        ProjectDetailPeer::clearInstancePool();
     }
 
     /**

@@ -22,16 +22,19 @@
         <column name="active" type="BOOLEAN" default="true" required="true" />
     </table>
 
+    <!-- categoryDetails -->
     <table name="category_detail" phpName="CategoryDetail">
         <column name="fk_category_id" type="INTEGER" required="true" primaryKey="true"/>
         <column name="fk_lang_id" type="INTEGER" required="true" primaryKey="true"/>
         <column name="label" type="VARCHAR" size="255"/>
 
-        <foreign-key name="category_lang" foreignTable="language" onDelete="CASCADE">
+        <foreign-key name="category_index" foreignTable="category">
+            <reference local="fk_category_id" foreign="id"/>
+        </foreign-key>
+        <foreign-key name="category_lang" foreignTable="language">
             <reference local="fk_lang_id" foreign="id"/>
         </foreign-key>
-
-</table>
+    </table>
 
     <!-- services and technologies -->
     <table name="service" phpName="Service">
@@ -40,20 +43,21 @@
         <column name="pos" type="INTEGER" required="true"/>
         <column name="active" type="BOOLEAN" default="true" required="true" />
 
-        <foreign-key name="service_category" foreignTable="category">
+        <foreign-key name="category" foreignTable="category">
             <reference local="fk_category_id" foreign="id"/>
         </foreign-key>
     </table>
 
+    <!-- serviceDetails and technologyDetails -->
     <table name="service_detail" phpName="ServiceDetail">
         <column name="fk_service_id" type="INTEGER" required="true" primaryKey="true"/>
         <column name="fk_lang_id" type="INTEGER" required="true" primaryKey="true"/>
         <column name="description" type="LONGVARCHAR" required="true"/>
 
-        <foreign-key name="service_index" foreignTable="service" onDelete="CASCADE">
+        <foreign-key name="service" foreignTable="service">
             <reference local="fk_service_id" foreign="id"/>
         </foreign-key>
-        <foreign-key name="service_lang" foreignTable="language" onDelete="CASCADE">
+        <foreign-key name="service_lang" foreignTable="language">
             <reference local="fk_lang_id" foreign="id"/>
         </foreign-key>
     </table>
@@ -77,16 +81,17 @@
         </foreign-key>
     </table>
 
+    <!-- projectDetails -->
     <table name="project_detail" phpName="ProjectDetail">
         <column name="fk_project_id" type="INTEGER" required="true" primaryKey="true"/>
         <column name="fk_lang_id" type="INTEGER" required="true" primaryKey="true"/>
         <column name="label" type="VARCHAR" size="255" required="true"/>
         <column name="description" type="LONGVARCHAR"/>
 
-        <foreign-key name="project_index" foreignTable="project" onDelete="CASCADE">
+        <foreign-key name="project" foreignTable="project">
             <reference local="fk_project_id" foreign="id"/>
         </foreign-key>
-        <foreign-key name="project_lang" foreignTable="language" onDelete="CASCADE">
+        <foreign-key name="project_lang" foreignTable="language">
             <reference local="fk_lang_id" foreign="id"/>
         </foreign-key>
     </table>

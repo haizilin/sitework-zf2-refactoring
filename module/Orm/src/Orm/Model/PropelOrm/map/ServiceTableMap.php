@@ -55,7 +55,7 @@ class ServiceTableMap extends TableMap
     public function buildRelations()
     {
         $this->addRelation('Category', 'Orm\\Model\\PropelOrm\\Category', RelationMap::MANY_TO_ONE, array('fk_category_id' => 'id', ), null, null);
-        $this->addRelation('ServiceDetail', 'Orm\\Model\\PropelOrm\\ServiceDetail', RelationMap::ONE_TO_MANY, array('id' => 'fk_service_id', ), 'CASCADE', null, 'ServiceDetails');
+        $this->addRelation('ServiceDetail', 'Orm\\Model\\PropelOrm\\ServiceDetail', RelationMap::ONE_TO_MANY, array('id' => 'fk_service_id', ), null, null, 'ServiceDetails');
     } // buildRelations()
 
 } // ServiceTableMap

@@ -56,10 +56,12 @@ CREATE TABLE `category_detail`
     `label` VARCHAR(255),
     PRIMARY KEY (`fk_category_id`,`fk_lang_id`),
     INDEX `FI_egory_lang` (`fk_lang_id`),
+    CONSTRAINT `category_index`
+        FOREIGN KEY (`fk_category_id`)
+        REFERENCES `category` (`id`),
     CONSTRAINT `category_lang`
         FOREIGN KEY (`fk_lang_id`)
         REFERENCES `language` (`id`)
-        ON DELETE CASCADE
 ) ENGINE=innodb;
 
 -- ---------------------------------------------------------------------
@@ -75,8 +77,8 @@ CREATE TABLE `service`
     `pos` INTEGER NOT NULL,
     `active` TINYINT(1) DEFAULT 1 NOT NULL,
     PRIMARY KEY (`id`),
-    INDEX `FI_vice_category` (`fk_category_id`),
-    CONSTRAINT `service_category`
+    INDEX `FI_egory` (`fk_category_id`),
+    CONSTRAINT `category`
         FOREIGN KEY (`fk_category_id`)
         REFERENCES `category` (`id`)
 ) ENGINE=innodb;
@@ -94,14 +96,12 @@ CREATE TABLE `service_detail`
     `description` TEXT NOT NULL,
     PRIMARY KEY (`fk_service_id`,`fk_lang_id`),
     INDEX `FI_vice_lang` (`fk_lang_id`),
-    CONSTRAINT `service_index`
+    CONSTRAINT `service`
         FOREIGN KEY (`fk_service_id`)
-        REFERENCES `service` (`id`)
-        ON DELETE CASCADE,
+        REFERENCES `service` (`id`),
     CONSTRAINT `service_lang`
         FOREIGN KEY (`fk_lang_id`)
         REFERENCES `language` (`id`)
-        ON DELETE CASCADE
 ) ENGINE=innodb;
 
 -- ---------------------------------------------------------------------
@@ -145,14 +145,12 @@ CREATE TABLE `project_detail`
     `description` TEXT,
     PRIMARY KEY (`fk_project_id`,`fk_lang_id`),
     INDEX `FI_ject_lang` (`fk_lang_id`),
-    CONSTRAINT `project_index`
+    CONSTRAINT `project`
         FOREIGN KEY (`fk_project_id`)
-        REFERENCES `project` (`id`)
-        ON DELETE CASCADE,
+        REFERENCES `project` (`id`),
     CONSTRAINT `project_lang`
         FOREIGN KEY (`fk_lang_id`)
         REFERENCES `language` (`id`)
-        ON DELETE CASCADE
 ) ENGINE=innodb;
 
 # This restores the fkey checks, after having unset them earlier

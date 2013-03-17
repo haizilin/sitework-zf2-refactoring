@@ -489,10 +489,10 @@ abstract class BaseLanguage extends BaseObject implements Persistent
 
             if ($this->categoryDetailsScheduledForDeletion !== null) {
                 if (!$this->categoryDetailsScheduledForDeletion->isEmpty()) {
-                    //the foreign key is flagged as `CASCADE`, so we delete the items
-                    CategoryDetailQuery::create()
-                        ->filterByPrimaryKeys($this->categoryDetailsScheduledForDeletion->getPrimaryKeys(false))
-                        ->delete($con);
+                    foreach ($this->categoryDetailsScheduledForDeletion as $categoryDetail) {
+                        // need to save related object because we set the relation to null
+                        $categoryDetail->save($con);
+                    }
                     $this->categoryDetailsScheduledForDeletion = null;
                 }
             }
@@ -507,10 +507,10 @@ abstract class BaseLanguage extends BaseObject implements Persistent
 
             if ($this->serviceDetailsScheduledForDeletion !== null) {
                 if (!$this->serviceDetailsScheduledForDeletion->isEmpty()) {
-                    //the foreign key is flagged as `CASCADE`, so we delete the items
-                    ServiceDetailQuery::create()
-                        ->filterByPrimaryKeys($this->serviceDetailsScheduledForDeletion->getPrimaryKeys(false))
-                        ->delete($con);
+                    foreach ($this->serviceDetailsScheduledForDeletion as $serviceDetail) {
+                        // need to save related object because we set the relation to null
+                        $serviceDetail->save($con);
+                    }
                     $this->serviceDetailsScheduledForDeletion = null;
                 }
             }
@@ -525,10 +525,10 @@ abstract class BaseLanguage extends BaseObject implements Persistent
 
             if ($this->projectDetailsScheduledForDeletion !== null) {
                 if (!$this->projectDetailsScheduledForDeletion->isEmpty()) {
-                    //the foreign key is flagged as `CASCADE`, so we delete the items
-                    ProjectDetailQuery::create()
-                        ->filterByPrimaryKeys($this->projectDetailsScheduledForDeletion->getPrimaryKeys(false))
-                        ->delete($con);
+                    foreach ($this->projectDetailsScheduledForDeletion as $projectDetail) {
+                        // need to save related object because we set the relation to null
+                        $projectDetail->save($con);
+                    }
                     $this->projectDetailsScheduledForDeletion = null;
                 }
             }
@@ -1273,6 +1273,31 @@ abstract class BaseLanguage extends BaseObject implements Persistent
         }
 
         return $this;
+    }
+
+
+    /**
+     * If this collection has already been initialized with
+     * an identical criteria, it returns the collection.
+     * Otherwise if this Language is new, it will return
+     * an empty collection; or if this Language has previously
+     * been saved, it will retrieve related CategoryDetails from storage.
+     *
+     * This method is protected by default in order to keep the public
+     * api reasonable.  You can provide public methods for those you
+     * actually need in Language.
+     *
+     * @param Criteria $criteria optional Criteria object to narrow the query
+     * @param PropelPDO $con optional connection object
+     * @param string $join_behavior optional join type to use (defaults to Criteria::LEFT_JOIN)
+     * @return PropelObjectCollection|CategoryDetail[] List of CategoryDetail objects
+     */
+    public function getCategoryDetailsJoinCategory($criteria = null, $con = null, $join_behavior = Criteria::LEFT_JOIN)
+    {
+        $query = CategoryDetailQuery::create(null, $criteria);
+        $query->joinWith('Category', $join_behavior);
+
+        return $this->getCategoryDetails($query, $con);
     }
 
     /**

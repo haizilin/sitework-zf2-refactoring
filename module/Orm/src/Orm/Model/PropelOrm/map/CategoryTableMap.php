@@ -52,6 +52,7 @@ class CategoryTableMap extends TableMap
      */
     public function buildRelations()
     {
+        $this->addRelation('CategoryDetail', 'Orm\\Model\\PropelOrm\\CategoryDetail', RelationMap::ONE_TO_MANY, array('id' => 'fk_category_id', ), null, null, 'CategoryDetails');
         $this->addRelation('Service', 'Orm\\Model\\PropelOrm\\Service', RelationMap::ONE_TO_MANY, array('id' => 'fk_category_id', ), null, null, 'Services');
     } // buildRelations()
 

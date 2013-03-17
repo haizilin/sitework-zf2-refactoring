@@ -53,9 +53,9 @@ class LanguageTableMap extends TableMap
      */
     public function buildRelations()
     {
-        $this->addRelation('CategoryDetail', 'Orm\\Model\\PropelOrm\\CategoryDetail', RelationMap::ONE_TO_MANY, array('id' => 'fk_lang_id', ), 'CASCADE', null, 'CategoryDetails');
-        $this->addRelation('ServiceDetail', 'Orm\\Model\\PropelOrm\\ServiceDetail', RelationMap::ONE_TO_MANY, array('id' => 'fk_lang_id', ), 'CASCADE', null, 'ServiceDetails');
-        $this->addRelation('ProjectDetail', 'Orm\\Model\\PropelOrm\\ProjectDetail', RelationMap::ONE_TO_MANY, array('id' => 'fk_lang_id', ), 'CASCADE', null, 'ProjectDetails');
+        $this->addRelation('CategoryDetail', 'Orm\\Model\\PropelOrm\\CategoryDetail', RelationMap::ONE_TO_MANY, array('id' => 'fk_lang_id', ), null, null, 'CategoryDetails');
+        $this->addRelation('ServiceDetail', 'Orm\\Model\\PropelOrm\\ServiceDetail', RelationMap::ONE_TO_MANY, array('id' => 'fk_lang_id', ), null, null, 'ServiceDetails');
+        $this->addRelation('ProjectDetail', 'Orm\\Model\\PropelOrm\\ProjectDetail', RelationMap::ONE_TO_MANY, array('id' => 'fk_lang_id', ), null, null, 'ProjectDetails');
     } // buildRelations()
 
 } // LanguageTableMap

@@ -74,7 +74,7 @@ section p { line-height: 150%; }
 .navbar .logo, .navbar .logo:hover, .navbar .logo:active { text-decoration:none; }
 .navbar, .page { width: 940px; margin: 0 auto; overflow:hidden; }
 
-.page { padding-top:110px; background:#fff; box-shadow: inset 2px 2px 2px rgba(0, 0, 0, .5); border-right: 2px solid #777;  }
+.page { margin-top:96px; background:#fff; box-shadow: inset 2px 2px 2px rgba(0, 0, 0, .5); border-right: 2px solid #777;  }
 
 .navbar .colRight { float:right; margin-right: 15px; }
 

@@ -11,7 +11,6 @@ use \PropelException;
 use \PropelPDO;
 use Orm\Model\PropelOrm\ContactPeer;
 use Orm\Model\PropelOrm\Project;
-use Orm\Model\PropelOrm\ProjectDetailPeer;
 use Orm\Model\PropelOrm\ProjectPeer;
 use Orm\Model\PropelOrm\map\ProjectTableMap;
 
@@ -406,9 +405,6 @@ abstract class BaseProjectPeer
      */
     public static function clearRelatedInstancePool()
     {
-        // Invalidate objects in ProjectDetailPeer instance pool,
-        // since one or more of them may be deleted by ON DELETE CASCADE/SETNULL rule.
-        ProjectDetailPeer::clearInstancePool();
     }
 
     /**

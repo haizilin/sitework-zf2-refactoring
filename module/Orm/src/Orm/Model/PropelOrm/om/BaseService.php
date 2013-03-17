@@ -522,10 +522,10 @@ abstract class BaseService extends BaseObject implements Persistent
 
             if ($this->serviceDetailsScheduledForDeletion !== null) {
                 if (!$this->serviceDetailsScheduledForDeletion->isEmpty()) {
-                    //the foreign key is flagged as `CASCADE`, so we delete the items
-                    ServiceDetailQuery::create()
-                        ->filterByPrimaryKeys($this->serviceDetailsScheduledForDeletion->getPrimaryKeys(false))
-                        ->delete($con);
+                    foreach ($this->serviceDetailsScheduledForDeletion as $serviceDetail) {
+                        // need to save related object because we set the relation to null
+                        $serviceDetail->save($con);
+                    }
                     $this->serviceDetailsScheduledForDeletion = null;
                 }
             }

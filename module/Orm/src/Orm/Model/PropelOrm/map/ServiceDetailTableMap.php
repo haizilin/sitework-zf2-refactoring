@@ -53,8 +53,8 @@ class ServiceDetailTableMap extends TableMap
      */
     public function buildRelations()
     {
-        $this->addRelation('Service', 'Orm\\Model\\PropelOrm\\Service', RelationMap::MANY_TO_ONE, array('fk_service_id' => 'id', ), 'CASCADE', null);
-        $this->addRelation('Language', 'Orm\\Model\\PropelOrm\\Language', RelationMap::MANY_TO_ONE, array('fk_lang_id' => 'id', ), 'CASCADE', null);
+        $this->addRelation('Service', 'Orm\\Model\\PropelOrm\\Service', RelationMap::MANY_TO_ONE, array('fk_service_id' => 'id', ), null, null);
+        $this->addRelation('Language', 'Orm\\Model\\PropelOrm\\Language', RelationMap::MANY_TO_ONE, array('fk_lang_id' => 'id', ), null, null);
     } // buildRelations()
 
 } // ServiceDetailTableMap

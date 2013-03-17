@@ -11,9 +11,11 @@ use \Persistent;
 use \Propel;
 use \PropelException;
 use \PropelPDO;
+use Orm\Model\PropelOrm\Category;
 use Orm\Model\PropelOrm\CategoryDetail;
 use Orm\Model\PropelOrm\CategoryDetailPeer;
 use Orm\Model\PropelOrm\CategoryDetailQuery;
+use Orm\Model\PropelOrm\CategoryQuery;
 use Orm\Model\PropelOrm\Language;
 use Orm\Model\PropelOrm\LanguageQuery;
 
@@ -62,6 +64,11 @@ abstract class BaseCategoryDetail extends BaseObject implements Persistent
      * @var        string
      */
     protected $label;
+
+    /**
+     * @var        Category
+     */
+    protected $aCategory;
 
     /**
      * @var        Language
@@ -133,6 +140,10 @@ abstract class BaseCategoryDetail extends BaseObject implements Persistent
         if ($this->fk_category_id !== $v) {
             $this->fk_category_id = $v;
             $this->modifiedColumns[] = CategoryDetailPeer::FK_CATEGORY_ID;
+        }
+
+        if ($this->aCategory !== null && $this->aCategory->getId() !== $v) {
+            $this->aCategory = null;
         }
 
 
@@ -251,6 +262,9 @@ abstract class BaseCategoryDetail extends BaseObject implements Persistent
     public function ensureConsistency()
     {
 
+        if ($this->aCategory !== null && $this->fk_category_id !== $this->aCategory->getId()) {
+            $this->aCategory = null;
+        }
         if ($this->aLanguage !== null && $this->fk_lang_id !== $this->aLanguage->getId()) {
             $this->aLanguage = null;
         }
@@ -293,6 +307,7 @@ abstract class BaseCategoryDetail extends BaseObject implements Persistent
 
         if ($deep) {  // also de-associate any related objects?
 
+            $this->aCategory = null;
             $this->aLanguage = null;
         } // if (deep)
     }
@@ -411,6 +426,13 @@ abstract class BaseCategoryDetail extends BaseObject implements Persistent
             // were passed to this object by their corresponding set
             // method.  This object relates to these object(s) by a
             // foreign key reference.
+
+            if ($this->aCategory !== null) {
+                if ($this->aCategory->isModified() || $this->aCategory->isNew()) {
+                    $affectedRows += $this->aCategory->save($con);
+                }
+                $this->setCategory($this->aCategory);
+            }
 
             if ($this->aLanguage !== null) {
                 if ($this->aLanguage->isModified() || $this->aLanguage->isNew()) {
@@ -573,6 +595,12 @@ abstract class BaseCategoryDetail extends BaseObject implements Persistent
             // method.  This object relates to these object(s) by a
             // foreign key reference.
 
+            if ($this->aCategory !== null) {
+                if (!$this->aCategory->validate($columns)) {
+                    $failureMap = array_merge($failureMap, $this->aCategory->getValidationFailures());
+                }
+            }
+
             if ($this->aLanguage !== null) {
                 if (!$this->aLanguage->validate($columns)) {
                     $failureMap = array_merge($failureMap, $this->aLanguage->getValidationFailures());
@@ -663,6 +691,9 @@ abstract class BaseCategoryDetail extends BaseObject implements Persistent
             $keys[2] => $this->getLabel(),
         );
         if ($includeForeignObjects) {
+            if (null !== $this->aCategory) {
+                $result['Category'] = $this->aCategory->toArray($keyType, $includeLazyLoadColumns,  $alreadyDumpedObjects, true);
+            }
             if (null !== $this->aLanguage) {
                 $result['Language'] = $this->aLanguage->toArray($keyType, $includeLazyLoadColumns,  $alreadyDumpedObjects, true);
             }
@@ -881,6 +912,58 @@ abstract class BaseCategoryDetail extends BaseObject implements Persistent
     }
 
     /**
+     * Declares an association between this object and a Category object.
+     *
+     * @param             Category $v
+     * @return CategoryDetail The current object (for fluent API support)
+     * @throws PropelException
+     */
+    public function setCategory(Category $v = null)
+    {
+        if ($v === null) {
+            $this->setFkCategoryId(NULL);
+        } else {
+            $this->setFkCategoryId($v->getId());
+        }
+
+        $this->aCategory = $v;
+
+        // Add binding for other direction of this n:n relationship.
+        // If this object has already been added to the Category object, it will not be re-added.
+        if ($v !== null) {
+            $v->addCategoryDetail($this);
+        }
+
+
+        return $this;
+    }
+
+
+    /**
+     * Get the associated Category object
+     *
+     * @param PropelPDO $con Optional Connection object.
+     * @param $doQuery Executes a query to get the object if required
+     * @return Category The associated Category object.
+     * @throws PropelException
+     */
+    public function getCategory(PropelPDO $con = null, $doQuery = true)
+    {
+        if ($this->aCategory === null && ($this->fk_category_id !== null) && $doQuery) {
+            $this->aCategory = CategoryQuery::create()->findPk($this->fk_category_id, $con);
+            /* The following can be used additionally to
+                guarantee the related object contains a reference
+                to this object.  This level of coupling may, however, be
+                undesirable since it could result in an only partially populated collection
+                in the referenced object.
+                $this->aCategory->addCategoryDetails($this);
+             */
+        }
+
+        return $this->aCategory;
+    }
+
+    /**
      * Declares an association between this object and a Language object.
      *
      * @param             Language $v
@@ -962,6 +1045,9 @@ abstract class BaseCategoryDetail extends BaseObject implements Persistent
     {
         if ($deep && !$this->alreadyInClearAllReferencesDeep) {
             $this->alreadyInClearAllReferencesDeep = true;
+            if ($this->aCategory instanceof Persistent) {
+              $this->aCategory->clearAllReferences($deep);
+            }
             if ($this->aLanguage instanceof Persistent) {
               $this->aLanguage->clearAllReferences($deep);
             }
@@ -969,6 +1055,7 @@ abstract class BaseCategoryDetail extends BaseObject implements Persistent
             $this->alreadyInClearAllReferencesDeep = false;
         } // if ($deep)
 
+        $this->aCategory = null;
         $this->aLanguage = null;
     }
 

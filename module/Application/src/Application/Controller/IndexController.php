@@ -9,6 +9,7 @@
 
 namespace Application\Controller;
 
+use Orm\Model\PropelOrm\Category;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 use Application\Form\Contact\ContactForm;
@@ -17,7 +18,7 @@ use Application\Model;
 class IndexController extends AbstractActionController
 {
     public function indexAction() {
-        $view = new ViewModel();
+
         $twitter = new Model\Twitter\Twitter($this->getServiceLocator()->get('config'));
         $timelineCollection = new Model\Twitter\TimelineCollection($twitter->statusUserTimeline('sitewalker', 1, 10), 'json');
 
@@ -25,6 +26,13 @@ class IndexController extends AbstractActionController
         $sidebar->setVariable('twitterCollection', $timelineCollection);
         $sidebar->setTemplate('application/partials/sidebar.index.phtml');
         $this->layout()->addChild($sidebar, 'sidebar');
+
+        $view = new ViewModel();
+        $services = Category::getCategory(Category::SERVICES_ID, 2);
+        $view->setVariable('services', $services);
+
+        $technologies = Category::getCategory(Category::TECHNOLOGIES_ID, 2);
+        $view->setVariable('technologies', $technologies);
 
         return $view;
     }

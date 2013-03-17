@@ -1,1 +1,17 @@
-
+<div class="content">
+    <h2><?= $this->translate('Services and Technologies') ?></h2>
+    <h3><?= $this->translate('Services') ?></h3>
+    <ul class="services">
+    <?php foreach ($this->services->find() as $service): ?>
+        <?php $row = $service->getServiceDetails()->getFirst() ?>
+        <li><?= $row->getDescription() ?></li>
+    <?php endforeach ?>
+    </ul>
+    <h3><?= $this->translate('Technologies') ?></h3>
+    <ul class="technologies">
+    <?php foreach ($this->technologies->find() as $service): ?>
+        <?php $row = $service->getServiceDetails()->getFirst() ?>
+        <li><?= $row->getDescription() ?></li>
+    <?php endforeach ?>
+    </ul>
+</div>

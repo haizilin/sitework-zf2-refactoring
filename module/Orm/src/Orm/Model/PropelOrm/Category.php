@@ -3,6 +3,10 @@
 namespace Orm\Model\PropelOrm;
 
 use Orm\Model\PropelOrm\om\BaseCategory;
+use Orm\Model\PropelOrm\om\BaseCategoryQuery;
+use Orm\Model\PropelOrm\om\BaseCategoryDetailQuery;
+use Orm\Model\PropelOrm\om\BaseServiceQuery;
+use Orm\Model\PropelOrm\om\BaseService;
 
 
 /**
@@ -18,4 +22,21 @@ use Orm\Model\PropelOrm\om\BaseCategory;
  */
 class Category extends BaseCategory
 {
+    const SERVICES_ID     = 1;
+    const TECHNOLOGIES_ID = 2;
+
+    public static function getCategory($categoryId = 1, $langId = 2) {
+        $baseServiceQuery = BaseServiceQuery::create()
+            ->filterByFkCategoryId($categoryId)
+            ->joinServiceDetail()
+            ->useServiceDetailQuery()
+            ->filterByFkLangId($langId)
+            ->endUse();
+
+        return $baseServiceQuery;
+    }
+
+    public static function getCategoryTechnologies($langId = 2) {
+
+    }
 }

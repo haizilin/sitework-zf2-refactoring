@@ -42,7 +42,7 @@ class CategoryDetailTableMap extends TableMap
         $this->setPackage('PropelOrm');
         $this->setUseIdGenerator(false);
         // columns
-        $this->addPrimaryKey('fk_category_id', 'FkCategoryId', 'INTEGER', true, null, null);
+        $this->addForeignPrimaryKey('fk_category_id', 'FkCategoryId', 'INTEGER' , 'category', 'id', true, null, null);
         $this->addForeignPrimaryKey('fk_lang_id', 'FkLangId', 'INTEGER' , 'language', 'id', true, null, null);
         $this->addColumn('label', 'Label', 'VARCHAR', false, 255, null);
         // validators
@@ -53,7 +53,8 @@ class CategoryDetailTableMap extends TableMap
      */
     public function buildRelations()
     {
-        $this->addRelation('Language', 'Orm\\Model\\PropelOrm\\Language', RelationMap::MANY_TO_ONE, array('fk_lang_id' => 'id', ), 'CASCADE', null);
+        $this->addRelation('Category', 'Orm\\Model\\PropelOrm\\Category', RelationMap::MANY_TO_ONE, array('fk_category_id' => 'id', ), null, null);
+        $this->addRelation('Language', 'Orm\\Model\\PropelOrm\\Language', RelationMap::MANY_TO_ONE, array('fk_lang_id' => 'id', ), null, null);
     } // buildRelations()
 
 } // CategoryDetailTableMap

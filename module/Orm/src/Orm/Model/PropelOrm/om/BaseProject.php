@@ -760,10 +760,10 @@ abstract class BaseProject extends BaseObject implements Persistent
 
             if ($this->projectDetailsScheduledForDeletion !== null) {
                 if (!$this->projectDetailsScheduledForDeletion->isEmpty()) {
-                    //the foreign key is flagged as `CASCADE`, so we delete the items
-                    ProjectDetailQuery::create()
-                        ->filterByPrimaryKeys($this->projectDetailsScheduledForDeletion->getPrimaryKeys(false))
-                        ->delete($con);
+                    foreach ($this->projectDetailsScheduledForDeletion as $projectDetail) {
+                        // need to save related object because we set the relation to null
+                        $projectDetail->save($con);
+                    }
                     $this->projectDetailsScheduledForDeletion = null;
                 }
             }

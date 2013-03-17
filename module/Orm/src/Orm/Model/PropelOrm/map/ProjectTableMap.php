@@ -60,7 +60,7 @@ class ProjectTableMap extends TableMap
     {
         $this->addRelation('ContactRelatedByFkContactClientId', 'Orm\\Model\\PropelOrm\\Contact', RelationMap::MANY_TO_ONE, array('fk_contact_client_id' => 'id', ), null, null);
         $this->addRelation('ContactRelatedByFkContactEmployerId', 'Orm\\Model\\PropelOrm\\Contact', RelationMap::MANY_TO_ONE, array('fk_contact_employer_id' => 'id', ), null, null);
-        $this->addRelation('ProjectDetail', 'Orm\\Model\\PropelOrm\\ProjectDetail', RelationMap::ONE_TO_MANY, array('id' => 'fk_project_id', ), 'CASCADE', null, 'ProjectDetails');
+        $this->addRelation('ProjectDetail', 'Orm\\Model\\PropelOrm\\ProjectDetail', RelationMap::ONE_TO_MANY, array('id' => 'fk_project_id', ), null, null, 'ProjectDetails');
     } // buildRelations()
 
 } // ProjectTableMap

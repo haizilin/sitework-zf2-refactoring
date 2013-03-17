@@ -11,6 +11,7 @@ use \PropelException;
 use \PropelPDO;
 use Orm\Model\PropelOrm\CategoryDetail;
 use Orm\Model\PropelOrm\CategoryDetailPeer;
+use Orm\Model\PropelOrm\CategoryPeer;
 use Orm\Model\PropelOrm\LanguagePeer;
 use Orm\Model\PropelOrm\map\CategoryDetailTableMap;
 
@@ -478,6 +479,57 @@ abstract class BaseCategoryDetailPeer
 
 
     /**
+     * Returns the number of rows matching criteria, joining the related Category table
+     *
+     * @param      Criteria $criteria
+     * @param      boolean $distinct Whether to select only distinct columns; deprecated: use Criteria->setDistinct() instead.
+     * @param      PropelPDO $con
+     * @param      String    $join_behavior the type of joins to use, defaults to Criteria::LEFT_JOIN
+     * @return int Number of matching rows.
+     */
+    public static function doCountJoinCategory(Criteria $criteria, $distinct = false, PropelPDO $con = null, $join_behavior = Criteria::LEFT_JOIN)
+    {
+        // we're going to modify criteria, so copy it first
+        $criteria = clone $criteria;
+
+        // We need to set the primary table name, since in the case that there are no WHERE columns
+        // it will be impossible for the BasePeer::createSelectSql() method to determine which
+        // tables go into the FROM clause.
+        $criteria->setPrimaryTableName(CategoryDetailPeer::TABLE_NAME);
+
+        if ($distinct && !in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
+            $criteria->setDistinct();
+        }
+
+        if (!$criteria->hasSelectClause()) {
+            CategoryDetailPeer::addSelectColumns($criteria);
+        }
+
+        $criteria->clearOrderByColumns(); // ORDER BY won't ever affect the count
+
+        // Set the correct dbName
+        $criteria->setDbName(CategoryDetailPeer::DATABASE_NAME);
+
+        if ($con === null) {
+            $con = Propel::getConnection(CategoryDetailPeer::DATABASE_NAME, Propel::CONNECTION_READ);
+        }
+
+        $criteria->addJoin(CategoryDetailPeer::FK_CATEGORY_ID, CategoryPeer::ID, $join_behavior);
+
+        $stmt = BasePeer::doCount($criteria, $con);
+
+        if ($row = $stmt->fetch(PDO::FETCH_NUM)) {
+            $count = (int) $row[0];
+        } else {
+            $count = 0; // no rows returned; we infer that means 0 matches.
+        }
+        $stmt->closeCursor();
+
+        return $count;
+    }
+
+
+    /**
      * Returns the number of rows matching criteria, joining the related Language table
      *
      * @param      Criteria $criteria
@@ -525,6 +577,73 @@ abstract class BaseCategoryDetailPeer
         $stmt->closeCursor();
 
         return $count;
+    }
+
+
+    /**
+     * Selects a collection of CategoryDetail objects pre-filled with their Category objects.
+     * @param      Criteria  $criteria
+     * @param      PropelPDO $con
+     * @param      String    $join_behavior the type of joins to use, defaults to Criteria::LEFT_JOIN
+     * @return array           Array of CategoryDetail objects.
+     * @throws PropelException Any exceptions caught during processing will be
+     *		 rethrown wrapped into a PropelException.
+     */
+    public static function doSelectJoinCategory(Criteria $criteria, $con = null, $join_behavior = Criteria::LEFT_JOIN)
+    {
+        $criteria = clone $criteria;
+
+        // Set the correct dbName if it has not been overridden
+        if ($criteria->getDbName() == Propel::getDefaultDB()) {
+            $criteria->setDbName(CategoryDetailPeer::DATABASE_NAME);
+        }
+
+        CategoryDetailPeer::addSelectColumns($criteria);
+        $startcol = CategoryDetailPeer::NUM_HYDRATE_COLUMNS;
+        CategoryPeer::addSelectColumns($criteria);
+
+        $criteria->addJoin(CategoryDetailPeer::FK_CATEGORY_ID, CategoryPeer::ID, $join_behavior);
+
+        $stmt = BasePeer::doSelect($criteria, $con);
+        $results = array();
+
+        while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
+            $key1 = CategoryDetailPeer::getPrimaryKeyHashFromRow($row, 0);
+            if (null !== ($obj1 = CategoryDetailPeer::getInstanceFromPool($key1))) {
+                // We no longer rehydrate the object, since this can cause data loss.
+                // See http://www.propelorm.org/ticket/509
+                // $obj1->hydrate($row, 0, true); // rehydrate
+            } else {
+
+                $cls = CategoryDetailPeer::getOMClass();
+
+                $obj1 = new $cls();
+                $obj1->hydrate($row);
+                CategoryDetailPeer::addInstanceToPool($obj1, $key1);
+            } // if $obj1 already loaded
+
+            $key2 = CategoryPeer::getPrimaryKeyHashFromRow($row, $startcol);
+            if ($key2 !== null) {
+                $obj2 = CategoryPeer::getInstanceFromPool($key2);
+                if (!$obj2) {
+
+                    $cls = CategoryPeer::getOMClass();
+
+                    $obj2 = new $cls();
+                    $obj2->hydrate($row, $startcol);
+                    CategoryPeer::addInstanceToPool($obj2, $key2);
+                } // if obj2 already loaded
+
+                // Add the $obj1 (CategoryDetail) to $obj2 (Category)
+                $obj2->addCategoryDetail($obj1);
+
+            } // if joined row was not null
+
+            $results[] = $obj1;
+        }
+        $stmt->closeCursor();
+
+        return $results;
     }
 
 
@@ -631,6 +750,8 @@ abstract class BaseCategoryDetailPeer
             $con = Propel::getConnection(CategoryDetailPeer::DATABASE_NAME, Propel::CONNECTION_READ);
         }
 
+        $criteria->addJoin(CategoryDetailPeer::FK_CATEGORY_ID, CategoryPeer::ID, $join_behavior);
+
         $criteria->addJoin(CategoryDetailPeer::FK_LANG_ID, LanguagePeer::ID, $join_behavior);
 
         $stmt = BasePeer::doCount($criteria, $con);
@@ -667,8 +788,13 @@ abstract class BaseCategoryDetailPeer
         CategoryDetailPeer::addSelectColumns($criteria);
         $startcol2 = CategoryDetailPeer::NUM_HYDRATE_COLUMNS;
 
+        CategoryPeer::addSelectColumns($criteria);
+        $startcol3 = $startcol2 + CategoryPeer::NUM_HYDRATE_COLUMNS;
+
         LanguagePeer::addSelectColumns($criteria);
-        $startcol3 = $startcol2 + LanguagePeer::NUM_HYDRATE_COLUMNS;
+        $startcol4 = $startcol3 + LanguagePeer::NUM_HYDRATE_COLUMNS;
+
+        $criteria->addJoin(CategoryDetailPeer::FK_CATEGORY_ID, CategoryPeer::ID, $join_behavior);
 
         $criteria->addJoin(CategoryDetailPeer::FK_LANG_ID, LanguagePeer::ID, $join_behavior);
 
@@ -689,23 +815,291 @@ abstract class BaseCategoryDetailPeer
                 CategoryDetailPeer::addInstanceToPool($obj1, $key1);
             } // if obj1 already loaded
 
-            // Add objects for joined Language rows
+            // Add objects for joined Category rows
 
-            $key2 = LanguagePeer::getPrimaryKeyHashFromRow($row, $startcol2);
+            $key2 = CategoryPeer::getPrimaryKeyHashFromRow($row, $startcol2);
             if ($key2 !== null) {
-                $obj2 = LanguagePeer::getInstanceFromPool($key2);
+                $obj2 = CategoryPeer::getInstanceFromPool($key2);
                 if (!$obj2) {
 
+                    $cls = CategoryPeer::getOMClass();
+
+                    $obj2 = new $cls();
+                    $obj2->hydrate($row, $startcol2);
+                    CategoryPeer::addInstanceToPool($obj2, $key2);
+                } // if obj2 loaded
+
+                // Add the $obj1 (CategoryDetail) to the collection in $obj2 (Category)
+                $obj2->addCategoryDetail($obj1);
+            } // if joined row not null
+
+            // Add objects for joined Language rows
+
+            $key3 = LanguagePeer::getPrimaryKeyHashFromRow($row, $startcol3);
+            if ($key3 !== null) {
+                $obj3 = LanguagePeer::getInstanceFromPool($key3);
+                if (!$obj3) {
+
                     $cls = LanguagePeer::getOMClass();
+
+                    $obj3 = new $cls();
+                    $obj3->hydrate($row, $startcol3);
+                    LanguagePeer::addInstanceToPool($obj3, $key3);
+                } // if obj3 loaded
+
+                // Add the $obj1 (CategoryDetail) to the collection in $obj3 (Language)
+                $obj3->addCategoryDetail($obj1);
+            } // if joined row not null
+
+            $results[] = $obj1;
+        }
+        $stmt->closeCursor();
+
+        return $results;
+    }
+
+
+    /**
+     * Returns the number of rows matching criteria, joining the related Category table
+     *
+     * @param      Criteria $criteria
+     * @param      boolean $distinct Whether to select only distinct columns; deprecated: use Criteria->setDistinct() instead.
+     * @param      PropelPDO $con
+     * @param      String    $join_behavior the type of joins to use, defaults to Criteria::LEFT_JOIN
+     * @return int Number of matching rows.
+     */
+    public static function doCountJoinAllExceptCategory(Criteria $criteria, $distinct = false, PropelPDO $con = null, $join_behavior = Criteria::LEFT_JOIN)
+    {
+        // we're going to modify criteria, so copy it first
+        $criteria = clone $criteria;
+
+        // We need to set the primary table name, since in the case that there are no WHERE columns
+        // it will be impossible for the BasePeer::createSelectSql() method to determine which
+        // tables go into the FROM clause.
+        $criteria->setPrimaryTableName(CategoryDetailPeer::TABLE_NAME);
+
+        if ($distinct && !in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
+            $criteria->setDistinct();
+        }
+
+        if (!$criteria->hasSelectClause()) {
+            CategoryDetailPeer::addSelectColumns($criteria);
+        }
+
+        $criteria->clearOrderByColumns(); // ORDER BY should not affect count
+
+        // Set the correct dbName
+        $criteria->setDbName(CategoryDetailPeer::DATABASE_NAME);
+
+        if ($con === null) {
+            $con = Propel::getConnection(CategoryDetailPeer::DATABASE_NAME, Propel::CONNECTION_READ);
+        }
+
+        $criteria->addJoin(CategoryDetailPeer::FK_LANG_ID, LanguagePeer::ID, $join_behavior);
+
+        $stmt = BasePeer::doCount($criteria, $con);
+
+        if ($row = $stmt->fetch(PDO::FETCH_NUM)) {
+            $count = (int) $row[0];
+        } else {
+            $count = 0; // no rows returned; we infer that means 0 matches.
+        }
+        $stmt->closeCursor();
+
+        return $count;
+    }
+
+
+    /**
+     * Returns the number of rows matching criteria, joining the related Language table
+     *
+     * @param      Criteria $criteria
+     * @param      boolean $distinct Whether to select only distinct columns; deprecated: use Criteria->setDistinct() instead.
+     * @param      PropelPDO $con
+     * @param      String    $join_behavior the type of joins to use, defaults to Criteria::LEFT_JOIN
+     * @return int Number of matching rows.
+     */
+    public static function doCountJoinAllExceptLanguage(Criteria $criteria, $distinct = false, PropelPDO $con = null, $join_behavior = Criteria::LEFT_JOIN)
+    {
+        // we're going to modify criteria, so copy it first
+        $criteria = clone $criteria;
+
+        // We need to set the primary table name, since in the case that there are no WHERE columns
+        // it will be impossible for the BasePeer::createSelectSql() method to determine which
+        // tables go into the FROM clause.
+        $criteria->setPrimaryTableName(CategoryDetailPeer::TABLE_NAME);
+
+        if ($distinct && !in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
+            $criteria->setDistinct();
+        }
+
+        if (!$criteria->hasSelectClause()) {
+            CategoryDetailPeer::addSelectColumns($criteria);
+        }
+
+        $criteria->clearOrderByColumns(); // ORDER BY should not affect count
+
+        // Set the correct dbName
+        $criteria->setDbName(CategoryDetailPeer::DATABASE_NAME);
+
+        if ($con === null) {
+            $con = Propel::getConnection(CategoryDetailPeer::DATABASE_NAME, Propel::CONNECTION_READ);
+        }
+
+        $criteria->addJoin(CategoryDetailPeer::FK_CATEGORY_ID, CategoryPeer::ID, $join_behavior);
+
+        $stmt = BasePeer::doCount($criteria, $con);
+
+        if ($row = $stmt->fetch(PDO::FETCH_NUM)) {
+            $count = (int) $row[0];
+        } else {
+            $count = 0; // no rows returned; we infer that means 0 matches.
+        }
+        $stmt->closeCursor();
+
+        return $count;
+    }
+
+
+    /**
+     * Selects a collection of CategoryDetail objects pre-filled with all related objects except Category.
+     *
+     * @param      Criteria  $criteria
+     * @param      PropelPDO $con
+     * @param      String    $join_behavior the type of joins to use, defaults to Criteria::LEFT_JOIN
+     * @return array           Array of CategoryDetail objects.
+     * @throws PropelException Any exceptions caught during processing will be
+     *		 rethrown wrapped into a PropelException.
+     */
+    public static function doSelectJoinAllExceptCategory(Criteria $criteria, $con = null, $join_behavior = Criteria::LEFT_JOIN)
+    {
+        $criteria = clone $criteria;
+
+        // Set the correct dbName if it has not been overridden
+        // $criteria->getDbName() will return the same object if not set to another value
+        // so == check is okay and faster
+        if ($criteria->getDbName() == Propel::getDefaultDB()) {
+            $criteria->setDbName(CategoryDetailPeer::DATABASE_NAME);
+        }
+
+        CategoryDetailPeer::addSelectColumns($criteria);
+        $startcol2 = CategoryDetailPeer::NUM_HYDRATE_COLUMNS;
+
+        LanguagePeer::addSelectColumns($criteria);
+        $startcol3 = $startcol2 + LanguagePeer::NUM_HYDRATE_COLUMNS;
+
+        $criteria->addJoin(CategoryDetailPeer::FK_LANG_ID, LanguagePeer::ID, $join_behavior);
+
+
+        $stmt = BasePeer::doSelect($criteria, $con);
+        $results = array();
+
+        while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
+            $key1 = CategoryDetailPeer::getPrimaryKeyHashFromRow($row, 0);
+            if (null !== ($obj1 = CategoryDetailPeer::getInstanceFromPool($key1))) {
+                // We no longer rehydrate the object, since this can cause data loss.
+                // See http://www.propelorm.org/ticket/509
+                // $obj1->hydrate($row, 0, true); // rehydrate
+            } else {
+                $cls = CategoryDetailPeer::getOMClass();
+
+                $obj1 = new $cls();
+                $obj1->hydrate($row);
+                CategoryDetailPeer::addInstanceToPool($obj1, $key1);
+            } // if obj1 already loaded
+
+                // Add objects for joined Language rows
+
+                $key2 = LanguagePeer::getPrimaryKeyHashFromRow($row, $startcol2);
+                if ($key2 !== null) {
+                    $obj2 = LanguagePeer::getInstanceFromPool($key2);
+                    if (!$obj2) {
+
+                        $cls = LanguagePeer::getOMClass();
 
                     $obj2 = new $cls();
                     $obj2->hydrate($row, $startcol2);
                     LanguagePeer::addInstanceToPool($obj2, $key2);
-                } // if obj2 loaded
+                } // if $obj2 already loaded
 
                 // Add the $obj1 (CategoryDetail) to the collection in $obj2 (Language)
                 $obj2->addCategoryDetail($obj1);
-            } // if joined row not null
+
+            } // if joined row is not null
+
+            $results[] = $obj1;
+        }
+        $stmt->closeCursor();
+
+        return $results;
+    }
+
+
+    /**
+     * Selects a collection of CategoryDetail objects pre-filled with all related objects except Language.
+     *
+     * @param      Criteria  $criteria
+     * @param      PropelPDO $con
+     * @param      String    $join_behavior the type of joins to use, defaults to Criteria::LEFT_JOIN
+     * @return array           Array of CategoryDetail objects.
+     * @throws PropelException Any exceptions caught during processing will be
+     *		 rethrown wrapped into a PropelException.
+     */
+    public static function doSelectJoinAllExceptLanguage(Criteria $criteria, $con = null, $join_behavior = Criteria::LEFT_JOIN)
+    {
+        $criteria = clone $criteria;
+
+        // Set the correct dbName if it has not been overridden
+        // $criteria->getDbName() will return the same object if not set to another value
+        // so == check is okay and faster
+        if ($criteria->getDbName() == Propel::getDefaultDB()) {
+            $criteria->setDbName(CategoryDetailPeer::DATABASE_NAME);
+        }
+
+        CategoryDetailPeer::addSelectColumns($criteria);
+        $startcol2 = CategoryDetailPeer::NUM_HYDRATE_COLUMNS;
+
+        CategoryPeer::addSelectColumns($criteria);
+        $startcol3 = $startcol2 + CategoryPeer::NUM_HYDRATE_COLUMNS;
+
+        $criteria->addJoin(CategoryDetailPeer::FK_CATEGORY_ID, CategoryPeer::ID, $join_behavior);
+
+
+        $stmt = BasePeer::doSelect($criteria, $con);
+        $results = array();
+
+        while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
+            $key1 = CategoryDetailPeer::getPrimaryKeyHashFromRow($row, 0);
+            if (null !== ($obj1 = CategoryDetailPeer::getInstanceFromPool($key1))) {
+                // We no longer rehydrate the object, since this can cause data loss.
+                // See http://www.propelorm.org/ticket/509
+                // $obj1->hydrate($row, 0, true); // rehydrate
+            } else {
+                $cls = CategoryDetailPeer::getOMClass();
+
+                $obj1 = new $cls();
+                $obj1->hydrate($row);
+                CategoryDetailPeer::addInstanceToPool($obj1, $key1);
+            } // if obj1 already loaded
+
+                // Add objects for joined Category rows
+
+                $key2 = CategoryPeer::getPrimaryKeyHashFromRow($row, $startcol2);
+                if ($key2 !== null) {
+                    $obj2 = CategoryPeer::getInstanceFromPool($key2);
+                    if (!$obj2) {
+
+                        $cls = CategoryPeer::getOMClass();
+
+                    $obj2 = new $cls();
+                    $obj2->hydrate($row, $startcol2);
+                    CategoryPeer::addInstanceToPool($obj2, $key2);
+                } // if $obj2 already loaded
+
+                // Add the $obj1 (CategoryDetail) to the collection in $obj2 (Category)
+                $obj2->addCategoryDetail($obj1);
+
+            } // if joined row is not null
 
             $results[] = $obj1;
         }
