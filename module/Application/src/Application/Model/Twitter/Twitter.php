@@ -12,7 +12,7 @@ use Zend\Http\Client;
 
 class Twitter
 {
-    private $_statusUserTimelineUrl = 'https://api.twitter.com/1/statuses/user_timeline.json';
+    private $_statusUserTimelineUrl = 'http://api.twitter.com/1/statuses/user_timeline.json';
     private $_statusUserTimelineFallback = null;
     private $_cache = null;
 
@@ -23,7 +23,7 @@ class Twitter
     }
 
     public function statusUserTimeline($screenName, $page = 1, $count = 10) {
-
+        $cached = false;
         if (!is_null($this->_cache)) {
             $response = $this->_cache->getItem('statusUserTimeline', $cached);
         }
@@ -42,7 +42,7 @@ class Twitter
             $this->_cache->setItem('statusUserTimeline', $response);
         }
 
-        if (!$response && !empty($this->_statusUserTimelineFallback) && is_file($this->_statusUserTimelineFallback)) {
+        if (empty($response) && !empty($this->_statusUserTimelineFallback) && is_file($this->_statusUserTimelineFallback)) {
             $response = @file_get_contents($this->_statusUserTimelineFallback);
         }
 

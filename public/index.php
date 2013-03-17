@@ -1,7 +1,7 @@
 <?php
 header('Content-type: text/html; charset=utf-8');
 date_default_timezone_set('Europe/Berlin');
-Locale::setDefault('en_US');
+//Locale::setDefault('en_US');
 chdir(dirname(__DIR__));
 
 if (preg_match('/^\/cms/', $_SERVER['REQUEST_URI'])) {
