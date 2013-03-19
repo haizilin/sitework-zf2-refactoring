@@ -9,6 +9,8 @@ header, footer, .label, button, .btn {
     background : -ms-linear-gradient(to bottom, rgb(50, 85, 138) 50%, rgb(96, 120, 163) 100%);
     background : -linear-gradient(to bottom, rgb(50, 85, 138) 50%, rgb(96, 120, 163) 100%);
 }
+.page a { color:#446293; }
+.page a:hover { color:#446293; text-decoration:underline; }
 li { list-style-type:none; margin:0; }
 button, .btn { padding:0.25em 1em 0.25em !important;border-radius:5px; }
 header { box-shadow:0 1px 1px #888; }
@@ -16,8 +18,9 @@ footer { position:fixed; bottom:0; width:100%; box-shadow:0 -1px 1px #888; }
 footer .copy, footer a { color:#fff; line-height:32px; }
 footer .copy { text-align:right; }
 footer a { margin:0 .5em; }
+footer a:hover { color:#ddd !important; }
 
-.page { padding-top:1em; }
+.page { padding:1em 0 2em 0; }
 .block-title, .sidebar-title { border-bottom:thin #000 dotted; margin-bottom:0 !important; padding:0 5px 9px 5px !important; }
 .block-content, .sidebar-content { padding:5px !important; }
 
@@ -28,7 +31,7 @@ footer a { margin:0 .5em; }
 .navbar .logo { float:left; padding:5px 0; }
 .navbar .logo .title { padding-bottom:1px; font-size:22px; line-height:22px; }
 .navbar .logo .subTitle { padding-top:4px; font-size:12px; line-height:12px; letter-spacing: 1px; border-top:thin solid #fff; }
-.navbar .social a:hover { color:transparent; opacity:1; box-shadow:0 -1px 3px rgba(0,0,0,.5); }
+.navbar .social a, .navbar .social a:hover { color:transparent; }
 .navbar .social { position:relative;top:28px;margin-right:3px; }
 
 @media only screen and (min-width: 48em) {
@@ -58,7 +61,7 @@ footer a { margin:0 .5em; }
     #sidebarContact .title { float:left; width:100px; }
     #sidebarContact dt { margin-top:10px; }
     #sidebarContact dt:first-child { margin-top:0; }
-    #sidebarContact dd { overflow:hidden;padding-left:5px; }
+    #sidebarContact dd { overflow:hidden;padding-left:5px;margin:0; }
 }
 
 .icXing { background-position:-1px 3px; }
