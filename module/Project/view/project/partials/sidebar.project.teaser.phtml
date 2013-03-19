@@ -3,11 +3,11 @@
     <ul>
         <?php foreach($this->projects as $project): ?>
         <li>
-            <span class="pLabel"><?= $project->getProjectDetails()->getFirst()->getLabel() ?></span>
-            <span class="pCreated">
+            <span class="date">
                 <?php $date = new DateTime($project->getStartedAt(), new DateTimeZone(date_default_timezone_get())) ?>
-                <?= sprintf($this->translate('started at: %s'), $this->dateFormat($date, IntlDateFormatter::TRADITIONAL, IntlDateFormatter::NONE, Locale::getDefault())) ?>
+                <?= sprintf($this->translate('started at: %s'), $this->dateFormat($date, IntlDateFormatter::MEDIUM, IntlDateFormatter::NONE, Locale::getDefault())) ?>
             </span>
+            <span class="pLabel"><?= $project->getProjectDetails()->getFirst()->getLabel() ?></span>
             <span class="pUrl"><a href="<?= $project->getUrl() ?>"><?= $project->getUrl() ?></a></span>
         </li>
         <?php endforeach ?>

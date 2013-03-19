@@ -1,7 +1,8 @@
 <?php if(!empty($this->container) && $this->container->hasPages()): ?>
-<ul class="nav-default">
+<ul class="title-area">
     <?php foreach($this->container->getPages() as $page): ?>
         <li><?= $page->__toString() ?></li>
     <?php endforeach ?>
+    <li class="toggle-topbar menu-icon"><a href="#"><?= $this->translate('Menu') ?></a></li>
 </ul>
 <?php endif ?>

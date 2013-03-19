@@ -1,0 +1,59 @@
+html * { font-size: 11px; }
+body { overflow-y:scroll; }
+h2 { font-size: 1.4em !important; }
+h3 { font-size: 1.2em !important; }
+header, footer, .label, button, .btn {
+    background : -webkit-linear-gradient(bottom, rgb(50, 85, 138) 50%, rgb(96, 120, 163) 100%);
+    background : -moz-linear-gradient(to bottom, rgb(50, 85, 138) 50%, rgb(96, 120, 163) 100%);
+    background : -o-linear-gradient(to bottom, rgb(50, 85, 138) 50%, rgb(96, 120, 163) 100%);
+    background : -ms-linear-gradient(to bottom, rgb(50, 85, 138) 50%, rgb(96, 120, 163) 100%);
+    background : -linear-gradient(to bottom, rgb(50, 85, 138) 50%, rgb(96, 120, 163) 100%);
+}
+li { list-style-type:none; margin:0; }
+button, .btn { padding:0.25em 1em 0.25em !important;border-radius:5px; }
+header { box-shadow:0 1px 1px #888; }
+footer { position:fixed; bottom:0; width:100%; box-shadow:0 -1px 1px #888; }
+footer .copy, footer a { color:#fff; line-height:32px; }
+footer .copy { text-align:right; }
+footer a { margin:0 .5em; }
+
+.page { padding-top:1em; }
+.icon { display:block; width:22px; height:22px; overflow:hidden; color:transparent; margin:0 1px; background: url("../images/sprite-22.png") no-repeat transparent; }
+.navbar li { float:left; }
+.navbar .logo span { display:block; font-weight:bold; text-align:center; color:#fff; text-shadow:0 -1px 1px #000; }
+.navbar .logo { float:left; padding:5px 0; }
+.navbar .logo .title { padding-bottom:1px; font-size:22px; line-height:22px; }
+.navbar .logo .subTitle { padding-top:4px; font-size:12px; line-height:12px; letter-spacing: 1px; border-top:thin solid #fff; }
+.navbar .social a:hover { color:transparent; opacity:1; box-shadow:0 -1px 3px rgba(0,0,0,.5); }
+.navbar .social { position:relative;top:28px;margin-right:3px; }
+
+@media only screen and (min-width: 48em) {
+    html * { font-size: 12px; }
+    h2 { font-size: 1.5em !important; }
+    h3 { font-size: 1.25em !important; }
+    header { box-shadow:0 3px 2px #888; }
+    footer { box-shadow:0 -3px 2px #888; }
+    .icon { display:block; width:32px; height:30px; overflow:hidden; color:transparent; margin:0 2px; background: url("../images/sprite-32.png") no-repeat transparent; }
+    .navbar .logo { padding:15px 0; }
+    .navbar .logo .title { font-size:42px; line-height:42px; }
+    .navbar .logo .subTitle { font-size:18px; line-height:18px; letter-spacing: 5px; }
+    .navbar .tabs { overflow:hidden; height:32px;padding:2px; margin-bottom:0; background:#fff; border:1px solid #666; border-top:0; border-radius: 0 0 8px 8px; box-shadow: inset 2px 2px 1px rgba(0, 0, 0, 0.3); }
+    .navbar .tabs li { border-left: thin solid #ccc; border-right: thin solid #ccc; }
+    .navbar .tabs li:first-child, .navbar .tabs li:last-child { border:0; }
+    .navbar .tabs a { color:#446293; display:block; width:75px; text-align:center; line-height:2.5em;  }
+    .navbar .tabs .active a { font-weight: bold; background:#efefef; }
+    .navbar .social { position:relative;top:33px;}
+
+    .sidebar li { padding: 2px 0; border-top:thin dotted #000; }
+    .sidebar span { display:block; }
+    .sidebar .date { font-style: italic; font-weight:bold; font-size: 11px; }
+}
+
+.icXing { background-position:-1px 3px; }
+.icXing:hover { background-position:-1px 0; }
+.icLinkedin { background-position:-41px 3px; }
+.icLinkedin:hover { background-position:-41px 0; }
+.icFacebook { background-position:-81px 3px; }
+.icFacebook:hover { background-position:-81px 0; }
+.icTwitter { background-position:-121px 3px; }
+.icTwitter:hover { background-position:-121px 0; }

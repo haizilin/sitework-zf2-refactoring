@@ -6,60 +6,56 @@
         <?= $this->headTitle('Sitework.de - ' . $this->translate('PHP Development'))->setSeparator(' - ')->setAutoEscape(false) ?>
         <?= $this->headMeta()->appendName('viewport', 'width=device-width, initial-scale=1.0') ?>
         <?= $this->headLink(array('rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/images/favicon.ico'))
-                 //->prependStylesheet($this->basePath() . '/css/bootstrap-responsive.css')
-                 ->prependStylesheet($this->basePath() . '/css/bootstrap.css')
-                 ->prependStylesheet($this->basePath() . '/css/style.css') ?>
-        <?= $this->headScript()->prependFile($this->basePath() . '/js/html5.js', 'text/javascript', array('conditional' => 'lt IE 9',))
-                 ->prependFile($this->basePath() . '/js/bootstrap.min.js')
-                 ->prependFile($this->basePath() . '/js/jquery.min.js')
-                 ->prependFile($this->basePath() . '/js/sw.js')?>
+            ->prependStylesheet($this->basePath() . '/css/3rdparty/normalize.css')
+            ->prependStylesheet($this->basePath() . '/css/3rdparty/foundation.css')
+            ->prependStylesheet($this->basePath() . '/css/sw.css') ?>
+        <?= $this->headScript()
+            ->prependFile($this->basePath() . '/js/3rdparty/jquery-1.9.1.min.js')
+            ->prependFile($this->basePath() . '/js/3rdparty/jquery-ui-1.9.2.min.js')
+            ->prependFile($this->basePath() . '/js/3rdparty/foundation.js')
+            ->prependFile($this->basePath() . '/js/3rdparty/custom.modernizr.js')
+            ->prependFile($this->basePath() . '/js/3rdparty/zepto.js')
+            ->prependFile($this->basePath() . '/js/sw.js')?>
     </head>
     <body>
         <header>
-            <div class="navbar">
-                <div class="colRight">
-
-                    <nav class="tabs">
-                        <?= $this->navigation()->menu(new Zend\Navigation\Navigation($this->navigation('default_navigation')->getPages()))->setUlClass('nav') ?>
-                    </nav>
-
-                    <nav class="social">
-                        <ul class="nav">
-                            <li><a class="icon icXing" title="XING" href="http://www.xing.com/profile/Matthias_Kruschke">XING</a></li>
-                            <li><a class="icon icLinkedin" title="LinkedIn" href="http://www.linkedin.com/pub/matthias-kruschke/42/a10/7a2">LinkedIn</a></li>
-                            <li><a class="icon icFacebook" title="facebook" href="http://www.facebook.com/matthias.kruschke">facebook</a></li>
-                            <li><a class="icon icTwitter" title="twitter" href="http://twitter.com/sitewalker">Twitter</a></li>
-                        </ul>
-                    </nav>
-
+            <section class="row navbar">
+                <div class="small-4 columns left">
+                    <a class="logo" href="<?= $this->url('home') ?>">
+                        <span class="title">Sitework.de</span>
+                        <span class="subTitle"><?= $this->translate('PHP Development') ?></span>
+                    </a>
                 </div>
-                <!--a class="navBtn" data-toggle="collapse" data-target=".navCollapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </a-->
-
-                <a class="logo" href="<?= $this->url('home') ?>">
-                    <span class="title">Sitework.de</span>
-                    <hr/>
-                    <span class="subTitle"><?= $this->translate('PHP Development') ?></span>
-                </a>
-
-            </div>
+                <div class="small-8 columns">
+                    <div class="row right">
+                        <nav class="tabs top-bar hide-for-small">
+                            <?= $this->navigation()->menu(new Zend\Navigation\Navigation($this->navigation('default_navigation')->getPages()))->setUlClass('nav') ?>
+                        </nav>
+                        <nav class="social right">
+                            <ul class="nav">
+                                <li><a class="icon icXing" title="XING" href="http://www.xing.com/profile/Matthias_Kruschke">XING</a></li>
+                                <li><a class="icon icLinkedin" title="LinkedIn" href="http://www.linkedin.com/pub/matthias-kruschke/42/a10/7a2">LinkedIn</a></li>
+                                <li><a class="icon icFacebook" title="facebook" href="http://www.facebook.com/matthias.kruschke">facebook</a></li>
+                                <li><a class="icon icTwitter" title="twitter" href="http://twitter.com/sitewalker">Twitter</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </section>
         </header>
 
-        <div class="page">
-            <div class="sidebar"><div class="content"><?= $this->sidebar ?></div></div>
-            <div class="main"><div class="content"><?= $this->content ?></div></div>
+        <div class="row page">
+            <div class="large-4 columns sidebar hide-for-small"><div class="content"><?= $this->sidebar ?></div></div>
+            <div class="large-8 small-12 columns main"><div class="content"><?= $this->content ?></div></div>
         </div>
 
         <footer>
-            <div class="navbar">
-                <div class="copy">&copy; 2009 - 2012 Mattthias Kruschke</div>
-                <nav>
+            <section class="row">
+                <div class="small-7 columns right copy">&copy; 2009 - 2012 Mattthias Kruschke</div>
+                <nav class="small-5 columns left navbar">
                     <?= $this->navigation()->menu(new Zend\Navigation\Navigation($this->navigation('footer_navigation')->getPages()))->setUlClass('nav') ?>
                 </nav>
-            </div>
+            </section>
         </footer>
 
         <?= $this->inlineScript() ?>

@@ -1,13 +1,13 @@
 <div id="sidebarIndex">
     <h2><?= $this->translate('Recent Tweets') ?></h2>
-    <?php $tweets = $this->get('twitterCollection')->getTweets(0, 10) ?>
+    <?php $tweets = $this->get('twitterCollection') ?>
     <?php if (is_array($tweets)) : ?>
         <ul class="twitterCollection">
         <?php foreach ($tweets as $t) : ?>
             <li class="<?= $this->cycle(array('even', 'odd'))->next() ?>">
                 <div class="date">
                     <?php $date = new DateTime($t->getCreatedAt(), new DateTimeZone(date_default_timezone_get())) ?>
-                    <?= $this->dateFormat($date, IntlDateFormatter::TRADITIONAL, IntlDateFormatter::NONE, Locale::getDefault()) ?>
+                    <?= $this->dateFormat($date, IntlDateFormatter::MEDIUM, IntlDateFormatter::NONE, Locale::getDefault()) ?>
                 </div>
                 <div class="text"><?= $t->getText() ?></div>
             </li>
