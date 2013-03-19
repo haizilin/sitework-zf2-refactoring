@@ -14,6 +14,7 @@ class Project
     public function getQuery($langId = 2) {
         return PropelOrm\ProjectQuery::create()
             ->filterByActive(1)
+            ->orderByStartedAt(\Criteria::DESC)
             ->joinContactRelatedByFkContactClientId()
             ->joinContactRelatedByFkContactClientId()
             ->joinProjectDetail()

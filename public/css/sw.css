@@ -18,7 +18,11 @@ footer .copy { text-align:right; }
 footer a { margin:0 .5em; }
 
 .page { padding-top:1em; }
+.block-title, .sidebar-title { border-bottom:thin #000 dotted; margin-bottom:0 !important; padding:0 5px 9px 5px !important; }
+.block-content, .sidebar-content { padding:5px !important; }
+
 .icon { display:block; width:22px; height:22px; overflow:hidden; color:transparent; margin:0 1px; background: url("../images/sprite-22.png") no-repeat transparent; }
+
 .navbar li { float:left; }
 .navbar .logo span { display:block; font-weight:bold; text-align:center; color:#fff; text-shadow:0 -1px 1px #000; }
 .navbar .logo { float:left; padding:5px 0; }
@@ -33,7 +37,9 @@ footer a { margin:0 .5em; }
     h3 { font-size: 1.25em !important; }
     header { box-shadow:0 3px 2px #888; }
     footer { box-shadow:0 -3px 2px #888; }
+
     .icon { display:block; width:32px; height:30px; overflow:hidden; color:transparent; margin:0 2px; background: url("../images/sprite-32.png") no-repeat transparent; }
+
     .navbar .logo { padding:15px 0; }
     .navbar .logo .title { font-size:42px; line-height:42px; }
     .navbar .logo .subTitle { font-size:18px; line-height:18px; letter-spacing: 5px; }
@@ -44,9 +50,15 @@ footer a { margin:0 .5em; }
     .navbar .tabs .active a { font-weight: bold; background:#efefef; }
     .navbar .social { position:relative;top:33px;}
 
-    .sidebar li { padding: 2px 0; border-top:thin dotted #000; }
+    .sidebar li { padding: 5px; border-bottom:thin dotted #000; }
+    .sidebar li:last-child { border:0; }
     .sidebar span { display:block; }
     .sidebar .date { font-style: italic; font-weight:bold; font-size: 11px; }
+
+    #sidebarContact .title { float:left; width:100px; }
+    #sidebarContact dt { margin-top:10px; }
+    #sidebarContact dt:first-child { margin-top:0; }
+    #sidebarContact dd { overflow:hidden;padding-left:5px; }
 }
 
 .icXing { background-position:-1px 3px; }

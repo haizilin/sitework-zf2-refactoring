@@ -12,7 +12,7 @@ class ProjectController extends AbstractActionController
         $view = new ViewModel();
         $sidebar = new ViewModel();
         $prjModel = new Model\Project;
-        $projects = $prjModel->getQuery()->find();
+        $projects = $prjModel->getQuery()->limit(10)->find();
         $sidebar->setVariable('projects', $projects);
         $sidebar->setTemplate('project/partials/sidebar.project.teaser.phtml');
         $this->layout()->addChild($sidebar, 'sidebar');

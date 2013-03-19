@@ -1,11 +1,11 @@
 <div id="sidebarProjectTeaser">
-    <h2><?= $this->translate('Projects') ?></h2>
+    <h2 class="sidebar-title"><?= $this->translate('Latest Projects') ?></h2>
     <ul>
         <?php foreach($this->projects as $project): ?>
         <li>
             <span class="date">
                 <?php $date = new DateTime($project->getStartedAt(), new DateTimeZone(date_default_timezone_get())) ?>
-                <?= sprintf($this->translate('started at: %s'), $this->dateFormat($date, IntlDateFormatter::MEDIUM, IntlDateFormatter::NONE, Locale::getDefault())) ?>
+                <?= sprintf($this->translate('started at: %s'), $this->dateFormat($date, IntlDateFormatter::TRADITIONAL, IntlDateFormatter::NONE, Locale::getDefault())) ?>
             </span>
             <span class="pLabel"><?= $project->getProjectDetails()->getFirst()->getLabel() ?></span>
             <span class="pUrl"><a href="<?= $project->getUrl() ?>"><?= $project->getUrl() ?></a></span>

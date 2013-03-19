@@ -1,34 +1,36 @@
 <div id="contactForm">
-    <h2><?= $this->translate('Leave a message ...') ?></h2>
-    <?php
-    $form = $this->form;
-    $form->prepare();
-    $form->setAttributes(array('action' => $this->url('contact'), 'method' => 'post'));
+    <h2 class="block-title"><?= $this->translate('Leave a message ...') ?></h2>
+    <div class="block-content">
+        <?php
+        $form = $this->form;
+        $form->prepare();
+        $form->setAttributes(array('action' => $this->url('contact'), 'method' => 'post'));
 
-    $formLabel = $this->plugin('formLabel');
-    $formRow = $this->plugin('formRow');
-    echo $this->form()->openTag($form);
+        $formLabel = $this->plugin('formLabel');
+        $formRow = $this->plugin('formRow');
+        echo $this->form()->openTag($form);
 
-    // get fieldsets
-    $sender = $form->get('sender');
-    $details = $form->get('details');
+        // get fieldsets
+        $sender = $form->get('sender');
+        $details = $form->get('details');
 
-    // render elements
-    $name = $sender->get('name');
-    echo $formRow->render($name);
+        // render elements
+        $name = $sender->get('name');
+        echo $formRow->render($name);
 
-    $email = $sender->get('email');
-    echo $formRow->render($email);
+        $email = $sender->get('email');
+        echo $formRow->render($email);
 
-    $subject = $details->get('subject');
-    $date = $details->get('date');
-    $message = $form->get('message');
-    echo $formRow->render($message);
+        $subject = $details->get('subject');
+        $date = $details->get('date');
+        $message = $form->get('message');
+        echo $formRow->render($message);
 
-    // render submit
-    $submit = $form->get('submit');
-    echo $this->formButton($submit);
+        // render submit
+        $submit = $form->get('submit');
+        echo $this->formButton($submit);
 
-    echo $this->form()->closeTag($form);
-    ?>
+        echo $this->form()->closeTag($form);
+        ?>
+    </div>
 </div>

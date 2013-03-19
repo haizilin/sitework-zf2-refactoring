@@ -1,39 +1,37 @@
 <div id="sidebarContact">
-    <h2><?= $this->translate('Contact') ?></h2>
-    <dl>
-        <dt><?= $this->translate('Post address') ?></dt>
-        <dd>
-            <?= $this->translate('Blücherstr. 37a') ?><br/>
-            <?= $this->translate('10961 Berlin') ?><br/>
-            <?= $this->translate('Germany') ?>
-        </dd>
+    <h2 class="sidebar-title"><?= $this->translate('Contact') ?></h2>
+    <div class="sidebar-content">
+        <dl>
+            <dt><?= $this->translate('Post address') ?></dt>
+            <dd>
+                <?= $this->translate('Blücherstr. 37a') ?>,
+                <?= $this->translate('10961 Berlin') ?><br/>
+                <?= $this->translate('Germany') ?>
+            </dd>
 
-        <dt><?= $this->translate('Internet') ?></dt>
-        <dd>
-            <span class="label"><?= $this->translate('E-Mail') ?>:</span>
-            <span class="value"><?= $this->mailto(array(
-                'address' => 'matthias.kruschke@gmail.com',
-                'text' => $this->translate('Send E-mail'),
-                'encode' => 'hex',
-            )) ?>
-            </span>
-        </dd>
-        <dd>
-            <span class="label"><?= $this->translate('ICQ') ?>:</span>
-            <span class="value">115187074</span>
-        </dd>
-        <dd>
-            <span class="label"><?= $this->translate('Google') ?>:</span>
-            <span class="value">matthias.kruschke</span>
-        </dd>
-        <dt><?= $this->translate('Tax information') ?></dt>
-        <dd>
-            <span class="label"><?= $this->translate('Tax no.') ?>:</span>
-            <span class="value">14/402/61633</span>
-        </dd>
-        <dd>
-            <span class="label"><?= $this->translate('Tax office') ?>:</span>
-            <span class="value"><?= $this->translate('Berlin-Kreuzberg') ?></span>
-        </dd>
-    </dl>
+            <dt><?= $this->translate('Internet') ?></dt>
+            <dd>
+                <span class="title"><?= $this->translate('E-Mail') ?>:</span>
+                <?= $this->mailto(array(
+                    'address' => 'matthias.kruschke@gmail.com',
+                    'text' => $this->translate('Send E-mail'),
+                    'encode' => 'hex',
+                )) ?>
+            </dd>
+            <dd>
+                <span class="title"><?= $this->translate('ICQ') ?>:</span> 115187074
+            </dd>
+            <dd>
+                <span class="title"><?= $this->translate('Google') ?>:</span> matthias.kruschke
+            </dd>
+            <dt><?= $this->translate('Tax information') ?></dt>
+            <dd>
+                <span class="title"><?= $this->translate('Tax no.') ?>:</span> 14/402/61633
+            </dd>
+            <dd>
+                <span class="title"><?= $this->translate('Tax office') ?>:</span>
+                <?= $this->translate('Berlin-Kreuzberg') ?>
+            </dd>
+        </dl>
+    </div>
 </div>
