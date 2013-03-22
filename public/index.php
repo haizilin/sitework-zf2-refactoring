@@ -11,7 +11,7 @@ if (preg_match('/^\/cms/', $_SERVER['REQUEST_URI'])) {
 }
 
 defined('BASE_PATH') || define('BASE_PATH', realpath(__DIR__ . '/../'));
-defined('VENDOR_PATH') || define('VENDOR_PATH', BASE_PATH . '/vendor');
+defined('VENDOR_PATH') || define('VENDOR_PATH', realpath(BASE_PATH . '/../../3rdparty'));
 defined('APPLICATION_PATH') || define('APPLICATION_PATH', BASE_PATH . '/application');
 defined('LIB') || define('LIB', APPLICATION_PATH . '/library');
 defined('APPLICATION_ENV') || define('APPLICATION_ENV', strstr(BASE_PATH, 'matthias') ? 'development' : 'production');
@@ -20,4 +20,5 @@ defined('APPLICATION_ENV') || define('APPLICATION_ENV', strstr(BASE_PATH, 'matth
 require BASE_PATH . '/init_autoloader.php';
 
 // Run the application!
-Zend\Mvc\Application::init(require BASE_PATH . '/config/application.config.php')->run();
+
+\Zend\Mvc\Application::init(require BASE_PATH . '/config/application.config.php')->run();
