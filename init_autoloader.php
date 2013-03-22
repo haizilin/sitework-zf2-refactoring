@@ -8,7 +8,7 @@ ini_set('include_path', implode(PATH_SEPARATOR, array(
 
 if (!class_exists('Zend\Loader\AutoloaderFactory')) {
 
-    require_once VENDOR_PATH . '/zf2/Zend/Loader/AutoloaderFactory.php';
+    require_once 'Zend/Loader/AutoloaderFactory.php';
     Zend\Loader\AutoloaderFactory::factory(array('Zend\Loader\StandardAutoloader' => array(
         'namespaces'      => array(
             'Zend'        => VENDOR_PATH . '/zf2/Zend',
