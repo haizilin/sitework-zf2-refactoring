@@ -43,12 +43,13 @@
                 </div>
             </section>
         </header>
-
-        <div class="row page">
-            <div class="large-4 columns sidebar hide-for-small"><div class="content"><?= $this->sidebar ?></div></div>
-            <div class="large-8 small-12 columns main"><div class="content"><?= $this->content ?></div></div>
+        <div class="page">
+            <div class="row">
+                <div class="large-4 columns sidebar hide-for-small"><div class="content"><?= $this->sidebar ?></div></div>
+                <div class="large-8 small-12 columns main"><div class="content"><?= $this->content ?></div></div>
+            </div>
+            <?php if(isset($this->google->analytics)): ?><div class="row"><?php echo $this->partial('adsense.phtml', 'default', null) ?></div><?php endif ?>
         </div>
-
         <footer>
             <section class="row">
                 <div class="small-7 right copy">&copy; 2009 - 2012 Mattthias Kruschke</div>
