@@ -1,14 +1,24 @@
+<?php use Application\View\Helper\Image; ?>
 <div id="sidebarProjectTeaser">
     <h2 class="sidebar-title"><?= $this->translate('Latest Projects') ?></h2>
     <ul>
         <?php foreach($this->projects as $project): ?>
         <li>
-            <span class="date">
-                <?php $date = new DateTime($project->getStartedAt(), new DateTimeZone(date_default_timezone_get())) ?>
-                <?= sprintf($this->translate('started at: %s'), $this->dateFormat($date, IntlDateFormatter::TRADITIONAL, IntlDateFormatter::NONE, Locale::getDefault())) ?>
+            <span class="img">
+                <a title="<?= $this->translate('show details') ?>" href="<?= $this->url('project', array('action' => 'details', 'id' => $project->getId())) ?>">
+                    <img src="<?= $this->image('/images/project/' . $project->getImg(), 0, 50, null) ?>"/>
+                </a>
             </span>
-            <span class="pLabel"><?= $project->getProjectDetails()->getFirst()->getLabel() ?></span>
-            <span class="pUrl"><a href="<?= $project->getUrl() ?>"><?= $project->getUrl() ?></a></span>
+            <span class="info">
+                <span class="date">
+                    <?php $date = new DateTime($project->getStartedAt(), new DateTimeZone(date_default_timezone_get())) ?>
+                    <?= $this->dateFormat($date, IntlDateFormatter::TRADITIONAL, IntlDateFormatter::NONE, Locale::getDefault()) ?>
+                </span>
+                <a title="<?= $this->translate('show details') ?>" href="<?= $this->url('project', array('action' => 'details', 'id' => $project->getId())) ?>">
+                    <?= $project->getProjectDetails()->getFirst()->getLabel() ?>
+                </a>
+                <span class="pUrl"><a href="<?= $project->getUrl() ?>"><?= $project->getUrl() ?></a></span>
+            </span>
         </li>
         <?php endforeach ?>
     </ul>

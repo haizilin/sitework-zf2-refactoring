@@ -34,6 +34,11 @@ footer a:hover { color:#ddd !important; }
 .navbar .social a, .navbar .social a:hover { color:transparent; }
 .navbar .social { position:relative;top:28px;margin-right:3px; }
 
+#projectDetails .listElem dt { clear:left; float:left; margin-bottom:0; width:75px; }
+#projectDetails .attrib,
+#projectDetails .attrib dd { margin-bottom:0; }
+#projectDetails .description { margin-top:20px; }
+
 @media only screen and (min-width: 48em) {
     html * { font-size: 12px; }
     h2 { font-size: 1.5em !important; }
@@ -53,9 +58,13 @@ footer a:hover { color:#ddd !important; }
     .navbar .tabs .active a { font-weight: bold; background:#efefef; }
     .navbar .social { position:relative;top:33px;}
 
-    .sidebar li { padding: 5px 0; border-bottom:thin dotted #000; }
+    .sidebar li {  background:#f5f5f5; padding: 5px; border-bottom:thin dotted #000; overflow:hidden; }
+    .sidebar li:nth-child(2n-1) { background:#ddd; }
     .sidebar li:last-child { border:0; }
-    .sidebar span { display:block; }
+    .sidebar span,.sidebar a { display:block; }
+    .sidebar .img { float:left; width:70px;border:1px solid #888; box-shadow:2px 2px 2px #888; }
+    .sidebar .img img { display:block; }
+    .sidebar .info { float:none; margin-left:75px; }
     .sidebar .date { font-style: italic; font-weight:bold; font-size: 11px; }
 
     #sidebarContact .title { float:left; width:100px; }

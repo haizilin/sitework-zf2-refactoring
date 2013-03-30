@@ -119,6 +119,7 @@ return array(
     'view_helpers' => array(
         'invokables' => array(
             'mailto' => 'Application\View\Helper\Mailto',
+            'image' => 'Application\View\Helper\Image',
         ),
     ),
     'cache' => Zend\Cache\StorageFactory::factory(array(

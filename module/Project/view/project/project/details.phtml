@@ -1,7 +1,7 @@
 <div id="projectDetails">
     <?php if (!empty($this->project)): ?>
         <?php $projectDetails = $this->project->getProjectDetails()->getFirst() ?>
-        <h2><?= $projectDetails->getLabel() ?></h2>
+        <h2 class="block-title"><?= $projectDetails->getLabel() ?></h2>
         <div class="listElem">
             <div class="contact">
                 <?php $client = $project->getContactRelatedByFkContactClientId() ?>
@@ -26,6 +26,10 @@
                     <dt><?= $this->translate('url') ?>:</dt>
                     <dd><a class="extUlr" href="<?= $this->project->getUrl() ?>" class="more"><?= $this->project->getUrl() ?></a></dd>
                 </dl>
+            </div>
+
+            <div class="description">
+                <p><?= $projectDetails->getDescription() ?></p>
             </div>
         </div>
     <?php else: ?>
