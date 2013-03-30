@@ -22,7 +22,7 @@ footer a:hover { color:#ddd !important; }
 .page a { color:#446293; }
 .page a:hover { color:#446293; text-decoration:underline; }
 .block-title, .sidebar-title { border-bottom:thin #000 dotted; padding:0 5px 10px 0 !important; }
-.block-content, .sidebar-content {  }
+.block-logos { border-left:1px solid #ccc; }
 .block-logos a { display:block; margin-top:15px;text-align:center; }
 .icon { display:block; width:22px; height:22px; overflow:hidden; color:transparent; margin:0 1px; background: url("../images/sprite-22.png") no-repeat transparent; }
 
@@ -37,7 +37,7 @@ footer a:hover { color:#ddd !important; }
 #projectDetails .listElem dt { clear:left; float:left; margin-bottom:0; width:75px; }
 #projectDetails .attrib,
 #projectDetails .attrib dd { margin-bottom:0; }
-#projectDetails .description { margin-top:20px; }
+#projectDetails .description { margin-bottom:20px; }
 
 @media only screen and (min-width: 48em) {
     html * { font-size: 12px; }
