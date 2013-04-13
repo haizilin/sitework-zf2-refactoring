@@ -6,7 +6,7 @@ use Zend\Mvc\ModuleRouteListener;
 use Zend\View\Helper\Navigation\Menu;
 use \Propel;
 
-require_once VENDOR_PATH . '/Propel/Propel.php';
+require_once VENDOR_PATH . '/Propel/runtime/lib/Propel.php';
 
 class Module implements AutoloaderProviderInterface
 {
