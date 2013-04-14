@@ -17,35 +17,4 @@ return array(
         'display_startup_errors' => 'On',
         'error_reporting' => 'E_ALL & ~E_NOTICE',
     ),
-    'service_manager' => array(
-        'factories' => array(
-            'Zend\Db\Adapter\Adapter' => 'Zend\Db\Adapter\AdapterServiceFactory',
-        ),
-    ),
-    'navigation' => array(
-        'default' => array(
-            array(
-                'label' => 'Home',
-                'route' => 'home',
-            ),
-            array(
-                'label' => 'Projects',
-                'route' => 'project',
-            ),
-            array(
-                'label' => 'Contact',
-                'route' => 'contact',
-            ),
-        ),
-        'footer' => array(
-            array(
-                'label' => 'Imprint',
-                'route' => 'imprint',
-            ),
-            array(
-                'label' => 'Disclaimer',
-                'route' => 'disclaimer',
-            ),
-        ),
-    )
 );

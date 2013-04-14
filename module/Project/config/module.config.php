@@ -28,4 +28,13 @@ return array(
             'project' => __DIR__ . '/../view'
         )
     ),
+    'navigation' => array(
+        'default' => array(
+            array(
+                'label' => 'Projects',
+                'route' => 'project',
+                'order' => 2
+            ),
+        ),
+    )
 );

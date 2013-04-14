@@ -137,4 +137,30 @@ return array(
             ),
         )
     )),
+    'navigation' => array(
+        'default' => array(
+            array(
+                'label' => 'Home',
+                'route' => 'home',
+                'order' => 1
+            ),
+            array(
+                'label' => 'Contact',
+                'route' => 'contact',
+                'order' => 3
+            ),
+        ),
+        'footer' => array(
+            array(
+                'label' => 'Imprint',
+                'route' => 'imprint',
+                'order' => 1
+            ),
+            array(
+                'label' => 'Disclaimer',
+                'route' => 'disclaimer',
+                'order' => 2
+            ),
+        ),
+    )
 );
