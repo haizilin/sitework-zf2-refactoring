@@ -14,7 +14,7 @@ defined('BASE_PATH') || define('BASE_PATH', realpath(__DIR__ . '/../'));
 defined('APPLICATION_PATH') || define('APPLICATION_PATH', BASE_PATH . '/application');
 defined('LIB') || define('LIB', APPLICATION_PATH . '/library');
 defined('APPLICATION_ENV') || define('APPLICATION_ENV', strstr(BASE_PATH, 'html') ? 'production' : 'development');
-defined('VENDOR_PATH') || define('VENDOR_PATH', APPLICATION_ENV == 'production' ? realpath(BASE_PATH . '/../3rdparty') : realpath(BASE_PATH . '/../../3rdparty'));
+defined('VENDOR_PATH') || define('VENDOR_PATH', APPLICATION_ENV == 'production' ? realpath(BASE_PATH . '/../3rdparty') : realpath(BASE_PATH . '/vendor'));
 
 // Setup autoloading
 require BASE_PATH . '/init_autoloader.php';
