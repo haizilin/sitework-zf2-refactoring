@@ -1,10 +1,5 @@
 <?php
 return array(
-    'controllers' => array(
-        'invokables' => array(
-            'Project\Controller\Project' => 'Project\Controller\ProjectController'
-        )
-    ),
     'router' => array(
         'routes' => array(
             'project' => array(
@@ -21,6 +16,11 @@ return array(
                     )
                 )
             )
+        )
+    ),
+    'controllers' => array(
+        'invokables' => array(
+            'Project\Controller\Project' => 'Project\Controller\ProjectController'
         )
     ),
     'view_manager' => array(

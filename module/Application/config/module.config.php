@@ -74,23 +74,6 @@ return array(
             ),
         ),
     ),
-    'service_manager' => array(
-        'factories' => array(
-            'translator' => 'Zend\I18n\Translator\TranslatorServiceFactory',
-            'default_navigation' => 'Zend\Navigation\Service\DefaultNavigationFactory',
-            'footer_navigation' => 'Application\Navigation\Service\FooterNavigationFactory',
-        ),
-    ),
-    'translator' => array(
-        'locale' => 'en_US',
-        'translation_file_patterns' => array(
-            array(
-                'type'     => 'gettext',
-                'base_dir' => __DIR__ . '/../../../data/language',
-                'pattern'  => '%s.mo',
-            ),
-        ),
-    ),
     'controllers' => array(
         'invokables' => array(
             'Application\Controller\Index' => 'Application\Controller\IndexController'
@@ -122,21 +105,6 @@ return array(
             'image' => 'Application\View\Helper\Image',
         ),
     ),
-    'cache' => Zend\Cache\StorageFactory::factory(array(
-        'adapter' => array(
-            'name' => 'filesystem',
-            'namespaceIsPrefix' => true,
-            'options' => array(
-                'cache_dir' => __DIR__ . '/../../../data/cache',
-                'ttl' => 1000
-            ),
-        ),
-        'plugins' => array(
-            'exception_handler' => array(
-                'throw_exceptions' => false
-            ),
-        )
-    )),
     'navigation' => array(
         'default' => array(
             array(
@@ -162,5 +130,37 @@ return array(
                 'order' => 2
             ),
         ),
-    )
+    ),
+    'service_manager' => array(
+        'factories' => array(
+            'translator' => 'Zend\I18n\Translator\TranslatorServiceFactory',
+            'default_navigation' => 'Zend\Navigation\Service\DefaultNavigationFactory',
+            'footer_navigation' => 'Application\Navigation\Service\FooterNavigationFactory',
+        ),
+    ),
+    'translator' => array(
+        'locale' => 'en_US',
+        'translation_file_patterns' => array(
+            array(
+                'type'     => 'gettext',
+                'base_dir' => __DIR__ . '/../../../data/language',
+                'pattern'  => '%s.mo',
+            ),
+        ),
+    ),
+    'cache' => Zend\Cache\StorageFactory::factory(array(
+        'adapter' => array(
+            'name' => 'filesystem',
+            'namespaceIsPrefix' => true,
+            'options' => array(
+                'cache_dir' => __DIR__ . '/../../../data/cache',
+                'ttl' => 1000
+            ),
+        ),
+        'plugins' => array(
+            'exception_handler' => array(
+                'throw_exceptions' => false
+            ),
+        )
+    )),
 );
