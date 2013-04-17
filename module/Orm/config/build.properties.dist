@@ -1,7 +1,7 @@
 # configure propel build process
 propel.project = PropelOrm
-propel.output.dir = /home/matthias/sites/sitework/sitework.dev/module/Orm/src/Orm/Model
-propel.phpconf.dir = /home/matthias/sites/sitework/sitework.dev/module/Orm/config
+propel.output.dir = [Path]/module/Orm/src/Orm/Model
+propel.phpconf.dir = [Path]/module/Orm/config
 propel.php.dir = ${propel.output.dir}/
 propel.sql.dir = ${propel.phpconf.dir}/sql
 propel.database = mysql
