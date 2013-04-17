@@ -126,7 +126,7 @@ footer .nav li:first-child { border-right:1px solid #fff; }
 footer .nav a { padding:0 5px; color:#fff; }
 footer .active a { text-decoration:underline; }
 
-.icon { display:block; width:32px; height:30px; overflow:hidden; color:transparent; margin:0 2px; background: url("../images/sprite.png") no-repeat transparent; }
+.icon { display:block; width:32px; height:30px; overflow:hidden; color:transparent; margin:0 2px; background: url("../gfx/sprite-32.png") no-repeat transparent; }
 .icXing { background-position:-1px 3px; }
 .icXing:hover { background-position:-1px 0; }
 .icLinkedin { background-position:-41px 3px; }
