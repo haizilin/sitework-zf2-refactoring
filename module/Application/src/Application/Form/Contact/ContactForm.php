@@ -11,11 +11,11 @@ class ContactForm extends Form
 
         $name = new Element\Text('name', array('label' => 'Your name'));
         $name->setAttributes(array('size' => 30));
-        $name->setLabelAttributes(array('class' => 'txt name'));
+        $name->setAttributes(array('class' => 'txt name'));
 
         $email = new Element\Email('email', array('label' => 'Your email address'));
         $email->setAttributes(array('size' => 30));
-        $email->setLabelAttributes(array('class' => 'txt email'));
+        $email->setAttributes(array('class' => 'txt email'));
 
         $sender = new Fieldset('sender');
         $sender->add($name);
@@ -25,7 +25,7 @@ class ContactForm extends Form
         $date = new Element\Date('date', array('label' => 'Date'));
         $date->setLabelAttributes(array('class' => 'txt date'));
         $subject = new Element\Text('subject', array('label' => 'Subject'));
-        $subject->setLabelAttributes(array('class' => 'txt subject'));
+        $subject->setAttributes(array('class' => 'txt subject'));
 
         $details = new Fieldset('details');
         $details->add($date);
@@ -34,7 +34,7 @@ class ContactForm extends Form
 
         $message = new Element\Textarea('message',array('label' => 'Message'));
         $message->setAttributes(array('rows' => 5, 'cols' => 34, 'class' => ''));
-        $message->setLabelAttributes(array('class' => 'txt message'));
+        $message->setAttributes(array('class' => 'txt message'));
         $this->add($message);
 
         $submit = new Element\Button('submit');

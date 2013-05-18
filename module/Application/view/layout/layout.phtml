@@ -1,64 +1,56 @@
-<?= $this->doctype('HTML5'); ?>
-
+<?= $this->doctype('HTML5') ?>
 <html lang="en" class="js no-touch svg inlinesvg svgclippaths no-ie8compat">
     <head>
         <meta charset="utf-8">
         <?= $this->headTitle('Sitework.de - ' . $this->translate('PHP Development'))->setSeparator(' - ')->setAutoEscape(false) ?>
         <?= $this->headMeta()->appendName('viewport', 'width=device-width, initial-scale=1.0') ?>
-        <?= $this->headLink(array('rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/gfx/favicon.ico'))
-            ->appendStylesheet($this->basePath() . '/css/3rdparty/normalize.css')
-            ->appendStylesheet($this->basePath() . '/css/3rdparty/foundation.css')
-            ->appendStylesheet($this->basePath() . '/css/sw.css') ?>
-        <?= $this->headScript()
-            ->appendFile($this->basePath() . '/js/3rdparty/jquery-1.9.1.min.js')
-            ->appendFile($this->basePath() . '/js/3rdparty/jquery-ui-1.9.2.min.js')
-            ->appendFile($this->basePath() . '/js/3rdparty/custom.modernizr.js')
-            ->appendFile($this->basePath() . '/js/3rdparty/zepto.js')
-            ->appendFile($this->basePath() . '/js/3rdparty/foundation.min.js')
-            ->appendFile($this->basePath() . '/js/sw.js')?>
+        <?= $headLink = $this->headLink(array('rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/gfx/favicon.ico')) ?>
+        <?php foreach ($this->assets()->css() as $css) : ?>
+            <?php $headLink->appendStylesheet(sprintf('%s/css/%s', $this->basePath(), $css)) ?>
+        <?php endforeach ?>
+        <?= $headLink ?>
     </head>
-    <body class="antialiased">
-        <header>
-            <div class="fixed contain-to-grid">
+    <body>
+        <div id="page">
+            <header class="contain-to-grid fixed">
                 <nav class="top-bar">
                     <ul class="title-area">
-                        <li>
-                            <a class="logo left" href="<?= $this->url('home') ?>">
-                                <span class="title">Sitework.de</span>
-                                <span class="subTitle"><?= $this->translate('PHP Development') ?></span>
-                            </a>
+                        <li class="name">
+                            <h1>
+                                <a class="nodeco" href="/">
+                                    <span class="title"><?= $this->translate('Sitework.de') ?></span>
+                                    <span class="description hide-for-small"><?= $this->translate('PHP Development') ?></span>
+                                </a>
+                            </h1>
                         </li>
-                        <li class="toggle-topbar menu-icon right"><a href="#"><span><?= $this->translate('Menu') ?></span></a></li>
+                        <li class="toggle-topbar"><a href="#"><?= $this->translate('Menü') ?></a></li>
                     </ul>
                     <section class="top-bar-section">
-                        <?= $this->navigation()->menu(new Zend\Navigation\Navigation($this->navigation('default_navigation')->getPages()))->setUlClass('menu right') ?></section>
-                        <ul class="social">
-                            <li><a class="icon icXing" title="XING" href="http://www.xing.com/profile/Matthias_Kruschke">XING</a></li>
-                            <li><a class="icon icLinkedin" title="LinkedIn" href="http://www.linkedin.com/pub/matthias-kruschke/42/a10/7a2">LinkedIn</a></li>
-                            <li><a class="icon icFacebook" title="facebook" href="http://www.facebook.com/matthias.kruschke">facebook</a></li>
-                            <li><a class="icon icTwitter" title="twitter" href="http://twitter.com/sitewalker">Twitter</a></li>
-                        </ul>
+                        <?= $this->navigation()->menu(new Zend\Navigation\Navigation($this->navigation('social_navigation')->getPages()))->setUlClass('nav-social hide-for-small right') ?>
+                        <?= $this->navigation()->menu(new Zend\Navigation\Navigation($this->navigation('default_navigation')->getPages()))->setUlClass('nav-primary right') ?>
                     </section>
                 </nav>
+            </header>
+            <div id="main" class="row">
+                <div id="sidebar" class="large-4 small-12 columns"><?= $this->sidebar ?></div>
+                <div id="content" class="large-8 small-12 columns"><?= $this->content ?></div>
             </div>
-        </header>
-        <div class="page row">
-            <div class="row">
-                <div class="large-4 columns sidebar hide-for-small"><div class="content"><?= $this->sidebar ?></div></div>
-                <div class="large-8 small-12 columns main"><div class="content"><?= $this->content ?></div></div>
-            </div>
-            <?php if(isset($this->google->analytics)): ?><div class="row"><?php echo $this->partial('adsense.phtml', 'default', null) ?></div><?php endif ?>
-        </div>
-
-        <footer>
-            <div class="row">
-                <div class="small-6 columns"><span class="copy">&copy; 2009 - 2012 Mattthias Kruschke</span></div>
-                <div class="small-6 columns">
-                    <nav><?= $this->navigation()->menu(new Zend\Navigation\Navigation($this->navigation('footer_navigation')->getPages()))->setUlClass('right') ?></nav>
+            <footer>
+                <div class="row">
+                    <div class="large-6 columns">
+                        <span class="copy">&copy; 2007 - 2013, Sitework.de, Matthias Kruschke</span>
+                    </div>
+                    <div class="large-6 columns">
+                        <nav class="bottom-bar"><?= $this->navigation()->menu(new Zend\Navigation\Navigation($this->navigation('footer_navigation')->getPages()))->setUlClass('nav-secondary') ?></nav>
+                    </div>
                 </div>
-            </div>
-        </footer>
-
-        <?= $this->inlineScript() ?>
+            </footer>
+        </div>
+        <?php $headScript = $this->headScript() ?>
+        <?php foreach ($this->assets()->js() as $js) : ?>
+            <?php $headScript->appendFile(sprintf('%s/js/%s', $this->basePath(), $js)) ?>
+        <?php endforeach ?>
+        <?= $headScript ?>
+        <script>$(function(){ $(document).foundation(); })</script>
     </body>
 </html>

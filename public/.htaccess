@@ -4,3 +4,20 @@ RewriteCond %{REQUEST_FILENAME} -l [OR]
 RewriteCond %{REQUEST_FILENAME} -d
 RewriteRule ^.*$ - [NC,L]
 RewriteRule ^.*$ index.php [NC,L]
+
+FileETag none
+
+# BEGIN BROWSER CACHE
+<IfModule mod_expires.c>
+    ExpiresActive On
+    <FilesMatch "\.(ico|pdf|flv|jpg|jpeg|png|gif|js|css|swf)$">
+        ExpiresDefault "access plus 14 days"
+    </FilesMatch>
+</IfModule>
+# END BROWSER CACHE
+
+# BEGIN GZIP
+<ifmodule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/text text/html text/plain text/xml text/css application/x-javascript application/javascript
+</ifmodule>
+# END GZIP

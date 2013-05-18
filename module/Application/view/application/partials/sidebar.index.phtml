@@ -1,17 +1,23 @@
-<div id="sidebarIndex">
-    <h2 class="sidebar-title"><?= $this->translate('Recent Tweets') ?></h2>
-    <?php $tweets = $this->get('twitterCollection') ?>
-    <?php if (is_array($tweets)) : ?>
-        <ul class="twitterCollection">
-        <?php foreach ($tweets as $t) : ?>
-            <li class="<?= $this->cycle(array('even', 'odd'))->next() ?>">
-                <div class="date">
-                    <?php $date = new DateTime($t->getCreatedAt(), new DateTimeZone(date_default_timezone_get())) ?>
-                    <?= $this->dateFormat($date, IntlDateFormatter::TRADITIONAL, IntlDateFormatter::NONE, Locale::getDefault()) ?>
-                </div>
-                <div class="text"><?= $t->getText() ?></div>
-            </li>
-        <?php endforeach ?>
-        </ul>
-    <?php endif ?>
+<div class="row sidebarIndex">
+    <div class="small-12 columns">
+        <div class="panel">
+            <h2><?= $this->translate('Recent Tweets') ?></h2>
+            <?php $tweets = $this->get('twitterCollection') ?>
+            <?php if (is_array($tweets)) : ?>
+                <ul class="twitterCollection">
+                <?php foreach ($tweets as $t) : ?>
+                    <li class="<?= $this->cycle(array('even', 'odd'))->next() ?>">
+                        <span class="info">
+                            <span class="date">
+                                <?php $date = new DateTime($t->getCreatedAt(), new DateTimeZone(date_default_timezone_get())) ?>
+                                <strong><?= $this->dateFormat($date, IntlDateFormatter::TRADITIONAL, IntlDateFormatter::NONE, null) ?></strong>
+                            </span>
+                            <span class="text"><?= $t->getText() ?></span>
+                        </span>
+                    </li>
+                <?php endforeach ?>
+                </ul>
+            <?php endif ?>
+        </div>
+    </div>
 </div>

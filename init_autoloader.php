@@ -2,8 +2,8 @@
 ini_set('include_path', implode(PATH_SEPARATOR, array(
     ini_get('include_path'),
     VENDOR_PATH . '/zf2',
-    VENDOR_PATH . '/Pear',
-    VENDOR_PATH . '/Propel'
+    VENDOR_PATH . '/pear',
+    VENDOR_PATH . '/Propel/runtime/lib'
 )));
 
 if (!class_exists('Zend\Loader\AutoloaderFactory')) {

@@ -108,6 +108,7 @@ abstract class BaseProjectDetail extends BaseObject implements Persistent
      */
     public function getFkProjectId()
     {
+
         return $this->fk_project_id;
     }
 
@@ -118,6 +119,7 @@ abstract class BaseProjectDetail extends BaseObject implements Persistent
      */
     public function getFkLangId()
     {
+
         return $this->fk_lang_id;
     }
 
@@ -128,6 +130,7 @@ abstract class BaseProjectDetail extends BaseObject implements Persistent
      */
     public function getLabel()
     {
+
         return $this->label;
     }
 
@@ -138,6 +141,7 @@ abstract class BaseProjectDetail extends BaseObject implements Persistent
      */
     public function getDescription()
     {
+
         return $this->description;
     }
 
@@ -277,6 +281,7 @@ abstract class BaseProjectDetail extends BaseObject implements Persistent
                 $this->ensureConsistency();
             }
             $this->postHydrate($row, $startcol, $rehydrate);
+
             return $startcol + 4; // 4 = ProjectDetailPeer::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
@@ -968,7 +973,7 @@ abstract class BaseProjectDetail extends BaseObject implements Persistent
     /**
      * Declares an association between this object and a Project object.
      *
-     * @param             Project $v
+     * @param   Project $v
      * @return ProjectDetail The current object (for fluent API support)
      * @throws PropelException
      */
@@ -1020,7 +1025,7 @@ abstract class BaseProjectDetail extends BaseObject implements Persistent
     /**
      * Declares an association between this object and a Language object.
      *
-     * @param             Language $v
+     * @param   Language $v
      * @return ProjectDetail The current object (for fluent API support)
      * @throws PropelException
      */

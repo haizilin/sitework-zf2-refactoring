@@ -110,6 +110,7 @@ abstract class BaseContact extends BaseObject implements Persistent
      */
     public function getId()
     {
+
         return $this->id;
     }
 
@@ -120,6 +121,7 @@ abstract class BaseContact extends BaseObject implements Persistent
      */
     public function getLabel()
     {
+
         return $this->label;
     }
 
@@ -207,6 +209,7 @@ abstract class BaseContact extends BaseObject implements Persistent
                 $this->ensureConsistency();
             }
             $this->postHydrate($row, $startcol, $rehydrate);
+
             return $startcol + 2; // 2 = ContactPeer::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
@@ -986,7 +989,7 @@ abstract class BaseContact extends BaseObject implements Persistent
                     if (false !== $this->collProjectsRelatedByFkContactClientIdPartial && count($collProjectsRelatedByFkContactClientId)) {
                       $this->initProjectsRelatedByFkContactClientId(false);
 
-                      foreach($collProjectsRelatedByFkContactClientId as $obj) {
+                      foreach ($collProjectsRelatedByFkContactClientId as $obj) {
                         if (false == $this->collProjectsRelatedByFkContactClientId->contains($obj)) {
                           $this->collProjectsRelatedByFkContactClientId->append($obj);
                         }
@@ -996,12 +999,13 @@ abstract class BaseContact extends BaseObject implements Persistent
                     }
 
                     $collProjectsRelatedByFkContactClientId->getInternalIterator()->rewind();
+
                     return $collProjectsRelatedByFkContactClientId;
                 }
 
-                if($partial && $this->collProjectsRelatedByFkContactClientId) {
-                    foreach($this->collProjectsRelatedByFkContactClientId as $obj) {
-                        if($obj->isNew()) {
+                if ($partial && $this->collProjectsRelatedByFkContactClientId) {
+                    foreach ($this->collProjectsRelatedByFkContactClientId as $obj) {
+                        if ($obj->isNew()) {
                             $collProjectsRelatedByFkContactClientId[] = $obj;
                         }
                     }
@@ -1064,7 +1068,7 @@ abstract class BaseContact extends BaseObject implements Persistent
                 return 0;
             }
 
-            if($partial && !$criteria) {
+            if ($partial && !$criteria) {
                 return count($this->getProjectsRelatedByFkContactClientId());
             }
             $query = ProjectQuery::create(null, $criteria);
@@ -1084,7 +1088,7 @@ abstract class BaseContact extends BaseObject implements Persistent
      * Method called to associate a Project object to this object
      * through the Project foreign key attribute.
      *
-     * @param    Project $l Project
+     * @param   Project $l Project
      * @return Contact The current object (for fluent API support)
      */
     public function addProjectRelatedByFkContactClientId(Project $l)
@@ -1205,7 +1209,7 @@ abstract class BaseContact extends BaseObject implements Persistent
                     if (false !== $this->collProjectsRelatedByFkContactEmployerIdPartial && count($collProjectsRelatedByFkContactEmployerId)) {
                       $this->initProjectsRelatedByFkContactEmployerId(false);
 
-                      foreach($collProjectsRelatedByFkContactEmployerId as $obj) {
+                      foreach ($collProjectsRelatedByFkContactEmployerId as $obj) {
                         if (false == $this->collProjectsRelatedByFkContactEmployerId->contains($obj)) {
                           $this->collProjectsRelatedByFkContactEmployerId->append($obj);
                         }
@@ -1215,12 +1219,13 @@ abstract class BaseContact extends BaseObject implements Persistent
                     }
 
                     $collProjectsRelatedByFkContactEmployerId->getInternalIterator()->rewind();
+
                     return $collProjectsRelatedByFkContactEmployerId;
                 }
 
-                if($partial && $this->collProjectsRelatedByFkContactEmployerId) {
-                    foreach($this->collProjectsRelatedByFkContactEmployerId as $obj) {
-                        if($obj->isNew()) {
+                if ($partial && $this->collProjectsRelatedByFkContactEmployerId) {
+                    foreach ($this->collProjectsRelatedByFkContactEmployerId as $obj) {
+                        if ($obj->isNew()) {
                             $collProjectsRelatedByFkContactEmployerId[] = $obj;
                         }
                     }
@@ -1283,7 +1288,7 @@ abstract class BaseContact extends BaseObject implements Persistent
                 return 0;
             }
 
-            if($partial && !$criteria) {
+            if ($partial && !$criteria) {
                 return count($this->getProjectsRelatedByFkContactEmployerId());
             }
             $query = ProjectQuery::create(null, $criteria);
@@ -1303,7 +1308,7 @@ abstract class BaseContact extends BaseObject implements Persistent
      * Method called to associate a Project object to this object
      * through the Project foreign key attribute.
      *
-     * @param    Project $l Project
+     * @param   Project $l Project
      * @return Contact The current object (for fluent API support)
      */
     public function addProjectRelatedByFkContactEmployerId(Project $l)

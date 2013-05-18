@@ -59,8 +59,14 @@ abstract class BaseContactQuery extends ModelCriteria
      * @param     string $modelName The phpName of a model, e.g. 'Book'
      * @param     string $modelAlias The alias for the model in this query, e.g. 'b'
      */
-    public function __construct($dbName = 'PropelOrm', $modelName = 'Orm\\Model\\PropelOrm\\Contact', $modelAlias = null)
+    public function __construct($dbName = null, $modelName = null, $modelAlias = null)
     {
+        if (null === $dbName) {
+            $dbName = 'PropelOrm';
+        }
+        if (null === $modelName) {
+            $modelName = 'Orm\\Model\\PropelOrm\\Contact';
+        }
         parent::__construct($dbName, $modelName, $modelAlias);
     }
 
@@ -77,10 +83,8 @@ abstract class BaseContactQuery extends ModelCriteria
         if ($criteria instanceof ContactQuery) {
             return $criteria;
         }
-        $query = new ContactQuery();
-        if (null !== $modelAlias) {
-            $query->setModelAlias($modelAlias);
-        }
+        $query = new ContactQuery(null, null, $modelAlias);
+
         if ($criteria instanceof Criteria) {
             $query->mergeWith($criteria);
         }

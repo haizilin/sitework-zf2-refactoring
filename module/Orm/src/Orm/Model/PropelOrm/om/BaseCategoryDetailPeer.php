@@ -365,10 +365,8 @@ abstract class BaseCategoryDetailPeer
      */
     public static function clearInstancePool($and_clear_all_references = false)
     {
-      if ($and_clear_all_references)
-      {
-        foreach (CategoryDetailPeer::$instances as $instance)
-        {
+      if ($and_clear_all_references) {
+        foreach (CategoryDetailPeer::$instances as $instance) {
           $instance->clearAllReferences(true);
         }
       }

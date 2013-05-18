@@ -170,6 +170,7 @@ abstract class BaseProject extends BaseObject implements Persistent
      */
     public function getId()
     {
+
         return $this->id;
     }
 
@@ -180,6 +181,7 @@ abstract class BaseProject extends BaseObject implements Persistent
      */
     public function getFkContactClientId()
     {
+
         return $this->fk_contact_client_id;
     }
 
@@ -190,6 +192,7 @@ abstract class BaseProject extends BaseObject implements Persistent
      */
     public function getFkContactEmployerId()
     {
+
         return $this->fk_contact_employer_id;
     }
 
@@ -280,6 +283,7 @@ abstract class BaseProject extends BaseObject implements Persistent
      */
     public function getUrl()
     {
+
         return $this->url;
     }
 
@@ -290,6 +294,7 @@ abstract class BaseProject extends BaseObject implements Persistent
      */
     public function getImg()
     {
+
         return $this->img;
     }
 
@@ -300,6 +305,7 @@ abstract class BaseProject extends BaseObject implements Persistent
      */
     public function getActive()
     {
+
         return $this->active;
     }
 
@@ -543,6 +549,7 @@ abstract class BaseProject extends BaseObject implements Persistent
                 $this->ensureConsistency();
             }
             $this->postHydrate($row, $startcol, $rehydrate);
+
             return $startcol + 8; // 8 = ProjectPeer::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
@@ -1339,7 +1346,7 @@ abstract class BaseProject extends BaseObject implements Persistent
     /**
      * Declares an association between this object and a Contact object.
      *
-     * @param             Contact $v
+     * @param   Contact $v
      * @return Project The current object (for fluent API support)
      * @throws PropelException
      */
@@ -1391,7 +1398,7 @@ abstract class BaseProject extends BaseObject implements Persistent
     /**
      * Declares an association between this object and a Contact object.
      *
-     * @param             Contact $v
+     * @param   Contact $v
      * @return Project The current object (for fluent API support)
      * @throws PropelException
      */
@@ -1533,7 +1540,7 @@ abstract class BaseProject extends BaseObject implements Persistent
                     if (false !== $this->collProjectDetailsPartial && count($collProjectDetails)) {
                       $this->initProjectDetails(false);
 
-                      foreach($collProjectDetails as $obj) {
+                      foreach ($collProjectDetails as $obj) {
                         if (false == $this->collProjectDetails->contains($obj)) {
                           $this->collProjectDetails->append($obj);
                         }
@@ -1543,12 +1550,13 @@ abstract class BaseProject extends BaseObject implements Persistent
                     }
 
                     $collProjectDetails->getInternalIterator()->rewind();
+
                     return $collProjectDetails;
                 }
 
-                if($partial && $this->collProjectDetails) {
-                    foreach($this->collProjectDetails as $obj) {
-                        if($obj->isNew()) {
+                if ($partial && $this->collProjectDetails) {
+                    foreach ($this->collProjectDetails as $obj) {
+                        if ($obj->isNew()) {
                             $collProjectDetails[] = $obj;
                         }
                     }
@@ -1614,7 +1622,7 @@ abstract class BaseProject extends BaseObject implements Persistent
                 return 0;
             }
 
-            if($partial && !$criteria) {
+            if ($partial && !$criteria) {
                 return count($this->getProjectDetails());
             }
             $query = ProjectDetailQuery::create(null, $criteria);
@@ -1634,7 +1642,7 @@ abstract class BaseProject extends BaseObject implements Persistent
      * Method called to associate a ProjectDetail object to this object
      * through the ProjectDetail foreign key attribute.
      *
-     * @param    ProjectDetail $l ProjectDetail
+     * @param   ProjectDetail $l ProjectDetail
      * @return Project The current object (for fluent API support)
      */
     public function addProjectDetail(ProjectDetail $l)

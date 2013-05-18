@@ -69,8 +69,14 @@ abstract class BaseLanguageQuery extends ModelCriteria
      * @param     string $modelName The phpName of a model, e.g. 'Book'
      * @param     string $modelAlias The alias for the model in this query, e.g. 'b'
      */
-    public function __construct($dbName = 'PropelOrm', $modelName = 'Orm\\Model\\PropelOrm\\Language', $modelAlias = null)
+    public function __construct($dbName = null, $modelName = null, $modelAlias = null)
     {
+        if (null === $dbName) {
+            $dbName = 'PropelOrm';
+        }
+        if (null === $modelName) {
+            $modelName = 'Orm\\Model\\PropelOrm\\Language';
+        }
         parent::__construct($dbName, $modelName, $modelAlias);
     }
 
@@ -87,10 +93,8 @@ abstract class BaseLanguageQuery extends ModelCriteria
         if ($criteria instanceof LanguageQuery) {
             return $criteria;
         }
-        $query = new LanguageQuery();
-        if (null !== $modelAlias) {
-            $query->setModelAlias($modelAlias);
-        }
+        $query = new LanguageQuery(null, null, $modelAlias);
+
         if ($criteria instanceof Criteria) {
             $query->mergeWith($criteria);
         }

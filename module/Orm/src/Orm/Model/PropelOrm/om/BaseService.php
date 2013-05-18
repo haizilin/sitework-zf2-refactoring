@@ -139,6 +139,7 @@ abstract class BaseService extends BaseObject implements Persistent
      */
     public function getId()
     {
+
         return $this->id;
     }
 
@@ -149,6 +150,7 @@ abstract class BaseService extends BaseObject implements Persistent
      */
     public function getFkCategoryId()
     {
+
         return $this->fk_category_id;
     }
 
@@ -159,6 +161,7 @@ abstract class BaseService extends BaseObject implements Persistent
      */
     public function getPos()
     {
+
         return $this->pos;
     }
 
@@ -169,6 +172,7 @@ abstract class BaseService extends BaseObject implements Persistent
      */
     public function getActive()
     {
+
         return $this->active;
     }
 
@@ -316,6 +320,7 @@ abstract class BaseService extends BaseObject implements Persistent
                 $this->ensureConsistency();
             }
             $this->postHydrate($row, $startcol, $rehydrate);
+
             return $startcol + 4; // 4 = ServicePeer::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
@@ -1028,7 +1033,7 @@ abstract class BaseService extends BaseObject implements Persistent
     /**
      * Declares an association between this object and a Category object.
      *
-     * @param             Category $v
+     * @param   Category $v
      * @return Service The current object (for fluent API support)
      * @throws PropelException
      */
@@ -1170,7 +1175,7 @@ abstract class BaseService extends BaseObject implements Persistent
                     if (false !== $this->collServiceDetailsPartial && count($collServiceDetails)) {
                       $this->initServiceDetails(false);
 
-                      foreach($collServiceDetails as $obj) {
+                      foreach ($collServiceDetails as $obj) {
                         if (false == $this->collServiceDetails->contains($obj)) {
                           $this->collServiceDetails->append($obj);
                         }
@@ -1180,12 +1185,13 @@ abstract class BaseService extends BaseObject implements Persistent
                     }
 
                     $collServiceDetails->getInternalIterator()->rewind();
+
                     return $collServiceDetails;
                 }
 
-                if($partial && $this->collServiceDetails) {
-                    foreach($this->collServiceDetails as $obj) {
-                        if($obj->isNew()) {
+                if ($partial && $this->collServiceDetails) {
+                    foreach ($this->collServiceDetails as $obj) {
+                        if ($obj->isNew()) {
                             $collServiceDetails[] = $obj;
                         }
                     }
@@ -1251,7 +1257,7 @@ abstract class BaseService extends BaseObject implements Persistent
                 return 0;
             }
 
-            if($partial && !$criteria) {
+            if ($partial && !$criteria) {
                 return count($this->getServiceDetails());
             }
             $query = ServiceDetailQuery::create(null, $criteria);
@@ -1271,7 +1277,7 @@ abstract class BaseService extends BaseObject implements Persistent
      * Method called to associate a ServiceDetail object to this object
      * through the ServiceDetail foreign key attribute.
      *
-     * @param    ServiceDetail $l ServiceDetail
+     * @param   ServiceDetail $l ServiceDetail
      * @return Service The current object (for fluent API support)
      */
     public function addServiceDetail(ServiceDetail $l)

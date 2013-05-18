@@ -3,6 +3,8 @@ namespace Application;
 
 use Zend\Mvc\ModuleRouteListener;
 use Zend\Mvc\MvcEvent;
+use Application\View\Helper\Assets;
+
 class Module
 {
     public function onBootstrap(MvcEvent $e)
@@ -25,14 +27,20 @@ class Module
                 'fallback_autoloader' => true,
             ),
         );
-
     }
 
     public function getConfig() {
         return include __DIR__ . '/config/module.config.php';
     }
 
-    public function getViewHelperConfig(){
-        //return array( 'Formbutton'=>'Application\Form\View\Helper\Formbutton' );
+    public function getViewHelperConfig() {
+        return array(
+            'invokables' => array(
+                'mailto' => 'Application\View\Helper\Mailto',
+                'image' => 'Application\View\Helper\Image',
+                'assets' => 'Application\View\Helper\Assets',
+                'google' => 'Application\View\Helper\Google',
+            ),
+        );
     }
 }

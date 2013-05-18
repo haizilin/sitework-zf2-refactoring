@@ -20,7 +20,7 @@ class IndexController extends AbstractActionController
     public function indexAction() {
 
         $twitter = new Model\Twitter\Twitter($this->getServiceLocator()->get('config'));
-        $timelineCollection = new Model\Twitter\TimelineCollection($twitter->statusUserTimeline('sitewalker', 1, 8), 'json');
+        $timelineCollection = new Model\Twitter\TimelineCollection($twitter->statusUserTimeline('sitewalker', 1, 7), 'json');
 
         $sidebar = new ViewModel();
         $sidebar->setVariable('twitterCollection', $timelineCollection->getTweets(0, 8));

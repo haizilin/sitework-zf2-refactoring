@@ -102,6 +102,7 @@ abstract class BaseServiceDetail extends BaseObject implements Persistent
      */
     public function getFkServiceId()
     {
+
         return $this->fk_service_id;
     }
 
@@ -112,6 +113,7 @@ abstract class BaseServiceDetail extends BaseObject implements Persistent
      */
     public function getFkLangId()
     {
+
         return $this->fk_lang_id;
     }
 
@@ -122,6 +124,7 @@ abstract class BaseServiceDetail extends BaseObject implements Persistent
      */
     public function getDescription()
     {
+
         return $this->description;
     }
 
@@ -239,6 +242,7 @@ abstract class BaseServiceDetail extends BaseObject implements Persistent
                 $this->ensureConsistency();
             }
             $this->postHydrate($row, $startcol, $rehydrate);
+
             return $startcol + 3; // 3 = ServiceDetailPeer::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
@@ -914,7 +918,7 @@ abstract class BaseServiceDetail extends BaseObject implements Persistent
     /**
      * Declares an association between this object and a Service object.
      *
-     * @param             Service $v
+     * @param   Service $v
      * @return ServiceDetail The current object (for fluent API support)
      * @throws PropelException
      */
@@ -966,7 +970,7 @@ abstract class BaseServiceDetail extends BaseObject implements Persistent
     /**
      * Declares an association between this object and a Language object.
      *
-     * @param             Language $v
+     * @param   Language $v
      * @return ServiceDetail The current object (for fluent API support)
      * @throws PropelException
      */

@@ -1,29 +1,30 @@
-<h2 class="block-title"><?= $this->translate('Services and Technologies') ?></h2>
-<div class="row block-content">
-    <div class="right small-3 columns hide-for-small block-logos">
-        <a href="http://alfahosting.de/webhosting/webspace_shared_hosting.html?wmid=mkruschke" target="_blank"><img src="http://bannerfarm.alphahosting.de/sonstige/button_88x31_1.jpg" width="100" alt="Alfahosting.de"></a>
-        <a href="https://www.google.de/search?q=php" target="_blank"><img src="/gfx/logos/php.png" alt="PHP" title="PHP"></a>
-        <a href="https://www.google.de/search?q=mysql" target="_blank"><img src="/gfx/logos/mysql.png" alt="MySQL" title="MySQL"></a>
-        <a href="http://lucene.apache.org/solr/" target="_blank"><img src="/gfx/logos/solr.png" alt="Apache Solr" title="Apache Solr"></a>
-        <a href="http://framework.zend.com" target="_blank"><img src="/gfx/logos/zendframework.png" alt="Zend Framework" title="Zend Framework"></a>
-        <a href="http://propelorm.org/" target="_blank"><img src="/gfx/logos/propel.png" alt="Propel - Smart, easy object persistence" title="Propel - Smart, easy object persistence"></a>
-        <a href="http://www.smarty.net" target="_blank"><img src="/gfx/logos/smarty.png" alt="Smarty Temlateengine" title="Smarty Templateengine"></a>
-        <a href="http://jquery.com" target="_blank"><img src="/gfx/logos/jquery.png" alt="jQuery Javascript Framework - write less, do more" title="jQuery Javascript Framework - write less, do more"></a>
-    </div>
-    <div class="left small-9 columns">
-        <h3><?= $this->translate('Services') ?></h3>
-        <ul class="services">
-        <?php foreach ($this->services->find() as $service): ?>
-            <?php $row = $service->getServiceDetails()->getFirst() ?>
-            <li><?= $row->getDescription() ?></li>
-        <?php endforeach ?>
-        </ul>
-        <h3><?= $this->translate('Technologies') ?></h3>
-        <ul class="technologies">
-        <?php foreach ($this->technologies->find() as $service): ?>
-            <?php $row = $service->getServiceDetails()->getFirst() ?>
-            <li><?= $row->getDescription() ?></li>
-        <?php endforeach ?>
-        </ul>
+<div id="index" class="row">
+    <div class="small-12 columns">
+        <div class="panel">
+            <h2 class="block-title"><?= $this->translate('Services and Technologies') ?></h2>
+            <h3><?= $this->translate('Services') ?></h3>
+            <ul class="list">
+            <?php foreach ($this->services->find() as $service): ?>
+                <?php $row = $service->getServiceDetails()->getFirst() ?>
+                <li><?= $row->getDescription() ?></li>
+            <?php endforeach ?>
+            </ul>
+            <h3><?= $this->translate('Technologies') ?></h3>
+            <ul class="list">
+            <?php foreach ($this->technologies->find() as $service): ?>
+                <?php $row = $service->getServiceDetails()->getFirst() ?>
+                <li><?= $row->getDescription() ?></li>
+            <?php endforeach ?>
+            </ul>
+            <p><?= $this->translate('Sollten Sie Interesse an meiner Mitarbeit bei der Realisierung Ihrer Ideen haben, nutzen Sie bitte das Kontaktformular. Ich werde Sie dann umgehend über meine Verfügbarkeit und die Möglichkeit zu einem persönlichen Gespräch unterrichten.') ?></p>
+        </div>
+        <div class="hide-for-small block-logos panel">
+            <a href="https://www.google.de/search?q=php" target="_blank"><img src="<?= $this->basePath() ?>/gfx/logos/php.png" alt="PHP" title="PHP"></a>
+            <a href="https://www.google.de/search?q=mysql" target="_blank"><img src="<?= $this->basePath() ?>/gfx/logos/mysql.png" alt="MySQL" title="MySQL"></a>
+            <a href="http://lucene.apache.org/solr/" target="_blank"><img src="<?= $this->basePath() ?>/gfx/logos/solr.png" alt="Apache Solr" title="Apache Solr"></a>
+            <a href="http://framework.zend.com" target="_blank"><img src="<?= $this->basePath() ?>/gfx/logos/zendframework.png" alt="Zend Framework" title="Zend Framework"></a>
+            <a href="http://propelorm.org/" target="_blank"><img src="<?= $this->basePath() ?>/gfx/logos/propel.png" alt="Propel - Smart, easy object persistence" title="Propel - Smart, easy object persistence"></a>
+            <a href="http://jquery.com" target="_blank"><img src="<?= $this->basePath() ?>/gfx/logos/jquery.png" alt="jQuery Javascript Framework - write less, do more" title="jQuery Javascript Framework - write less, do more"></a>
+        </div>
     </div>
 </div>

@@ -99,10 +99,12 @@ return array(
             __DIR__ . '/../view',
         ),
     ),
-    'view_helpers' => array(
-        'invokables' => array(
-            'mailto' => 'Application\View\Helper\Mailto',
-            'image' => 'Application\View\Helper\Image',
+    'service_manager' => array(
+        'factories' => array(
+            'translator' => 'Zend\I18n\Translator\TranslatorServiceFactory',
+            'default_navigation' => 'Zend\Navigation\Service\DefaultNavigationFactory',
+            'footer_navigation' => 'Application\Navigation\Service\FooterNavigationFactory',
+            'social_navigation' => 'Application\Navigation\Service\SocialNavigationFactory',
         ),
     ),
     'navigation' => array(
@@ -130,12 +132,43 @@ return array(
                 'order' => 2
             ),
         ),
-    ),
-    'service_manager' => array(
-        'factories' => array(
-            'translator' => 'Zend\I18n\Translator\TranslatorServiceFactory',
-            'default_navigation' => 'Zend\Navigation\Service\DefaultNavigationFactory',
-            'footer_navigation' => 'Application\Navigation\Service\FooterNavigationFactory',
+        'social' => array(
+            array(
+                'class' => 'icon-xing',
+                'uri' => 'http://www.xing.com/profile/Matthias_Kruschke',
+                'title' => 'Lesen Sie mein Profil bei XING.',
+                'order' => 1
+            ),
+            array(
+                'class' => 'icon-linkedin',
+                'uri' => 'http://de.linkedin.com/pub/matthias-kruschke/42/a10/7a2/',
+                'title' => 'Lesen Sie mein Profil bei LinkedIn.',
+                'order' => 2
+            ),
+            array(
+                'class' => 'icon-google-plus',
+                'uri' => 'http://www.facebook.com/matthias.kruschke',
+                'title' => 'Erfahren Sie mehr über mich bei google+.',
+                'order' => 3
+            ),
+            array(
+                'class' => 'icon-facebook',
+                'uri' => 'http://www.facebook.com/matthias.kruschke',
+                'title' => 'Erfahren Sie mehr über mich bei facebook.',
+                'order' => 4
+            ),
+            array(
+                'class' => 'icon-twitter',
+                'uri' => 'http://twitter.com/sitewalker',
+                'title' => 'Flgen Sie mir auf Twitter.',
+                'order' => 5
+            ),
+            array(
+                'class' => 'icon-github has-tooltip',
+                'uri' => 'http://github.com/sitework',
+                'title' => 'Forken Sie meine Projekte auf Github.',
+                'order' => 6
+            ),
         ),
     ),
     'translator' => array(
@@ -154,7 +187,7 @@ return array(
             'namespaceIsPrefix' => true,
             'options' => array(
                 'cache_dir' => __DIR__ . '/../../../data/cache',
-                'ttl' => 1000
+                'ttl' => 1
             ),
         ),
         'plugins' => array(

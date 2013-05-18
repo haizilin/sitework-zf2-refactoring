@@ -134,6 +134,7 @@ abstract class BaseCategory extends BaseObject implements Persistent
      */
     public function getId()
     {
+
         return $this->id;
     }
 
@@ -144,6 +145,7 @@ abstract class BaseCategory extends BaseObject implements Persistent
      */
     public function getActive()
     {
+
         return $this->active;
     }
 
@@ -243,6 +245,7 @@ abstract class BaseCategory extends BaseObject implements Persistent
                 $this->ensureConsistency();
             }
             $this->postHydrate($row, $startcol, $rehydrate);
+
             return $startcol + 2; // 2 = CategoryPeer::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
@@ -1022,7 +1025,7 @@ abstract class BaseCategory extends BaseObject implements Persistent
                     if (false !== $this->collCategoryDetailsPartial && count($collCategoryDetails)) {
                       $this->initCategoryDetails(false);
 
-                      foreach($collCategoryDetails as $obj) {
+                      foreach ($collCategoryDetails as $obj) {
                         if (false == $this->collCategoryDetails->contains($obj)) {
                           $this->collCategoryDetails->append($obj);
                         }
@@ -1032,12 +1035,13 @@ abstract class BaseCategory extends BaseObject implements Persistent
                     }
 
                     $collCategoryDetails->getInternalIterator()->rewind();
+
                     return $collCategoryDetails;
                 }
 
-                if($partial && $this->collCategoryDetails) {
-                    foreach($this->collCategoryDetails as $obj) {
-                        if($obj->isNew()) {
+                if ($partial && $this->collCategoryDetails) {
+                    foreach ($this->collCategoryDetails as $obj) {
+                        if ($obj->isNew()) {
                             $collCategoryDetails[] = $obj;
                         }
                     }
@@ -1103,7 +1107,7 @@ abstract class BaseCategory extends BaseObject implements Persistent
                 return 0;
             }
 
-            if($partial && !$criteria) {
+            if ($partial && !$criteria) {
                 return count($this->getCategoryDetails());
             }
             $query = CategoryDetailQuery::create(null, $criteria);
@@ -1123,7 +1127,7 @@ abstract class BaseCategory extends BaseObject implements Persistent
      * Method called to associate a CategoryDetail object to this object
      * through the CategoryDetail foreign key attribute.
      *
-     * @param    CategoryDetail $l CategoryDetail
+     * @param   CategoryDetail $l CategoryDetail
      * @return Category The current object (for fluent API support)
      */
     public function addCategoryDetail(CategoryDetail $l)
@@ -1269,7 +1273,7 @@ abstract class BaseCategory extends BaseObject implements Persistent
                     if (false !== $this->collServicesPartial && count($collServices)) {
                       $this->initServices(false);
 
-                      foreach($collServices as $obj) {
+                      foreach ($collServices as $obj) {
                         if (false == $this->collServices->contains($obj)) {
                           $this->collServices->append($obj);
                         }
@@ -1279,12 +1283,13 @@ abstract class BaseCategory extends BaseObject implements Persistent
                     }
 
                     $collServices->getInternalIterator()->rewind();
+
                     return $collServices;
                 }
 
-                if($partial && $this->collServices) {
-                    foreach($this->collServices as $obj) {
-                        if($obj->isNew()) {
+                if ($partial && $this->collServices) {
+                    foreach ($this->collServices as $obj) {
+                        if ($obj->isNew()) {
                             $collServices[] = $obj;
                         }
                     }
@@ -1347,7 +1352,7 @@ abstract class BaseCategory extends BaseObject implements Persistent
                 return 0;
             }
 
-            if($partial && !$criteria) {
+            if ($partial && !$criteria) {
                 return count($this->getServices());
             }
             $query = ServiceQuery::create(null, $criteria);
@@ -1367,7 +1372,7 @@ abstract class BaseCategory extends BaseObject implements Persistent
      * Method called to associate a Service object to this object
      * through the Service foreign key attribute.
      *
-     * @param    Service $l Service
+     * @param   Service $l Service
      * @return Category The current object (for fluent API support)
      */
     public function addService(Service $l)

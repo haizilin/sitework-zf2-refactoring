@@ -154,6 +154,7 @@ abstract class BaseLanguage extends BaseObject implements Persistent
      */
     public function getId()
     {
+
         return $this->id;
     }
 
@@ -164,6 +165,7 @@ abstract class BaseLanguage extends BaseObject implements Persistent
      */
     public function getLocale()
     {
+
         return $this->locale;
     }
 
@@ -174,6 +176,7 @@ abstract class BaseLanguage extends BaseObject implements Persistent
      */
     public function getActive()
     {
+
         return $this->active;
     }
 
@@ -295,6 +298,7 @@ abstract class BaseLanguage extends BaseObject implements Persistent
                 $this->ensureConsistency();
             }
             $this->postHydrate($row, $startcol, $rehydrate);
+
             return $startcol + 3; // 3 = LanguagePeer::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
@@ -1130,7 +1134,7 @@ abstract class BaseLanguage extends BaseObject implements Persistent
                     if (false !== $this->collCategoryDetailsPartial && count($collCategoryDetails)) {
                       $this->initCategoryDetails(false);
 
-                      foreach($collCategoryDetails as $obj) {
+                      foreach ($collCategoryDetails as $obj) {
                         if (false == $this->collCategoryDetails->contains($obj)) {
                           $this->collCategoryDetails->append($obj);
                         }
@@ -1140,12 +1144,13 @@ abstract class BaseLanguage extends BaseObject implements Persistent
                     }
 
                     $collCategoryDetails->getInternalIterator()->rewind();
+
                     return $collCategoryDetails;
                 }
 
-                if($partial && $this->collCategoryDetails) {
-                    foreach($this->collCategoryDetails as $obj) {
-                        if($obj->isNew()) {
+                if ($partial && $this->collCategoryDetails) {
+                    foreach ($this->collCategoryDetails as $obj) {
+                        if ($obj->isNew()) {
                             $collCategoryDetails[] = $obj;
                         }
                     }
@@ -1211,7 +1216,7 @@ abstract class BaseLanguage extends BaseObject implements Persistent
                 return 0;
             }
 
-            if($partial && !$criteria) {
+            if ($partial && !$criteria) {
                 return count($this->getCategoryDetails());
             }
             $query = CategoryDetailQuery::create(null, $criteria);
@@ -1231,7 +1236,7 @@ abstract class BaseLanguage extends BaseObject implements Persistent
      * Method called to associate a CategoryDetail object to this object
      * through the CategoryDetail foreign key attribute.
      *
-     * @param    CategoryDetail $l CategoryDetail
+     * @param   CategoryDetail $l CategoryDetail
      * @return Language The current object (for fluent API support)
      */
     public function addCategoryDetail(CategoryDetail $l)
@@ -1377,7 +1382,7 @@ abstract class BaseLanguage extends BaseObject implements Persistent
                     if (false !== $this->collServiceDetailsPartial && count($collServiceDetails)) {
                       $this->initServiceDetails(false);
 
-                      foreach($collServiceDetails as $obj) {
+                      foreach ($collServiceDetails as $obj) {
                         if (false == $this->collServiceDetails->contains($obj)) {
                           $this->collServiceDetails->append($obj);
                         }
@@ -1387,12 +1392,13 @@ abstract class BaseLanguage extends BaseObject implements Persistent
                     }
 
                     $collServiceDetails->getInternalIterator()->rewind();
+
                     return $collServiceDetails;
                 }
 
-                if($partial && $this->collServiceDetails) {
-                    foreach($this->collServiceDetails as $obj) {
-                        if($obj->isNew()) {
+                if ($partial && $this->collServiceDetails) {
+                    foreach ($this->collServiceDetails as $obj) {
+                        if ($obj->isNew()) {
                             $collServiceDetails[] = $obj;
                         }
                     }
@@ -1458,7 +1464,7 @@ abstract class BaseLanguage extends BaseObject implements Persistent
                 return 0;
             }
 
-            if($partial && !$criteria) {
+            if ($partial && !$criteria) {
                 return count($this->getServiceDetails());
             }
             $query = ServiceDetailQuery::create(null, $criteria);
@@ -1478,7 +1484,7 @@ abstract class BaseLanguage extends BaseObject implements Persistent
      * Method called to associate a ServiceDetail object to this object
      * through the ServiceDetail foreign key attribute.
      *
-     * @param    ServiceDetail $l ServiceDetail
+     * @param   ServiceDetail $l ServiceDetail
      * @return Language The current object (for fluent API support)
      */
     public function addServiceDetail(ServiceDetail $l)
@@ -1624,7 +1630,7 @@ abstract class BaseLanguage extends BaseObject implements Persistent
                     if (false !== $this->collProjectDetailsPartial && count($collProjectDetails)) {
                       $this->initProjectDetails(false);
 
-                      foreach($collProjectDetails as $obj) {
+                      foreach ($collProjectDetails as $obj) {
                         if (false == $this->collProjectDetails->contains($obj)) {
                           $this->collProjectDetails->append($obj);
                         }
@@ -1634,12 +1640,13 @@ abstract class BaseLanguage extends BaseObject implements Persistent
                     }
 
                     $collProjectDetails->getInternalIterator()->rewind();
+
                     return $collProjectDetails;
                 }
 
-                if($partial && $this->collProjectDetails) {
-                    foreach($this->collProjectDetails as $obj) {
-                        if($obj->isNew()) {
+                if ($partial && $this->collProjectDetails) {
+                    foreach ($this->collProjectDetails as $obj) {
+                        if ($obj->isNew()) {
                             $collProjectDetails[] = $obj;
                         }
                     }
@@ -1705,7 +1712,7 @@ abstract class BaseLanguage extends BaseObject implements Persistent
                 return 0;
             }
 
-            if($partial && !$criteria) {
+            if ($partial && !$criteria) {
                 return count($this->getProjectDetails());
             }
             $query = ProjectDetailQuery::create(null, $criteria);
@@ -1725,7 +1732,7 @@ abstract class BaseLanguage extends BaseObject implements Persistent
      * Method called to associate a ProjectDetail object to this object
      * through the ProjectDetail foreign key attribute.
      *
-     * @param    ProjectDetail $l ProjectDetail
+     * @param   ProjectDetail $l ProjectDetail
      * @return Language The current object (for fluent API support)
      */
     public function addProjectDetail(ProjectDetail $l)

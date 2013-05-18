@@ -370,10 +370,8 @@ abstract class BaseProjectDetailPeer
      */
     public static function clearInstancePool($and_clear_all_references = false)
     {
-      if ($and_clear_all_references)
-      {
-        foreach (ProjectDetailPeer::$instances as $instance)
-        {
+      if ($and_clear_all_references) {
+        foreach (ProjectDetailPeer::$instances as $instance) {
           $instance->clearAllReferences(true);
         }
       }
