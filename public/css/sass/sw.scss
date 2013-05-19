@@ -3,94 +3,308 @@
 /* We use this media query to add styles to any device that supports media queries */
 @media #{$screen} {
 
-    html { overflow-y: scroll; }
-    header { height:45px; box-shadow:0 3px 3px $dark-color; }
-    #main { margin:0 auto; padding:10px 0 80px 0; }
-    #content section > p, #content .panel > p { text-align:justify; }
+    html {
+        overflow-y: scroll;
+    }
+    header {
+        height:45px;
+        box-shadow:0 3px 3px $dark-color;
+    }
+    #main {
+        margin:0 auto;
+        padding:10px 0 80px 0;
+    }
+    #content section > p,
+    #content .panel > p {
+        text-align:justify;
+    }
+    #sidebarProjectTeaser .img img {
+        max-height:65px;
+        max-width:87px;
+    }
+    #gmap img {
+        border:1px solid $secondary-color;
+        border-radius:$global-radius;
+    }
+    ul {
+        list-style-type:none;
+        display:block;
+    }
+    ul.list {
+        list-style-type:square;
+        list-style-position:outside;
+    }
+    ul.list, ul.list li,
+    #content section p,
+    #content .panel > p {
+        margin-left:20px;
+        margin-right:20px;
+    }
 
-    #sidebarProjectTeaser .img img { max-height:65px; max-width:87px; }
-    #gmap img { border:1px solid $secondary-color; border-radius:$global-radius; }
+    button, .button {
+        @include gradVertical($grad-header-c1, $grad-header-c2);
+        padding:$button-med $button-med * 2;
+        border-radius:$global-radius;
+    }
+    textarea.message {
+        min-height:150px;
+    }
+    label span {
+        display:inline-block;
+        width:50%;
+        padding:5px;
+        background:$third-color;
+        color:$lighter-color;
+        font-weight:bold;
+        border-radius:$global-radius $global-radius 0 0;
+    }
+    a {
+        text-decoration:underline;
+    }
+    a.nodeco,
+    a:hover,
+    .top-bar a {
+        text-decoration:none;
+    }
 
-    ul { list-style-type:none; display:block; }
-    ul.list { list-style-type:square; list-style-position:outside; }
-    ul.list, ul.list li, #content section p, #content .panel > p { margin-left:20px; margin-right:20px; }
+    .column, .columns {
+        padding-left:$column-gutter;
+        padding-right:$column-gutter;
+    }
+    .panel {
+        padding:$panel-padding;
+        margin-bottom:$column-gutter * 1.5;
+        border:1px solid $primary-color-25;
+        border-radius:$global-radius; }
+    .panel h2 {
+        font-size:24px;
+        color:$secondary-color;
+    }
+    .panel h3 {
+        font-size:18px;
+        margin-left:.5em;
+    }
+    .panel dt {
+        margin-top:20px;
+        margin-bottom:0;
+    }
+    .panel dt:first-child {
+        margin-top:0;
+    }
+    .panel dd {
+        margin-bottom:0;
+    }
+    .panel dd .title {
+        display:inline-block;
+        width:100px;
+    }
+    .nopad {
+        padding:0;
+    }
 
-    button, .button { @include gradVertical($grad-header-c1, $grad-header-c2); padding:$button-med $button-med * 2; border-radius:$global-radius; }
-    textarea.message { min-height:150px; }
-    label span { display:inline-block; width:50%; padding:5px; background:$third-color; color:$lighter-color; font-weight:bold; border-radius:$global-radius $global-radius 0 0; }
-    a { text-decoration:underline; }
-    a.nodeco, a:hover, .top-bar a { text-decoration:none; }
-
-    .column, .columns { padding-left:$column-gutter; padding-right:$column-gutter; }
-    .panel { padding:$panel-padding; margin-bottom:$column-gutter * 1.5; border:1px solid $primary-color-25; border-radius:$global-radius; }
-    .panel h2 { font-size:24px; color:$secondary-color; }
-    .panel h3 { font-size:18px; margin-left:.5em; }
-    .panel dt { margin-top:20px; margin-bottom:0; }
-    .panel dt:first-child { margin-top:0; }
-    .panel dd { margin-bottom:0; }
-    .panel dd .title { display:inline-block; width:100px; }
-    .nopad { padding:0; }
-
-    .contain-to-grid { @include gradVertical($grad-header-c1, $grad-header-c2); }
-    .contain-to-grid .top-bar { margin:0 auto; }
-
-    .top-bar, header { height:45px; }
-    .top-bar { margin-bottom:10px; }
-    .top-bar, .top-bar-section ul, .top-bar.expanded .title-area { background:none; }
-    .top-bar-section ul li { background:none; }
-    .top-bar-section ul li > a { @include gradVertical($lightest-color, $lighter-color); color:$secondary-color; border-bottom:1px solid $secondary-color; }
-    .top-bar-section ul li > a:hover:not(.button) { @include gradVertical($lighter-color, $light-color); color:$secondary-color; }
+    .contain-to-grid {
+        @include gradVertical($grad-header-c1, $grad-header-c2);
+    }
+    .contain-to-grid .top-bar {
+        margin:0 auto;
+    }
+    .top-bar, header {
+        height:45px;
+    }
+    .top-bar {
+        margin-bottom:10px;
+    }
+    .top-bar,
+    .top-bar.expanded .title-area {
+        background:none;
+    }
+    .top-bar-section ul li {
+        background:none;
+    }
+    .top-bar-section ul li > a {
+        @include gradVertical($lightest-color, $lighter-color);
+        color:$secondary-color;
+        border-bottom:1px solid $secondary-color;
+    }
+    .top-bar-section ul li > a:hover:not(.button) {
+        @include gradVertical($lighter-color, $light-color);
+        color:$secondary-color;
+    }
     .top-bar-section ul li.active > a:not(.button),
-    .top-bar-section ul li.active > a:hover:not(.button) { @include gradVertical($light-color, $lighter-color); color:$secondary-color; }
+    .top-bar-section ul li.active > a:hover:not(.button) {
+        @include gradVertical($light-color, $lighter-color);
+        color:$secondary-color;
+    }
 
-    #sidebar li { border-top:1px solid $secondary-color; padding:5px; }
-    #sidebar li:nth-child(odd) { background:$nav-primary-hover-color; }
-    #sidebar li .img { display:table-cell;  }
-    #sidebar li .img img { border:1px solid $secondary-color; }
-    #sidebar li .info { display:table-cell; vertical-align:top; padding-left:10px; font-size:emCalc(14px); line-height:emCalc(24px); }
-    #sidebar li .info a { display:block; }
-    #sidebar li .title { font-style: italic; }
-    #sidebar li .date { font-weight:bold; }
-    #sidebar li .url { font-size:.85em; }
-
-    footer { position:fixed; margin-top:40px; bottom:0; width:100%; @include gradVertical($grad-header-c1, $grad-header-c2); box-shadow:0 -3px 3px $dark-color-75; }
-    footer nav, footer nav li { float:left; }
-    footer .copy, footer a { color:$lightest-color; line-height:32px; padding-left:.5em; }
-    footer a { padding:0 .5em; }
-    footer a:hover { color:#ddd; }
+    #sidebar li {
+        border-top:1px solid $secondary-color;
+        padding:5px;
+    }
+    #sidebar li:nth-child(odd) {
+        background:$nav-primary-hover-color;
+    }
+    #sidebar li .img {
+        display:table-cell;
+    }
+    #sidebar li .img img {
+        border:1px solid $secondary-color;
+    }
+    #sidebar li .info {
+        display:table-cell;
+        vertical-align:top;
+        padding-left:10px;
+        font-size:emCalc(14px);
+        line-height:emCalc(24px);
+    }
+    #sidebar li .info a {
+        display:block;
+    }
+    #sidebar li .title {
+        font-style: italic;
+    }
+    #sidebar li .date {
+        font-weight:bold;
+    }
+    #sidebar li .url {
+        font-size:.85em;
+    }
+    footer {
+        position:fixed;
+        margin-top:40px;
+        bottom:0; width:100%;
+        @include gradVertical($grad-header-c1, $grad-header-c2);
+        box-shadow:0 -3px 3px $dark-color-75;
+    }
+    footer nav,
+    footer nav li {
+        float:left;
+    }
+    footer .copy,
+    footer a {
+        color:$lightest-color;
+        line-height:32px;
+        padding-left:.5em;
+    }
+    footer a {
+        padding:0 .5em;
+    }
+    footer a:hover {
+        color:#ddd;
+    }
 }
 
 /* Used to alter styles for screens at least 768px wide. This is where the grid changes. */
 @media #{$small} {
 
-    header { height:90px; }
-    #main { margin:0 auto; padding:60px 0 50px 0; }
+    header {
+        height:90px;
+    }
+    #main {
+        margin:0 auto;
+        padding:60px 0 50px 0;
+    }
 
-    .top-bar .name h1 { padding:.5em 0; margin-left:1em; }
-    .top-bar .name h1 a { display:block; padding:0; text-shadow:-1px -1px 1px $dark-color; }
-    .top-bar .name h1 .title { display:block; text-align:center; font-size:emCalc(43px); line-height:1; margin:0; }
-    .top-bar .name h1 .description { border-top:1px solid #fff; display:block; text-align:center; font-size:emCalc(16px); letter-spacing:emCalc(7.25px); padding:emCalc(4px) 0 0 emCalc(3.5px); line-height:1; margin:0; }
-
-    .top-bar-section ul { height:1 !important; border:0; padding:4px 1px 1px 4px; @include gradVertical($lightest-color, $lighter-color); color:$secondary-color; border-radius:0 0 $big-radius $big-radius; box-shadow:2px 0 3px $dark-color inset; }
+    .top-bar .name h1 {
+        padding:.5em 0;
+        margin-left:1em;
+    }
+    .top-bar .name h1 a {
+        display:block;
+        padding:0;
+        text-shadow:-1px -1px 1px $dark-color;
+    }
+    .top-bar .name h1 .title {
+        display:block;
+        text-align:center;
+        font-size:emCalc(43px);
+        line-height:1;
+        margin:0;
+    }
+    .top-bar .name h1 .description {
+        border-top:1px solid #fff;
+        display:block;
+        text-align:center;
+        font-size:emCalc(16px);
+        letter-spacing:emCalc(7.25px);
+        padding:emCalc(4px) 0 0 emCalc(3.5px);
+        line-height:1;
+        margin:0;
+    }
+    .top-bar-section ul {
+        @include gradVertical($lightest-color, $lighter-color);
+        height:1 !important;
+        padding:3px 1px 1px 3px;
+        border:0;
+        border-radius:0 0 $big-radius $big-radius;
+        color:$secondary-color;
+        box-shadow:3px 3px 3px $dark-color inset;
+    }
     .top-bar-section .nav-primary li,
-    .top-bar-section .nav-primary li a { border:0; }
+    .top-bar-section .nav-primary li a {
+        border:0;
+    }
     .top-bar-section .nav-primary li:first-child,
-    .top-bar-section .nav-primary li:first-child a { border-radius:0 0 0 $big-radius; }
+    .top-bar-section .nav-primary li:first-child a {
+        border-radius:0 0 0 $big-radius;
+    }
     .top-bar-section .nav-primary li:last-child,
-    .top-bar-section .nav-primary li:last-child a { border-radius:0 0 $big-radius 0; border-right:0; }
+    .top-bar-section .nav-primary li:last-child a {
+        border-radius:0 0 $big-radius 0;
+        border-right:0;
+    }
     .top-bar-section li a:not(.button),
-    .top-bar-section .nav-primary li > a { display:block; text-align:center; line-height:32px; @include gradVertical($lightest-color, $lighter-color); color:$secondary-color; border-right:1px solid $secondary-color; }
-    .top-bar-section .nav-primary li.active > a { line-height:32px; @include gradVertical($primary-color-25, $secondary-color-25); color:$primary-color-75;  }
-    .top-bar-section .nav-primary li > a:hover:not(.button) { line-height:32px; @include gradVertical($lighter-color, $lightest-color); color:$secondary-color; }
-
-    .top-bar-section ul.nav-social { margin:0 20px; padding:3px 7px 1px 7px; @include gradVertical($lightest-color, $lighter-color); line-height:32px; height:32px; }
-    .top-bar-section .nav-social li { float:left; display:block; height:32px; line-height:32px; @include gradVertical($lightest-color, $lighter-color); }
+    .top-bar-section .nav-primary li > a {
+        @include gradVertical($lightest-color, $lighter-color);
+        display:block;
+        text-align:center;
+        line-height:32px;
+        color:$secondary-color;
+        border-right:1px solid $secondary-color;
+    }
+    .top-bar-section .nav-primary li.active > a {
+        @include gradVertical($primary-color-25, $secondary-color-25);
+        line-height:32px;
+        color:$primary-color-75;
+    }
+    .top-bar-section .nav-primary li > a:hover:not(.button) {
+        @include gradVertical($lighter-color, $lightest-color);
+        line-height:32px;
+        color:$secondary-color;
+    }
+    .top-bar-section ul.nav-social {
+        @include gradVertical($lightest-color, $lighter-color);
+        margin:0 20px;
+        padding:3px 7px 1px 7px;
+        line-height:32px;
+        height:32px;
+    }
+    .top-bar-section .nav-social li {
+        @include gradVertical($lightest-color, $lighter-color);
+        float:left;
+        display:inline-block;
+        line-height:32px;
+        height:32px;
+    }
     .top-bar-section .nav-social li > a:not(.button),
-    .top-bar-section .nav-social li > a:hover:not(.button) { text-shadow:1px 1px 0 #eee; height:29px; line-height:29px; background:none; color:$secondary-color; overflow:hidden; font-size:27px; margin:3px 0 0 0; padding:0; line-height:25px; height:25px; width:34px; border:0; display:inline-block; }
-    .top-bar-section .nav-social li > a:hover:not(.button) { color:$primary-color-75; }
-
-    footer nav, footer nav li { float:right; }
-
+    .top-bar-section .nav-social li > a:hover:not(.button) {
+        background:none;
+        color:$secondary-color;
+        line-height:27px;
+        font-size:27px;
+        height:25px;
+        width:34px;
+        border:0;
+        margin:3px 0 0 0;
+        padding:0;
+        display:inline-block;
+        text-shadow:1px 1px 0 #eee;
+    }
+    .top-bar-section .nav-social li > a:hover:not(.button) {
+        color:$primary-color-75;
+    }
+    footer nav, footer nav li {
+        float:right;
+    }
 }
 
 /* Used to alter styles for screens at least 1280px wide. */
