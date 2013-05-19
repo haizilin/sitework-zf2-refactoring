@@ -6,17 +6,32 @@
     html {
         overflow-y: scroll;
     }
+    header,
+    footer,
+    .top-bar {
+        display:block;
+        min-height:45px;
+    }
     header {
-        height:45px;
+        @include gradVertical($grad-header-c1, $grad-header-c2);
         box-shadow:0 3px 3px $dark-color;
+    }
+    footer {
+        @include gradVertical($grad-header-c1, $grad-header-c2);
+        box-shadow:0 -3px 3px $dark-color;
+    }
+    footer .copy {
+        display:block;
+        float:left;
+    }
+    footer nav, footer nav li {
+        display:block;
+        float:left;
     }
     #main {
         margin:0 auto;
-        padding:10px 0 80px 0;
-    }
-    #content section > p,
-    #content .panel > p {
-        text-align:justify;
+        padding-top:10px;
+        padding-bottom:60px;
     }
     #sidebarProjectTeaser .img img {
         max-height:65px;
@@ -34,13 +49,19 @@
         list-style-type:square;
         list-style-position:outside;
     }
-    ul.list, ul.list li,
+    ul.list,
+    ul.list li,
     #content section p,
     #content .panel > p {
         margin-left:20px;
         margin-right:20px;
     }
-    button, .button {
+    #content section > p,
+    #content .panel > p {
+        text-align:justify;
+    }
+    button,
+    .button {
         @include gradVertical($grad-header-c1, $grad-header-c2);
         padding:$button-med $button-med * 2;
         border-radius:$global-radius;
@@ -62,10 +83,12 @@
     }
     a.nodeco,
     a:hover,
-    .top-bar a {
+    .top-bar a,
+    .bottom-bar a {
         text-decoration:none;
     }
-    .column, .columns {
+    .column,
+    .columns {
         padding-left:$column-gutter;
         padding-right:$column-gutter;
     }
@@ -73,7 +96,8 @@
         padding:$panel-padding;
         margin-bottom:$column-gutter * 1.5;
         border:1px solid $primary-color-25;
-        border-radius:$global-radius; }
+        border-radius:$global-radius;
+    }
     .panel h2 {
         font-size:24px;
         color:$secondary-color;
@@ -105,16 +129,11 @@
     .contain-to-grid .top-bar {
         margin:0 auto;
     }
-    .top-bar, header {
-        height:45px;
-    }
     .top-bar {
         margin-bottom:10px;
     }
     .top-bar,
-    .top-bar.expanded .title-area {
-        background:none;
-    }
+    .top-bar.expanded .title-area,
     .top-bar-section ul li {
         background:none;
     }
@@ -166,10 +185,8 @@
     }
     footer {
         position:fixed;
-        margin-top:40px;
-        bottom:0; width:100%;
-        @include gradVertical($grad-header-c1, $grad-header-c2);
-        box-shadow:0 -3px 3px $dark-color-75;
+        bottom:0;
+        width:100%;
     }
     footer nav,
     footer nav li {
@@ -179,24 +196,30 @@
     footer a {
         color:$lightest-color;
         line-height:32px;
-        padding-left:.5em;
-    }
-    footer a {
         padding:0 .5em;
     }
     footer a:hover {
-        color:#ddd;
+        color:$light-color;
     }
 }
 
 /* Used to alter styles for screens at least 768px wide. This is where the grid changes. */
 @media #{$small} {
-    header {
-        height:90px;
+    header,
+    footer,
+    .top-bar {
+        min-height:90px;
+    }
+    #main {
+        padding-bottom:90px;
+        padding-top:10px;
+    }
+    footer nav,
+    footer nav li {
+        float:right;
     }
     #main {
         margin:0 auto;
-        padding:60px 0 50px 0;
     }
     .top-bar .name h1 {
         padding:.5em 0;
@@ -257,12 +280,10 @@
     }
     .top-bar-section .nav-primary li.active > a {
         @include gradVertical($primary-color-25, $secondary-color-25);
-        line-height:32px;
         color:$primary-color-75;
     }
     .top-bar-section .nav-primary li > a:hover:not(.button) {
         @include gradVertical($lighter-color, $lightest-color);
-        line-height:32px;
         color:$secondary-color;
     }
     .top-bar-section ul.nav-social {
@@ -273,19 +294,18 @@
         line-height:32px;
     }
     .top-bar-section .nav-social li {
-        display:inline-block;
         @include gradVertical($lightest-color, $lighter-color);
+        display:inline-block;
         float:left;
         height:32px;
         line-height:32px;
     }
-    .top-bar-section .nav-social li > a:not(.button),
-    .top-bar-section .nav-social li > a:hover:not(.button) {
+    .top-bar-section .nav-social li > a:not(.button) {
         display:inline-block;
         background:none;
         color:$secondary-color;
         width:34px;
-        height:25px;
+        height:27px;
         line-height:27px;
         font-size:27px;
         margin:3px 0 0 0;
@@ -294,10 +314,11 @@
         text-shadow:1px 1px 0 #eee;
     }
     .top-bar-section .nav-social li > a:hover:not(.button) {
-        color:$primary-color-75;
+        color:$alert-color;
     }
-    footer nav, footer nav li {
-        float:right;
+    .top-bar-section .nav-social li.active > a:not(.button),
+    .top-bar-section .nav-social li.active > a:hover:not(.button) {
+        color:$primary-color-75;
     }
 }
 
