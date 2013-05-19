@@ -12,19 +12,19 @@
         display:block;
         min-height:45px;
     }
-    header {
+    header,
+    footer {
         @include gradVertical($grad-header-c1, $grad-header-c2);
+    }
+    header {
         box-shadow:0 3px 3px $dark-color;
     }
     footer {
-        @include gradVertical($grad-header-c1, $grad-header-c2);
         box-shadow:0 -3px 3px $dark-color;
     }
-    footer .copy {
-        display:block;
-        float:left;
-    }
-    footer nav, footer nav li {
+    footer .copy,
+    footer nav,
+    footer nav li {
         display:block;
         float:left;
     }
@@ -243,7 +243,7 @@
         text-align:center;
         font-size:emCalc(16px);
         letter-spacing:emCalc(7.25px);
-        padding:emCalc(4px) 0 0 emCalc(3.5px);
+        padding:.25em 0 0 .5em;
         line-height:1;
         margin:0;
     }
@@ -280,7 +280,7 @@
     }
     .top-bar-section .nav-primary li.active > a {
         @include gradVertical($primary-color-25, $secondary-color-25);
-        color:$primary-color-75;
+        color:$secondary-color;
     }
     .top-bar-section .nav-primary li > a:hover:not(.button) {
         @include gradVertical($lighter-color, $lightest-color);
@@ -314,11 +314,11 @@
         text-shadow:1px 1px 0 #eee;
     }
     .top-bar-section .nav-social li > a:hover:not(.button) {
-        color:$alert-color;
+        color:$primary-color;
     }
     .top-bar-section .nav-social li.active > a:not(.button),
     .top-bar-section .nav-social li.active > a:hover:not(.button) {
-        color:$primary-color-75;
+        color:$secondary-color;
     }
 }
 
