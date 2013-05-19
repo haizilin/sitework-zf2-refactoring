@@ -40,7 +40,6 @@
         margin-left:20px;
         margin-right:20px;
     }
-
     button, .button {
         @include gradVertical($grad-header-c1, $grad-header-c2);
         padding:$button-med $button-med * 2;
@@ -66,7 +65,6 @@
     .top-bar a {
         text-decoration:none;
     }
-
     .column, .columns {
         padding-left:$column-gutter;
         padding-right:$column-gutter;
@@ -101,7 +99,6 @@
     .nopad {
         padding:0;
     }
-
     .contain-to-grid {
         @include gradVertical($grad-header-c1, $grad-header-c2);
     }
@@ -135,7 +132,6 @@
         @include gradVertical($light-color, $lighter-color);
         color:$secondary-color;
     }
-
     #sidebar li {
         border-top:1px solid $secondary-color;
         padding:5px;
@@ -195,7 +191,6 @@
 
 /* Used to alter styles for screens at least 768px wide. This is where the grid changes. */
 @media #{$small} {
-
     header {
         height:90px;
     }
@@ -203,7 +198,6 @@
         margin:0 auto;
         padding:60px 0 50px 0;
     }
-
     .top-bar .name h1 {
         padding:.5em 0;
         margin-left:1em;
@@ -275,28 +269,28 @@
         @include gradVertical($lightest-color, $lighter-color);
         margin:0 20px;
         padding:3px 7px 1px 7px;
-        line-height:32px;
         height:32px;
+        line-height:32px;
     }
     .top-bar-section .nav-social li {
+        display:inline-block;
         @include gradVertical($lightest-color, $lighter-color);
         float:left;
-        display:inline-block;
-        line-height:32px;
         height:32px;
+        line-height:32px;
     }
     .top-bar-section .nav-social li > a:not(.button),
     .top-bar-section .nav-social li > a:hover:not(.button) {
+        display:inline-block;
         background:none;
         color:$secondary-color;
+        width:34px;
+        height:25px;
         line-height:27px;
         font-size:27px;
-        height:25px;
-        width:34px;
-        border:0;
         margin:3px 0 0 0;
         padding:0;
-        display:inline-block;
+        border:0;
         text-shadow:1px 1px 0 #eee;
     }
     .top-bar-section .nav-social li > a:hover:not(.button) {

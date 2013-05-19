@@ -360,7 +360,8 @@ you can use the generic selector below, but it's slower:
     margin: 0 auto;
     padding: 10px 0 80px 0; }
 
-  #content section > p, #content .panel > p {
+  #content section > p,
+  #content .panel > p {
     text-align: justify; }
 
   #sidebarProjectTeaser .img img {
@@ -379,7 +380,9 @@ you can use the generic selector below, but it's slower:
     list-style-type: square;
     list-style-position: outside; }
 
-  ul.list, ul.list li, #content section p, #content .panel > p {
+  ul.list, ul.list li,
+  #content section p,
+  #content .panel > p {
     margin-left: 20px;
     margin-right: 20px; }
 
@@ -410,7 +413,9 @@ you can use the generic selector below, but it's slower:
   a {
     text-decoration: underline; }
 
-  a.nodeco, a:hover, .top-bar a {
+  a.nodeco,
+  a:hover,
+  .top-bar a {
     text-decoration: none; }
 
   .column, .columns {
@@ -467,7 +472,8 @@ you can use the generic selector below, but it's slower:
   .top-bar {
     margin-bottom: 10px; }
 
-  .top-bar, .top-bar-section ul, .top-bar.expanded .title-area {
+  .top-bar,
+  .top-bar.expanded .title-area {
     background: none; }
 
   .top-bar-section ul li {
@@ -555,10 +561,12 @@ you can use the generic selector below, but it's slower:
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$gradVerticalC1', endColorstr='$gradVerticalC2',GradientType=0 );
     box-shadow: 0 -3px 3px rgba(74, 74, 74, 0.75); }
 
-  footer nav, footer nav li {
+  footer nav,
+  footer nav li {
     float: left; }
 
-  footer .copy, footer a {
+  footer .copy,
+  footer a {
     color: white;
     line-height: 32px;
     padding-left: .5em; }
@@ -604,9 +612,6 @@ you can use the generic selector below, but it's slower:
     margin: 0; }
 
   .top-bar-section ul {
-    height: 1 !important;
-    border: 0;
-    padding: 4px 1px 1px 4px;
     background: #fff;
     background: -moz-linear-gradient(top, white 0%, #e0e0e0 100%);
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(100%, #e0e0e0));
@@ -615,9 +620,12 @@ you can use the generic selector below, but it's slower:
     background: -ms-linear-gradient(top, white 0%, #e0e0e0 100%);
     background: linear-gradient(to top, white 0%, #e0e0e0 100%);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$gradVerticalC1', endColorstr='$gradVerticalC2',GradientType=0 );
-    color: #204a87;
+    height: 1 !important;
+    padding: 3px 1px 1px 3px;
+    border: 0;
     border-radius: 0 0 0.625em 0.625em;
-    box-shadow: 2px 0 3px #4a4a4a inset; }
+    color: #204a87;
+    box-shadow: 3px 3px 3px #4a4a4a inset; }
 
   .top-bar-section .nav-primary li,
   .top-bar-section .nav-primary li a {
@@ -634,9 +642,6 @@ you can use the generic selector below, but it's slower:
 
   .top-bar-section li a:not(.button),
   .top-bar-section .nav-primary li > a {
-    display: block;
-    text-align: center;
-    line-height: 32px;
     background: #fff;
     background: -moz-linear-gradient(top, white 0%, #e0e0e0 100%);
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(100%, #e0e0e0));
@@ -645,11 +650,13 @@ you can use the generic selector below, but it's slower:
     background: -ms-linear-gradient(top, white 0%, #e0e0e0 100%);
     background: linear-gradient(to top, white 0%, #e0e0e0 100%);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$gradVerticalC1', endColorstr='$gradVerticalC2',GradientType=0 );
+    display: block;
+    text-align: center;
+    line-height: 32px;
     color: #204a87;
     border-right: 1px solid #204a87; }
 
   .top-bar-section .nav-primary li.active > a {
-    line-height: 32px;
     background: #fff;
     background: -moz-linear-gradient(top, rgba(24, 41, 69, 0.5) 0%, rgba(32, 74, 135, 0.25) 100%);
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(24, 41, 69, 0.5)), color-stop(100%, rgba(32, 74, 135, 0.25)));
@@ -658,10 +665,10 @@ you can use the generic selector below, but it's slower:
     background: -ms-linear-gradient(top, rgba(24, 41, 69, 0.5) 0%, rgba(32, 74, 135, 0.25) 100%);
     background: linear-gradient(to top, rgba(24, 41, 69, 0.5) 0%, rgba(32, 74, 135, 0.25) 100%);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$gradVerticalC1', endColorstr='$gradVerticalC2',GradientType=0 );
+    line-height: 32px;
     color: rgba(24, 41, 69, 0.75); }
 
   .top-bar-section .nav-primary li > a:hover:not(.button) {
-    line-height: 32px;
     background: #fff;
     background: -moz-linear-gradient(top, #e0e0e0 0%, white 100%);
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #e0e0e0), color-stop(100%, white));
@@ -670,11 +677,10 @@ you can use the generic selector below, but it's slower:
     background: -ms-linear-gradient(top, #e0e0e0 0%, white 100%);
     background: linear-gradient(to top, #e0e0e0 0%, white 100%);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$gradVerticalC1', endColorstr='$gradVerticalC2',GradientType=0 );
+    line-height: 32px;
     color: #204a87; }
 
   .top-bar-section ul.nav-social {
-    margin: 0 20px;
-    padding: 3px 7px 1px 7px;
     background: #fff;
     background: -moz-linear-gradient(top, white 0%, #e0e0e0 100%);
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(100%, #e0e0e0));
@@ -683,14 +689,12 @@ you can use the generic selector below, but it's slower:
     background: -ms-linear-gradient(top, white 0%, #e0e0e0 100%);
     background: linear-gradient(to top, white 0%, #e0e0e0 100%);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$gradVerticalC1', endColorstr='$gradVerticalC2',GradientType=0 );
+    margin: 0 20px;
+    padding: 3px 7px 1px 7px;
     line-height: 32px;
     height: 32px; }
 
   .top-bar-section .nav-social li {
-    float: left;
-    display: block;
-    height: 32px;
-    line-height: 32px;
     background: #fff;
     background: -moz-linear-gradient(top, white 0%, #e0e0e0 100%);
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(100%, #e0e0e0));
@@ -698,30 +702,35 @@ you can use the generic selector below, but it's slower:
     background: -o-linear-gradient(top, white 0%, #e0e0e0 100%);
     background: -ms-linear-gradient(top, white 0%, #e0e0e0 100%);
     background: linear-gradient(to top, white 0%, #e0e0e0 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$gradVerticalC1', endColorstr='$gradVerticalC2',GradientType=0 ); }
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$gradVerticalC1', endColorstr='$gradVerticalC2',GradientType=0 );
+    float: left;
+    display: inline-block;
+    line-height: 32px;
+    height: 32px; }
 
   .top-bar-section .nav-social li > a:not(.button),
   .top-bar-section .nav-social li > a:hover:not(.button) {
-    text-shadow: 1px 1px 0 #eee;
-    height: 29px;
-    line-height: 29px;
     background: none;
     color: #204a87;
-    overflow: hidden;
+    line-height: 27px;
     font-size: 27px;
-    margin: 3px 0 0 0;
-    padding: 0;
-    line-height: 25px;
     height: 25px;
     width: 34px;
     border: 0;
-    display: inline-block; }
+    margin: 3px 0 0 0;
+    padding: 0;
+    display: inline-block;
+    text-shadow: 1px 1px 0 #eee; }
 
   .top-bar-section .nav-social li > a:hover:not(.button) {
     color: rgba(24, 41, 69, 0.75); }
 
   footer nav, footer nav li {
-    float: right; } }
+    float: right; }
+
+  #content,
+  #sidebar {
+    min-hight: 1000px; } }
 /* Used to alter styles for screens at least 1280px wide. */
 /* Used to alter styles for screens at least 1440px wide. */
 /* Apply styles to screens in landscape orientation */
