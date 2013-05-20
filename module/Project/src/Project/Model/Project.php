@@ -11,10 +11,13 @@ class Project
 
     }
 
-    public function getQuery($langId = 2) {
+    public function getQuery($langId = 2, $sortOrder = null) {
+        if (is_null($sortOrder)) {
+            $sortOrder = \Criteria::DESC;
+        }
         return PropelOrm\ProjectQuery::create()
             ->filterByActive(1)
-            ->orderByStartedAt(\Criteria::DESC)
+            ->orderByStartedAt($sortOrder)
             ->joinContactRelatedByFkContactClientId()
             ->joinContactRelatedByFkContactClientId()
             ->joinProjectDetail()

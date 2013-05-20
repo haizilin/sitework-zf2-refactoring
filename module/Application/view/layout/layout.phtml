@@ -32,8 +32,12 @@
                 </nav>
             </header>
             <div id="main" class="row">
-                <div id="sidebar" class="large-4 small-12 columns"><?= $this->sidebar ?></div>
-                <div id="content" class="large-8 small-12 columns"><?= $this->content ?></div>
+                <?php if (!empty($this->sidebar)): ?>
+                    <div id="sidebar" class="large-4 small-12 columns"><?= $this->sidebar ?></div>
+                    <div id="content" class="large-8 small-12 columns"><?= $this->content ?></div>
+                <?php else: ?>
+                    <div id="content" class="small-12 columns"><?= $this->content ?></div>
+                <?php endif; ?>
             </div>
             <footer>
                 <div class="row">
@@ -49,6 +53,5 @@
             <?php $headScript->appendFile(sprintf('%s/js/%s', $this->basePath(), $js)) ?>
         <?php endforeach ?>
         <?= $headScript ?>
-        <script>$(function(){ $(document).foundation(); })</script>
     </body>
 </html>

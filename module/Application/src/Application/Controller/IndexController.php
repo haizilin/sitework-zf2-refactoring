@@ -65,7 +65,11 @@ class IndexController extends AbstractActionController
         return new ViewModel();
     }
 
-    public function twitterAction() {
+    public function loginAction() {
+        return new ViewModel();
+    }
+
+    public function logoutction() {
         return new ViewModel();
     }
 }

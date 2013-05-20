@@ -2,9 +2,10 @@
 <div id="sidebarProjectTeaser" class="row">
     <div class="small-12 columns">
         <div class="panel">
-            <h2><?= $this->translate('Latest Projects') ?></h2>
+            <h2><?= $this->translate('Current Projects') ?></h2>
+
             <ul>
-                <?php foreach($this->projects as $project): ?>
+                <?php foreach($this->projectsCollection as $project): ?>
                 <li>
                     <span class="img">
                         <a title="<?= $this->translate('show details') ?>" href="<?= $this->url('project', array('action' => 'details', 'id' => $project->getId())) ?>">
@@ -24,6 +25,13 @@
                 </li>
                 <?php endforeach ?>
             </ul>
+
+            <ul data-orbit class="orbit">
+                <?php foreach($this->projectsCollection as $project): ?>
+                    <li><img src="<?= $this->image($this->basePath() . '/gfx/project/' . $project->getImg(), 0, 500) ?>"/></li>
+                <?php endforeach ?>
+            </ul>
+
         </div>
     </div>
 </div>

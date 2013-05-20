@@ -1,4 +1,5 @@
 @import "settings";
+@import "icons";
 
 /* We use this media query to add styles to any device that supports media queries */
 @media #{$screen} {
@@ -120,6 +121,16 @@
         display:inline-block;
         width:100px;
     }
+    .panel.bottom-open {
+        margin-bottom:0;
+        border-radius:$global-radius $global-radius 0 0;
+        border-bottom:0;
+    }
+    .panel.top-open {
+        margin-top:0;
+        border-radius:0 0 $global-radius $global-radius;
+        border-top:0;
+    }
     .nopad {
         padding:0;
     }
@@ -151,7 +162,7 @@
         @include gradVertical($light-color, $lighter-color);
         color:$secondary-color;
     }
-    #sidebar li {
+    #sidebar ul:not(.orbit) li {
         border-top:1px solid $secondary-color;
         padding:5px;
     }
@@ -201,6 +212,160 @@
     footer a:hover {
         color:$light-color;
     }
+
+    .orbit-container {
+        @include gradVertical($grad-header-c1, $grad-header-c2);
+        border-left:5px solid transparent;
+        border-right:5px solid transparent;
+        border-top:1px solid transparent;
+        border-bottom:1px solid transparent;
+        padding-bottom:4px;
+        border-radius:$global-radius;
+        overflow:hidden;
+    }
+    .orbit-container .orbit-slides-container {
+        margin-top:40px;
+        @include gradVertical($light-color,$lightest-color);
+    }
+    .orbit-container .orbit-prev,
+    .orbit-container .orbit-next {
+        top:0;
+        margin-top: 10px;
+        height: 30px;
+        line-height: 30px;
+        width:5px;
+        background:none;
+    }
+    .orbit-container .orbit-prev {
+        margin-left:-5px;
+    }
+    .orbit-container .orbit-prev > span,
+    .orbit-container .orbit-next > span {
+        top:0;
+        left:0;
+        margin-top:0;
+        border:10px inset;
+    }
+    .orbit-container .orbit-prev > span {
+        border-color:transparent;
+        border-right-color:$lightest-color;
+        border-right-style:solid;
+    }
+    .orbit-container .orbit-prev:hover > span {
+        border-right-color:$alert-color;
+    }
+    .orbit-container .orbit-next > span {
+        border-color:transparent;
+        border-left-color:$lightest-color;
+        border-left-style:solid;
+        margin-left:-10px;
+    }
+    .orbit-container .orbit-next:hover > span {
+        border-left-color:$alert-color;
+    }
+    .orbit-container .orbit-slides-container > * .orbit-caption {
+        background:none;
+        color:$secondary-color;
+        border:1px solid transparent;
+        font-weight:bold;
+        border-radius:0 0 $global-radius $global-radius;
+        padding: 0 10px 5px 10px;
+        text-align:center;
+        font-size:22px;
+        line-height:40px;
+    }
+    .orbit-bullets {
+        position:absolute;
+        top:7px;
+        left:115px;
+        padding:4px 10px 3px 10px;
+        background:$lightest-color;
+        box-shadow: 2px 2px 2px $shaddow-color inset;
+        border-radius:$global-radius;
+    }
+    .orbit-bullets li {
+        border-color:$light-color;
+        background:$lightest-color;
+        cursor:pointer;
+    }
+    .orbit-bullets li.active {
+        border-color:$secondary-color;
+        background:$secondary-color-25;
+    }
+    .orbit-bullets li:hover {
+        border-color:$alert-color;
+    }
+    .orbit-container .orbit-slide-number {
+        top:13px;
+        margin-left:15px;
+        font-size:emCalc(14px);
+    }
+    .orbit-container .orbit-timer {
+        position:absolute;
+        top:0;
+        left:0;
+        width:100%;
+    }
+    .orbit-container .orbit-timer > span {
+        border:3px solid $lightest-color;
+        border-top:0;
+        border-bottom:0;
+        top:13px;
+        left:0;
+        margin-left:285px;
+        display:block;
+        cursor:pointer;
+    }
+    .orbit-container .orbit-timer:hover > span {
+        border-color: transparent $alert-color transparent $alert-color;
+    }
+    .orbit-container .orbit-timer.paused:hover > span {
+        border-color: transparent transparent transparent $alert-color;
+    }
+    .orbit-container .orbit-timer.paused > span {
+        border-left:8px solid $lightest-color;
+        top:12px;
+    }
+    .orbit-container .orbit-timer .orbit-progress {
+        margin-top:40px;
+        background:$alert-color;
+        width: 100%;
+        height: 2px;
+    }
+    .orbit-slide-img {
+        float:right;
+        margin-left:10px;
+        border:1px solid $secondary-color;
+        border-radius:$global-radius;
+        max-height:100%;
+        max-width:100%;
+        overflow:hidden;
+    }
+    .orbit-slide-txt {
+        padding-left:10px;
+    }
+    .orbit-slide-data {
+        margin:10px;
+        padding:10px;
+        border:1px solid $secondary-color;
+        box-shadow: 3px 3px 3px $shaddow-color inset;
+        border-radius:$global-radius;
+        background:$lightest-color;
+        overflow:hidden;
+    }
+    .orbit-slide-txt p, .orbit-slide-data dl {
+        margin:0px 0 10px 0;
+    }
+    .orbit-slide-txt dd {
+        margin:0;
+        float:left;
+    }
+    .orbit-slide-txt dt {
+        display:inline-block;
+        width:90px;
+        clear:left;
+        float:left;
+    }
 }
 
 /* Used to alter styles for screens at least 768px wide. This is where the grid changes. */
@@ -212,7 +377,7 @@
     }
     #main {
         padding-bottom:90px;
-        padding-top:10px;
+        padding-top:105px;
     }
     footer nav,
     footer nav li {
@@ -221,6 +386,7 @@
     #main {
         margin:0 auto;
     }
+
     .top-bar .name h1 {
         padding:.5em 0;
         margin-left:1em;
@@ -289,7 +455,7 @@
     .top-bar-section ul.nav-social {
         @include gradVertical($lightest-color, $lighter-color);
         margin:0 20px;
-        padding:3px 7px 1px 7px;
+        padding:3px 4px 1px 6px;
         height:32px;
         line-height:32px;
     }
@@ -304,22 +470,25 @@
         display:inline-block;
         background:none;
         color:$secondary-color;
-        width:34px;
-        height:27px;
-        line-height:27px;
+        width:28px;
+        height:28px;
+        overflow:hidden !important;
+        line-height:28px;
         font-size:27px;
-        margin:3px 0 0 0;
+        margin:2px;
         padding:0;
         border:0;
         text-shadow:1px 1px 0 #eee;
     }
     .top-bar-section .nav-social li > a:hover:not(.button) {
-        color:$primary-color;
+        color:$secondary-color-75;
     }
     .top-bar-section .nav-social li.active > a:not(.button),
     .top-bar-section .nav-social li.active > a:hover:not(.button) {
         color:$secondary-color;
     }
+
+
 }
 
 /* Used to alter styles for screens at least 1280px wide. */

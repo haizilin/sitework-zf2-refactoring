@@ -42,6 +42,26 @@ return array(
                     ),
                 ),
             ),
+            'login' => array(
+                'type'    => 'Zend\Mvc\Router\Http\Literal',
+                'options' => array(
+                    'route'    => '/login',
+                    'defaults' => array(
+                        'controller'    => 'Application\Controller\Index',
+                        'action'        => 'login',
+                    ),
+                ),
+            ),
+            'logout' => array(
+                'type'    => 'Zend\Mvc\Router\Http\Literal',
+                'options' => array(
+                    'route'    => '/logout',
+                    'defaults' => array(
+                        'controller'    => 'Application\Controller\Index',
+                        'action'        => 'logout',
+                    ),
+                ),
+            ),
             // The following is a route to simplify getting started creating
             // new controllers and actions without needing to create a new
             // module. Simply drop new controllers in, and you can access them
@@ -131,42 +151,52 @@ return array(
                 'route' => 'disclaimer',
                 'order' => 2
             ),
-        ),
-        'social' => array(
             array(
-                'class' => 'icon-xing',
-                'uri' => 'http://www.xing.com/profile/Matthias_Kruschke',
-                'title' => 'Lesen Sie mein Profil bei XING.',
-                'order' => 1
-            ),
-            array(
-                'class' => 'icon-linkedin',
-                'uri' => 'http://de.linkedin.com/pub/matthias-kruschke/42/a10/7a2/',
-                'title' => 'Lesen Sie mein Profil bei LinkedIn.',
-                'order' => 2
-            ),
-            array(
-                'class' => 'icon-google-plus',
-                'uri' => 'http://www.facebook.com/matthias.kruschke',
-                'title' => 'Erfahren Sie mehr über mich bei google+.',
+                'label' => 'Login',
+                'route' => 'login',
                 'order' => 3
             ),
             array(
-                'class' => 'icon-facebook',
+                'label' => 'Logout',
+                'route' => 'logout',
+                'order' => 3
+            ),
+        ),
+        'social' => array(
+            array(
+                'class' => 'icon-xing has-tooltip',
+                'uri' => 'http://www.xing.com/profile/Matthias_Kruschke',
+                'title' => 'XING.',
+                'order' => 1
+            ),
+            array(
+                'class' => 'icon-linkedin has-tooltip',
+                'uri' => 'http://de.linkedin.com/pub/matthias-kruschke/42/a10/7a2/',
+                'title' => 'LinkedIn.',
+                'order' => 2
+            ),
+            array(
+                'class' => 'icon-google-plus has-tooltip',
                 'uri' => 'http://www.facebook.com/matthias.kruschke',
-                'title' => 'Erfahren Sie mehr über mich bei facebook.',
+                'title' => 'google+.',
+                'order' => 3
+            ),
+            array(
+                'class' => 'icon-facebook has-tooltip',
+                'uri' => 'http://www.facebook.com/matthias.kruschke',
+                'title' => 'facebook.',
                 'order' => 4
             ),
             array(
-                'class' => 'icon-twitter',
+                'class' => 'icon-twitter has-tooltip',
                 'uri' => 'http://twitter.com/sitewalker',
-                'title' => 'Flgen Sie mir auf Twitter.',
+                'title' => 'Twitter.',
                 'order' => 5
             ),
             array(
                 'class' => 'icon-github has-tooltip',
                 'uri' => 'http://github.com/sitework',
-                'title' => 'Forken Sie meine Projekte auf Github.',
+                'title' => 'Github.',
                 'order' => 6
             ),
         ),
