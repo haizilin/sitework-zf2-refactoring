@@ -42,6 +42,10 @@
     var SW = SW || {
         init : function () {
             this._orbit();
+            this._topbar();
+        },
+        _topbar: function () {
+            $doc.foundation('topbar');
         },
         _orbit : function () {
             $doc.foundation($('#featured'), 'orbit', {
