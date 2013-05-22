@@ -1,3 +1,5 @@
+@import "icons";
+@import "shadow";
 // Required global settings and mixins for Foundation
 // Settings file to override Foundation variables
 
@@ -20,7 +22,7 @@ $default-float: 'left';
 $em-base: 16px !default;
 
 // We use these as default colors throughout
-$shaddow-color:   rgba(34,  34,  34, .5);
+$shadow-color:   rgba(34,  34,  34, .5);
 
 $darkest-color:   rgba(34,  34,  34, 1);
 $darker-color:    rgba(54,  54,  54, 1);
@@ -64,8 +66,8 @@ $nav-primary-active-color: rgba(230, 230, 230,.8);
     @return $pxWidth / $em-base * 1em;
 }
 
-@mixin gradVertical($gradVerticalC1, $gradVerticalC2) {
-    background: #fff;
+@mixin gradient($gradVerticalC1, $gradVerticalC2) {
+    background: $gradVerticalC1;
     background: -moz-linear-gradient(top,  $gradVerticalC1 0%, $gradVerticalC2 100%);
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, $gradVerticalC1), color-stop(100%, $gradVerticalC2));
     background: -webkit-linear-gradient(top,  $gradVerticalC1 0%,$gradVerticalC2 100%);
@@ -74,6 +76,7 @@ $nav-primary-active-color: rgba(230, 230, 230,.8);
     background: linear-gradient(to top,  $gradVerticalC1 0%,$gradVerticalC2 100%);
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$gradVerticalC1', endColorstr='$gradVerticalC2',GradientType=0 );
 }
+
 
 // We use these to control various global styles
 $body-bg:         rgb(255, 255, 255);

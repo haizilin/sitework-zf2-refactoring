@@ -1,21 +1,40 @@
 @import "settings";
-@import "icons";
+
 
 /* We use this media query to add styles to any device that supports media queries */
 @media #{$screen} {
 
+    .box h3{
+        text-align:center;
+        position:relative;
+        top:80px;
+    }
+    .box {
+        width:50%;
+        height:200px;
+        background:#FFF;
+        margin:80px auto;
+        border:1px solid #ccc;
+    }
+    .effect0 { @include up(15px, $shadAlpha); }
+
     html {
         overflow-y: scroll;
     }
-    header,
     footer,
+    header{
+        height:45px;
+    }
     .top-bar {
-        display:block;
-        min-height:45px;
+        height:45px;
+    }
+    #main {
+        margin:10px auto;
+        padding-bottom:60px;
     }
     header,
     footer {
-        @include gradVertical($grad-header-c1, $grad-header-c2);
+        @include gradient($grad-header-c1, $grad-header-c2);
     }
     header {
         box-shadow:0 3px 3px $dark-color;
@@ -28,11 +47,6 @@
     footer nav li {
         display:block;
         float:left;
-    }
-    #main {
-        margin:0 auto;
-        padding-top:10px;
-        padding-bottom:60px;
     }
     #sidebarProjectTeaser .img img {
         max-height:65px;
@@ -63,21 +77,29 @@
     }
     button,
     .button {
-        @include gradVertical($grad-header-c1, $grad-header-c2);
+        @include gradient($grad-header-c1, $grad-header-c2);
         padding:$button-med $button-med * 2;
         border-radius:$global-radius;
     }
-    textarea.message {
-        min-height:150px;
+    textarea, input[type=text], input[type=password], input[type=email] {
+        font-size:emCalc(14px);
+        line-height:38px;
+        height:38px;
+        border-radius:0 $global-radius $global-radius $global-radius;
+        box-shadow: 2px 2px 3px $shadow-color inset;
     }
     label span {
         display:inline-block;
         width:50%;
-        padding:5px;
-        background:$third-color;
-        color:$lighter-color;
         font-weight:bold;
+        padding:10px;
+        color:$lighter-color;
+        @include gradient($grad-header-c1,$secondary-color-50);
+        border:1px solid $third-color;
+        border-bottom:0;
+        margin-bottom:-1px;
         border-radius:$global-radius $global-radius 0 0;
+        box-shadow: 2px 0 3px $shadow-color;
     }
     a {
         text-decoration:underline;
@@ -107,20 +129,37 @@
         font-size:18px;
         margin-left:.5em;
     }
-    .panel dt {
-        margin-top:20px;
-        margin-bottom:0;
+
+    .panel dl {
+        margin:0;
+        display:block;
+        float:left;
+        width:33%;
     }
-    .panel dt:first-child {
-        margin-top:0;
+
+    .panel dl, .panel dt, .panel dd {
+        display:block;
+        margin:0;
     }
-    .panel dd {
-        margin-bottom:0;
+
+    #sidebarContact .panel {
+        overflow:hidden;
     }
-    .panel dd .title {
-        display:inline-block;
-        width:100px;
+    #sidebarContact .panel dl {
+        float:left;
+        width:33%;
     }
+    #sidebarContact .panel dt,
+    #sidebarContact .panel dd {
+        margin-bottom:5px;
+    }
+    #sidebarContact .panel dd {
+         margin-left:5px;
+    }
+    #sidebarContact .icon:before {
+        padding-right:5px;
+    }
+
     .panel.bottom-open {
         margin-bottom:0;
         border-radius:$global-radius $global-radius 0 0;
@@ -135,13 +174,10 @@
         padding:0;
     }
     .contain-to-grid {
-        @include gradVertical($grad-header-c1, $grad-header-c2);
+        @include gradient($grad-header-c1, $grad-header-c2);
     }
     .contain-to-grid .top-bar {
         margin:0 auto;
-    }
-    .top-bar {
-        margin-bottom:10px;
     }
     .top-bar,
     .top-bar.expanded .title-area,
@@ -149,17 +185,17 @@
         background:none;
     }
     .top-bar-section ul li > a {
-        @include gradVertical($lightest-color, $lighter-color);
+        @include gradient($lightest-color, $lighter-color);
         color:$secondary-color;
         border-bottom:1px solid $secondary-color;
     }
     .top-bar-section ul li > a:hover:not(.button) {
-        @include gradVertical($lighter-color, $light-color);
+        @include gradient($lighter-color, $light-color);
         color:$secondary-color;
     }
     .top-bar-section ul li.active > a:not(.button),
     .top-bar-section ul li.active > a:hover:not(.button) {
-        @include gradVertical($light-color, $lighter-color);
+        @include gradient($light-color, $lighter-color);
         color:$secondary-color;
     }
     #sidebar ul:not(.orbit) li {
@@ -214,18 +250,18 @@
     }
 
     .orbit-container {
-        @include gradVertical($grad-header-c1, $grad-header-c2);
+        @include gradient($grad-header-c1, $grad-header-c2);
         border-left:5px solid transparent;
         border-right:5px solid transparent;
         border-top:1px solid transparent;
         border-bottom:1px solid transparent;
         padding-bottom:4px;
-        border-radius:$global-radius;
+        border-radius:$global-radius + .5;
         overflow:hidden;
     }
     .orbit-container .orbit-slides-container {
         margin-top:40px;
-        @include gradVertical($light-color,$lightest-color);
+        @include gradient($light-color,$lightest-color);
     }
     .orbit-container .orbit-prev,
     .orbit-container .orbit-next {
@@ -280,7 +316,7 @@
         left:115px;
         padding:4px 10px 3px 10px;
         background:$lightest-color;
-        box-shadow: 2px 2px 2px $shaddow-color inset;
+        box-shadow: 2px 2px 2px $shadow-color inset;
         border-radius:$global-radius;
     }
     .orbit-bullets li {
@@ -333,23 +369,26 @@
         height: 2px;
     }
     .orbit-slide-img {
-        float:right;
-        margin-left:10px;
+        float:none;
+        text-align:center;
+    }
+    .orbit-container .orbit-slides-container img {
         border:1px solid $secondary-color;
-        border-radius:$global-radius;
-        max-height:100%;
-        max-width:100%;
-        overflow:hidden;
+        border-radius:$global-radius + .5;
+        display:inline-block;
+        max-width: 100%;
+        margin:5px auto;
     }
     .orbit-slide-txt {
         padding-left:10px;
+        padding-top:10px;
     }
     .orbit-slide-data {
         margin:10px;
         padding:10px;
         border:1px solid $secondary-color;
-        box-shadow: 3px 3px 3px $shaddow-color inset;
-        border-radius:$global-radius;
+        box-shadow: 3px 3px 3px $shadow-color inset;
+        border-radius:$global-radius + .5;
         background:$lightest-color;
         overflow:hidden;
     }
@@ -370,23 +409,20 @@
 
 /* Used to alter styles for screens at least 768px wide. This is where the grid changes. */
 @media #{$small} {
-    header,
     footer,
+    header{
+        height:90px;
+    }
     .top-bar {
-        min-height:90px;
+        height:45px;
     }
     #main {
-        padding-bottom:90px;
-        padding-top:105px;
+        margin:65px auto;
     }
     footer nav,
     footer nav li {
         float:right;
     }
-    #main {
-        margin:0 auto;
-    }
-
     .top-bar .name h1 {
         padding:.5em 0;
         margin-left:1em;
@@ -414,9 +450,9 @@
         margin:0;
     }
     .top-bar-section ul {
-        @include gradVertical($lightest-color, $lighter-color);
+        @include gradient($lightest-color, $lighter-color);
         height:1 !important;
-        padding:3px 1px 1px 3px;
+        padding:3px 0 0 3px;
         border:0;
         border-radius:0 0 $big-radius $big-radius;
         color:$secondary-color;
@@ -437,7 +473,7 @@
     }
     .top-bar-section li a:not(.button),
     .top-bar-section .nav-primary li > a {
-        @include gradVertical($lightest-color, $lighter-color);
+        @include gradient($lightest-color, $lighter-color);
         display:block;
         text-align:center;
         line-height:32px;
@@ -445,22 +481,22 @@
         border-right:1px solid $secondary-color;
     }
     .top-bar-section .nav-primary li.active > a {
-        @include gradVertical($primary-color-25, $secondary-color-25);
+        @include gradient($primary-color-25, $secondary-color-25);
         color:$secondary-color;
     }
     .top-bar-section .nav-primary li > a:hover:not(.button) {
-        @include gradVertical($lighter-color, $lightest-color);
+        @include gradient($lighter-color, $lightest-color);
         color:$secondary-color;
     }
     .top-bar-section ul.nav-social {
-        @include gradVertical($lightest-color, $lighter-color);
+        @include gradient($lightest-color, $lighter-color);
         margin:0 20px;
         padding:3px 4px 1px 6px;
         height:32px;
         line-height:32px;
     }
     .top-bar-section .nav-social li {
-        @include gradVertical($lightest-color, $lighter-color);
+        @include gradient($lightest-color, $lighter-color);
         display:inline-block;
         float:left;
         height:32px;
@@ -469,7 +505,7 @@
     .top-bar-section .nav-social li > a:not(.button) {
         display:inline-block;
         background:none;
-        color:$secondary-color;
+        color:$secondary-color-75;
         width:28px;
         height:28px;
         overflow:hidden !important;
@@ -481,14 +517,33 @@
         text-shadow:1px 1px 0 #eee;
     }
     .top-bar-section .nav-social li > a:hover:not(.button) {
-        color:$secondary-color-75;
+        color:$secondary-color-50;
     }
     .top-bar-section .nav-social li.active > a:not(.button),
     .top-bar-section .nav-social li.active > a:hover:not(.button) {
         color:$secondary-color;
     }
+    .orbit-slide-img {
+        float:right;
+    }
+    .orbit-container .orbit-slides-container img {
+        display:block;
+        margin:0;
+    }
+    .orbit-slide-txt {
+        padding-left:10px;
+        padding-top:0;
+    }
 
-
+    #sidebarContact .panel dl {
+        display:block;
+        float:none;
+        width:100%;
+        margin:15px 10px 0 10px;
+    }
+    #contact .panel textarea {
+        height:emCalc(135px);
+    }
 }
 
 /* Used to alter styles for screens at least 1280px wide. */

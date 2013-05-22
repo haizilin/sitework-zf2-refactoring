@@ -5,33 +5,29 @@
             <dl>
                 <dt><?= $this->translate('Post address') ?></dt>
                 <dd>
-                    <?= $this->translate('Blücherstr. 37a') ?>,
-                    <?= $this->translate('10961 Berlin') ?><br/>
+                    <?= $this->translate('Blücherstr. 37a') ?>,<br/>
+                    <?= $this->translate('10961 Berlin') ?>
                     <?= $this->translate('Germany') ?>
                 </dd>
-
-                <dt><?= $this->translate('Internet') ?></dt>
-                <dd>
-                    <span class="title"><?= $this->translate('E-Mail') ?>:</span>
+            </dl>
+            <dl>
+                <dt><?= $this->translate('Online') ?></dt>
+                <dd class="icon icon-mail">
                     <?= $this->mailto(array(
                         'address' => 'matthias.kruschke@gmail.com',
                         'text' => $this->translate('Send E-mail'),
                         'encode' => 'hex',
                     )) ?>
                 </dd>
+                <dd class="icon icon-google-plus">matthias.kruschke</dd>
+                <dd class="icon icon-twitter">sitewalker</dd>
+                <dd class="icon icon-github">sitework</dd>
+            </dl>
+            <dl>
+                <dt><?= $this->translate('Tax info') ?></dt>
                 <dd>
-                    <span class="title"><?= $this->translate('ICQ') ?>:</span> 115187074
-                </dd>
-                <dd>
-                    <span class="title"><?= $this->translate('Google') ?>:</span> matthias.kruschke
-                </dd>
-                <dt><?= $this->translate('Tax information') ?></dt>
-                <dd>
-                    <span class="title"><?= $this->translate('Tax no.') ?>:</span> 14/402/61633
-                </dd>
-                <dd>
-                    <span class="title"><?= $this->translate('Tax office') ?>:</span>
-                    <?= $this->translate('Berlin-Kreuzberg') ?>
+                    <?= $this->translate('FA Berlin-Kreuzberg') ?><br/>
+                    <?= $this->translate('Tax no.') ?>: 14/402/61633
                 </dd>
             </dl>
         </div>

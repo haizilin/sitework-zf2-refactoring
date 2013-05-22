@@ -10,8 +10,8 @@ return array(
         'sw.min.js'
     ),
     'css'  => array(
-        'foundation.min.css',
-        'sw.css',
+        //'foundation.min.css',
+        //'sw.css',
     ),
     'phpSettings' => array(
         'display_errors' => 'Off',
