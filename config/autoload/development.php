@@ -14,10 +14,10 @@ return array(
         'src/sw.js'
     ),
     'css'  => array(
-        'src/normalize.css',
-        'src/foundation.css',
-        'src/shadow.css',
-        'src/sw.css'
+        'normalize.css',
+        'foundation.css',
+        'shadow.css',
+        'sw.css'
     ),
     'google' => array(
         'map' => array(

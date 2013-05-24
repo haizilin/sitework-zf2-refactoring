@@ -1,5 +1,8 @@
-@import "icons";
-@import "shadow";
+
+$default-text-shadow-color: rgba(black, 0.6);
+$default-text-shadow-blur: 3px;
+$default-text-shadow-v-offset: 1px;
+
 // Required global settings and mixins for Foundation
 // Settings file to override Foundation variables
 
@@ -1053,3 +1056,7 @@ $topbar-menu-icon-color-toggled: #888;
 $topbar-transition-speed: 300ms;
 $topbar-breakpoint: emCalc(940px); // Change to 9999px for always mobile layout
 $topbar-media-query: "only screen and (min-width: "#{$topbar-breakpoint}")";
+
+@import "shadow";
+@import "compass/css3";
+@import "icons";

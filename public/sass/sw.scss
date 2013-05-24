@@ -1,22 +1,95 @@
 @import "settings";
 
-
 /* We use this media query to add styles to any device that supports media queries */
 @media #{$screen} {
-
-    .box h3{
+    body {background:#fff;}
+    h1 {
+        text-align:center;
+        font-size:20px;
+        line-height:27px;
+        font-family: "FreeSans";
+        margin:0;
+        color:#222;
+        @include single-text-shadow;
+    }
+    .box h6 {
         text-align:center;
         position:relative;
-        top:80px;
+        top:0;
+        font-size:20px;
+        line-height:70px;
+        font-family: "FreeSans";
+        margin:0;
+        color:#777;
+        @include single-text-shadow;
     }
     .box {
-        width:50%;
-        height:200px;
-        background:#FFF;
+        width:250px;
+        height:70px;
         margin:80px auto;
         border:1px solid #ccc;
+        background:#fff;
     }
-    .effect0 { @include up(15px, $shadAlpha); }
+
+    .fleft {margin:30px;}
+
+    /* simple */
+    .b-north-s { @include north(5px, #444, .75); }
+    .b-north-m { @include north(10px, #444, .75); }
+    .b-north-l { @include north(15px, #444, .75); }
+
+    .b-north-east-s { @include north-east(5px, #444, .75); }
+    .b-north-east-m { @include north-east(6px, #444, .75); }
+    .b-north-east-l { @include north-east(9px, #444, .75); }
+
+    .b-east-s { @include east(5px, #444, .75); }
+    .b-east-m { @include east(10px, #444, .75); }
+    .b-east-l { @include east(15px, #444, .75); }
+
+    .b-south-east-s { @include south-east(5px, #444, .75); }
+    .b-south-east-m { @include south-east(10px, #444, .75); }
+    .b-south-east-l { @include south-east(15px, #444, .75); }
+
+    .b-south-s { @include south(5px, #444, .75); }
+    .b-south-m { @include south(10px, #444, .75); }
+    .b-south-l { @include south(15px, #444, .75); }
+
+    .b-south-west-s { @include south-west(5px, #444, .75); }
+    .b-south-west-m { @include south-west(10px, #444, .75); }
+    .b-south-west-l { @include south-west(15px, #444, .75); }
+
+    .b-west-s { @include west(5px, #444, .75); }
+    .b-west-m { @include west(10px, #444, .75); }
+    .b-west-l { @include west(15px, #444, .75); }
+
+    .b-north-west-s { @include north-west(5px, #444, .75); }
+    .b-north-west-m { @include north-west(10px, #444, .75); }
+    .b-north-west-l { @include north-west(15px, #444, .75); }
+
+    /* curling */
+    .b-curl-north-s { @include curl-north(5px, 5px, 5px, #444, .75); }
+    .b-curl-north-m { @include curl-north(10px, 10px, 5px, #444, .75); }
+    .b-curl-north-l { @include curl-north(15px, 15px, 5px, #444, .75); }
+
+    .b-curl-south-s { @include curl-south(5px, 5px, 5px, #444, .75); }
+    .b-curl-south-m { @include curl-south(10px, 10px, 10px, #444, .75); }
+    .b-curl-south-l { @include curl-south(15px, 15px, 15px, #444, .75); }
+
+    .b-curl-north-east-s { @include curl-north-east(5px, 5px, 5px, #444, .75); }
+    .b-curl-north-east-m { @include curl-north-east(10px, 10px, 10px, #444, .75); }
+    .b-curl-north-east-l { @include curl-north-east(15px, 15px, 15px, #444, .75); }
+
+    .b-curl-south-east-s { @include curl-south-east(5px, 5px, 5px, #444, .75); }
+    .b-curl-south-east-m { @include curl-south-east(10px, 10px, 10px, #444, .75); }
+    .b-curl-south-east-l { @include curl-south-east(15px, 15px, 15px, #444, .75); }
+
+    .b-curl-north-west-s { @include curl-north-west(5px, 5px, 5px, #444, .75); }
+    .b-curl-north-west-m { @include curl-north-west(10px, 10px, 10px, #444, .75); }
+    .b-curl-north-west-l { @include curl-north-west(15px, 15px, 15px, #444, .75); }
+
+    .b-curl-south-west-s { @include curl-south-west(5px, 5px, 5px, #444, .75); }
+    .b-curl-south-west-m { @include curl-south-west(10px, 10px, 10px, #444, .75); }
+    .b-curl-south-west-l { @include curl-south-west(15px, 15px, 15px, #444, .75); }
 
     html {
         overflow-y: scroll;
