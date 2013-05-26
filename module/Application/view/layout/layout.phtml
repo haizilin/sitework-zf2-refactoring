@@ -33,8 +33,8 @@
             </header>
             <div id="main" class="row">
                 <?php if (!empty($this->sidebar)): ?>
-                    <div id="sidebar" class="large-4 small-12 columns"><?= $this->sidebar ?></div>
                     <div id="content" class="large-8 small-12 columns"><?= $this->content ?></div>
+                    <div id="sidebar" class="large-4 small-12 columns"><?= $this->sidebar ?></div>
                 <?php else: ?>
                     <div id="content" class="small-12 columns"><?= $this->content ?></div>
                 <?php endif; ?>

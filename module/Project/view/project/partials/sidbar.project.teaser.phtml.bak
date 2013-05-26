@@ -1,0 +1,38 @@
+
+<?php use Application\View\Helper\Image; ?>
+<div id="sidebarProjectTeaser" class="row">
+    <div class="small-12 columns">
+        <div class="panel">
+            <h2><?= $this->translate('Current Projects') ?></h2>
+
+            <ul>
+                <?php foreach($this->projectsCollection as $project): ?>
+                <li>
+                    <span class="img">
+                        <a title="<?= $this->translate('show details') ?>" href="<?= $this->url('project', array('action' => 'details', 'id' => $project->getId())) ?>">
+                            <img src="<?= $this->image($this->basePath() . '/gfx/project/' . $project->getImg(), 0, 65) ?>"/>
+                        </a>
+                    </span>
+                    <span class="info">
+                        <span class="date">
+                            <?php $date = new DateTime($project->getStartedAt(), new DateTimeZone(date_default_timezone_get())) ?>
+                            <?= $this->dateFormat($date, IntlDateFormatter::TRADITIONAL, IntlDateFormatter::NONE) ?>
+                        </span>
+                        <a class="title nodeco" title="<?= $this->translate('show details') ?>" href="<?= $this->url('project', array('action' => 'details', 'id' => $project->getId())) ?>">
+                            <?= $project->getProjectDetails()->getFirst()->getLabel() ?>
+                        </a>
+                        <a class="url nodeco" href="<?= $project->getUrl() ?>"><?= $project->getUrl() ?></a>
+                    </span>
+                </li>
+                <?php endforeach ?>
+            </ul>
+
+            <ul data-orbit class="orbit">
+                <?php foreach($this->projectsCollection as $project): ?>
+                    <li><img src="<?= $this->image($this->basePath() . '/gfx/project/' . $project->getImg(), 0, 500) ?>"/></li>
+                <?php endforeach ?>
+            </ul>
+
+        </div>
+    </div>
+</div>

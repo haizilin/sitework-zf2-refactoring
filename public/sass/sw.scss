@@ -2,7 +2,7 @@
 
 /* We use this media query to add styles to any device that supports media queries */
 @media #{$screen} {
-    body {background:#fff;}
+    body { background:#fff; }
     h1 {
         text-align:center;
         font-size:20px;
@@ -31,65 +31,7 @@
         background:#fff;
     }
 
-    .fleft {margin:30px;}
-
-    /* simple */
-    .b-north-s { @include north(5px, #444, .75); }
-    .b-north-m { @include north(10px, #444, .75); }
-    .b-north-l { @include north(15px, #444, .75); }
-
-    .b-north-east-s { @include north-east(5px, #444, .75); }
-    .b-north-east-m { @include north-east(6px, #444, .75); }
-    .b-north-east-l { @include north-east(9px, #444, .75); }
-
-    .b-east-s { @include east(5px, #444, .75); }
-    .b-east-m { @include east(10px, #444, .75); }
-    .b-east-l { @include east(15px, #444, .75); }
-
-    .b-south-east-s { @include south-east(5px, #444, .75); }
-    .b-south-east-m { @include south-east(10px, #444, .75); }
-    .b-south-east-l { @include south-east(15px, #444, .75); }
-
-    .b-south-s { @include south(5px, #444, .75); }
-    .b-south-m { @include south(10px, #444, .75); }
-    .b-south-l { @include south(15px, #444, .75); }
-
-    .b-south-west-s { @include south-west(5px, #444, .75); }
-    .b-south-west-m { @include south-west(10px, #444, .75); }
-    .b-south-west-l { @include south-west(15px, #444, .75); }
-
-    .b-west-s { @include west(5px, #444, .75); }
-    .b-west-m { @include west(10px, #444, .75); }
-    .b-west-l { @include west(15px, #444, .75); }
-
-    .b-north-west-s { @include north-west(5px, #444, .75); }
-    .b-north-west-m { @include north-west(10px, #444, .75); }
-    .b-north-west-l { @include north-west(15px, #444, .75); }
-
-    /* curling */
-    .b-curl-north-s { @include curl-north(5px, 5px, 5px, #444, .75); }
-    .b-curl-north-m { @include curl-north(10px, 10px, 5px, #444, .75); }
-    .b-curl-north-l { @include curl-north(15px, 15px, 5px, #444, .75); }
-
-    .b-curl-south-s { @include curl-south(5px, 5px, 5px, #444, .75); }
-    .b-curl-south-m { @include curl-south(10px, 10px, 10px, #444, .75); }
-    .b-curl-south-l { @include curl-south(15px, 15px, 15px, #444, .75); }
-
-    .b-curl-north-east-s { @include curl-north-east(5px, 5px, 5px, #444, .75); }
-    .b-curl-north-east-m { @include curl-north-east(10px, 10px, 10px, #444, .75); }
-    .b-curl-north-east-l { @include curl-north-east(15px, 15px, 15px, #444, .75); }
-
-    .b-curl-south-east-s { @include curl-south-east(5px, 5px, 5px, #444, .75); }
-    .b-curl-south-east-m { @include curl-south-east(10px, 10px, 10px, #444, .75); }
-    .b-curl-south-east-l { @include curl-south-east(15px, 15px, 15px, #444, .75); }
-
-    .b-curl-north-west-s { @include curl-north-west(5px, 5px, 5px, #444, .75); }
-    .b-curl-north-west-m { @include curl-north-west(10px, 10px, 10px, #444, .75); }
-    .b-curl-north-west-l { @include curl-north-west(15px, 15px, 15px, #444, .75); }
-
-    .b-curl-south-west-s { @include curl-south-west(5px, 5px, 5px, #444, .75); }
-    .b-curl-south-west-m { @include curl-south-west(10px, 10px, 10px, #444, .75); }
-    .b-curl-south-west-l { @include curl-south-west(15px, 15px, 15px, #444, .75); }
+    /* section { float:left;margin-right:40px;margin-bottom:40px; } */
 
     html {
         overflow-y: scroll;
@@ -102,8 +44,9 @@
         height:45px;
     }
     #main {
-        margin:10px auto;
-        padding-bottom:60px;
+        margin:0 auto;
+        height:100%;
+        padding-bottom:93px;
     }
     header,
     footer {
@@ -121,6 +64,78 @@
         display:block;
         float:left;
     }
+
+    /**
+     * project teaser content
+     **/
+    .projectTeaser .entrylabel {
+        @include gradient($secondary-color-25, $secondary-color-50);
+        border-radius:$global-radius $global-radius 0 0;
+        border:1px solid $secondary-color-50;
+        color:$primary-color;
+        font-weight:normal;
+        padding:5px 10px;
+        width:30%;
+        float:right;
+    }
+    .projectTeaser {
+        overflow:hidden;
+        margin-bottom:25px;
+        @include shadow;
+    }
+
+    .projectTeaser .entryValue:before {
+        clear:right;
+    }
+    .projectTeaser .entryValue > img,
+    .projectTeaser .entryValue {
+        float:left;
+    }
+
+    .projectTeaser .entryValue {
+        @include gradient($bg-color-list-dark, $bg-color-list-light);
+        border   :1px solid $secondary-color-50;
+        border-radius:$global-radius 0 $global-radius $global-radius;
+        margin-top   : 1px;
+        overflow     :hidden;
+        width        :100%;
+    }
+    .projectTeaser .entryValue > img {
+        margin:5px 0 5px 5px;
+        border:1px solid $primary-color-50;
+    }
+    .projectTeaser .entryValue a {
+        float:left;
+        display:block;
+        text-decoration:none;
+        padding: 10px 10px 10px 15px;
+    }
+    .projectTeaser .entryValue a.projectLink {
+        line-height:55px;
+        width:$h3-font-size + $paragraph-line-height;
+        font-size:32px;
+        float:right;
+        display:block;
+        text-align:center;
+        color:$secondary-color-50;
+    }
+    .projectTeaser .entryValue a.projectLink:hover {
+        color:$secondary-color;
+    }
+    .projectTeaser .entryValue .p {
+        display:block;
+        font-size:$paragraph-font-size;
+        line-height:$paragraph-line-height;
+    }
+   .projectTeaser .entryValue .h3 {
+        display:block;
+        text-decoration:none;
+        font-size:$h3-font-size;
+        line-height:$h3-font-size;
+        font-weight:bold;
+    }
+
+    /* project teaser sidebar */
     #sidebarProjectTeaser .img img {
         max-height:65px;
         max-width:87px;
@@ -194,23 +209,16 @@
         border:1px solid $primary-color-25;
         border-radius:$global-radius;
     }
-    .panel h2 {
+    h2 {
         font-size:24px;
         color:$secondary-color;
     }
-    .panel h3 {
+    h3 {
         font-size:18px;
-        margin-left:.5em;
-    }
-
-    .panel dl {
         margin:0;
-        display:block;
-        float:left;
-        width:33%;
     }
 
-    .panel dl, .panel dt, .panel dd {
+    dl, dt, dd {
         display:block;
         margin:0;
     }
@@ -266,8 +274,8 @@
         @include gradient($lighter-color, $light-color);
         color:$secondary-color;
     }
-    .top-bar-section ul li.active > a:not(.button),
-    .top-bar-section ul li.active > a:hover:not(.button) {
+    .top-bar-section ul:not(.orbit) li.active > a:not(.button),
+    .top-bar-section ul:not(.orbit) li.active > a:hover:not(.button) {
         @include gradient($light-color, $lighter-color);
         color:$secondary-color;
     }
@@ -275,32 +283,32 @@
         border-top:1px solid $secondary-color;
         padding:5px;
     }
-    #sidebar li:nth-child(odd) {
+    #sidebar ul:not(.orbit) li:nth-child(odd) {
         background:$nav-primary-hover-color;
     }
-    #sidebar li .img {
+    #sidebar ul:not(.orbit) li .img {
         display:table-cell;
     }
-    #sidebar li .img img {
+    #sidebar ul:not(.orbit) li .img img {
         border:1px solid $secondary-color;
     }
-    #sidebar li .info {
+    #sidebar ul:not(.orbit) li .info {
         display:table-cell;
         vertical-align:top;
         padding-left:10px;
         font-size:emCalc(14px);
         line-height:emCalc(24px);
     }
-    #sidebar li .info a {
+    #sidebar ul:not(.orbit) li .info a {
         display:block;
     }
-    #sidebar li .title {
+    #sidebar ul:not(.orbit) li .title {
         font-style: italic;
     }
-    #sidebar li .date {
+    #sidebar ul:not(.orbit) li .date {
         font-weight:bold;
     }
-    #sidebar li .url {
+    #sidebar ul:not(.orbit) li .url {
         font-size:.85em;
     }
     footer {
@@ -322,37 +330,58 @@
         color:$light-color;
     }
 
-    .orbit-container {
+/* Orbit */
+    .orbit-container .panel {
+        padding:0;
+        height:100%;
+        border-radius: 0 0 $global-radius $global-radius;
+        @include gradient($lighter-color, $lightest-color);
+    }
+    .orbit-container .label {
+        line-height:$base-font-size*1.2;
+        border-radius:3px;
+    }
+    .orbit-slide-data {
+        padding:$panel-padding;
+    }
+    .orbit-container:before {
+        padding-top:35px;
+        display:block;
+        content: " ";
+        border-radius:$global-radius;
         @include gradient($grad-header-c1, $grad-header-c2);
-        border-left:5px solid transparent;
-        border-right:5px solid transparent;
-        border-top:1px solid transparent;
-        border-bottom:1px solid transparent;
-        padding-bottom:4px;
-        border-radius:$global-radius + .5;
-        overflow:hidden;
     }
     .orbit-container .orbit-slides-container {
-        margin-top:40px;
-        @include gradient($light-color,$lightest-color);
+        height:100%;
+        overflow:hidden;
+        margin:0;
+        background:none;
+    }
+    .orbit-slide-data {
+        height:100%;
+        display:block;
+        overflow:hidden;
+        background:none;
     }
     .orbit-container .orbit-prev,
     .orbit-container .orbit-next {
-        top:0;
-        margin-top: 10px;
-        height: 30px;
-        line-height: 30px;
-        width:5px;
+        top: 0;
         background:none;
+        width: 5px;
+        height: 30px;
+        margin-top: 2px;
+        line-height: 30px;
     }
-    .orbit-container .orbit-prev {
-        margin-left:-5px;
+    .orbit-container .orbit-next {
+        position:absolute;
+        right:1;
+        left:40px;
     }
     .orbit-container .orbit-prev > span,
     .orbit-container .orbit-next > span {
         top:0;
+        margin-top:5px;
         left:0;
-        margin-top:0;
         border:10px inset;
     }
     .orbit-container .orbit-prev > span {
@@ -373,57 +402,57 @@
         border-left-color:$alert-color;
     }
     .orbit-container .orbit-slides-container > * .orbit-caption {
-        background:none;
         color:$secondary-color;
-        border:1px solid transparent;
+        background:none;
         font-weight:bold;
-        border-radius:0 0 $global-radius $global-radius;
-        padding: 0 10px 5px 10px;
+        padding:5px 10px 10px 10px;
         text-align:center;
-        font-size:22px;
-        line-height:40px;
+        font-size:emCalc(14px);
+        line-height:22px;
     }
     .orbit-bullets {
         position:absolute;
-        top:7px;
-        left:115px;
+        top:5px;
+        right:10px;
         padding:4px 10px 3px 10px;
-        background:$lightest-color;
-        box-shadow: 2px 2px 2px $shadow-color inset;
+        margin:0;
         border-radius:$global-radius;
     }
     .orbit-bullets li {
-        border-color:$light-color;
-        background:$lightest-color;
+        border-color:$lightest-color;
+        background:$light-color;
         cursor:pointer;
     }
     .orbit-bullets li.active {
-        border-color:$secondary-color;
-        background:$secondary-color-25;
+        border-color:$alert-color;
+        background:$lightest-color;
     }
     .orbit-bullets li:hover {
         border-color:$alert-color;
     }
     .orbit-container .orbit-slide-number {
-        top:13px;
-        margin-left:15px;
+        position:absolute;
+        top:10px;
+        left:150px;
         font-size:emCalc(14px);
     }
     .orbit-container .orbit-timer {
         position:absolute;
+        width:100%;
         top:0;
         left:0;
-        width:100%;
+    }
+    .orbit-container .orbit-timer.paused > span,
+    .orbit-container .orbit-timer > span {
+        position:absolute;
+        top:10px;
+        left:60px;
+        display:block; cursor:pointer;
     }
     .orbit-container .orbit-timer > span {
         border:3px solid $lightest-color;
         border-top:0;
         border-bottom:0;
-        top:13px;
-        left:0;
-        margin-left:285px;
-        display:block;
-        cursor:pointer;
     }
     .orbit-container .orbit-timer:hover > span {
         border-color: transparent $alert-color transparent $alert-color;
@@ -433,50 +462,56 @@
     }
     .orbit-container .orbit-timer.paused > span {
         border-left:8px solid $lightest-color;
-        top:12px;
     }
     .orbit-container .orbit-timer .orbit-progress {
-        margin-top:40px;
+        position:absolute;
         background:$alert-color;
-        width: 100%;
+        width: 1;
         height: 2px;
-    }
-    .orbit-slide-img {
-        float:none;
-        text-align:center;
+        top: 34px;
     }
     .orbit-container .orbit-slides-container img {
         border:1px solid $secondary-color;
-        border-radius:$global-radius + .5;
-        display:inline-block;
+        border-radius:$global-radius;
+        display:block;
+        margin:0 auto;
         max-width: 100%;
-        margin:5px auto;
     }
-    .orbit-slide-txt {
-        padding-left:10px;
-        padding-top:10px;
+    .orbit-slide-description,
+    .orbit-slide-attrib {
+        display:block;
+        margin-top:15px;
+        padding-top:15px;
+        font-size:emCalc(13px);
+        border-top:1px solid $secondary-color;
     }
-    .orbit-slide-data {
-        margin:10px;
-        padding:10px;
-        border:1px solid $secondary-color;
-        box-shadow: 3px 3px 3px $shadow-color inset;
-        border-radius:$global-radius + .5;
-        background:$lightest-color;
-        overflow:hidden;
+    .orbit-slide-attrib dl,
+    .orbit-slide-attrib dt,
+    .orbit-slide-attrib dd {
+        display:block;
     }
-    .orbit-slide-txt p, .orbit-slide-data dl {
-        margin:0px 0 10px 0;
+    .orbit-slide-attrib dl {
+        margin-bottom: 10px;
     }
-    .orbit-slide-txt dd {
-        margin:0;
-        float:left;
+    .orbit-slide-attrib dt {
+        float: left;
+        width:65px;
+        line-height:1;
+        margin-right:5px;
     }
-    .orbit-slide-txt dt {
-        display:inline-block;
-        width:90px;
-        clear:left;
-        float:left;
+    .orbit-slide-attrib dd {
+        margin-left: 75px;
+        padding:0;
+        line-height:1;
+    }
+    .orbit-slide-attrib dd:after {
+        content: " ";
+        clear: left;
+    }
+    .orbit-caption {
+        position:relative;
+        bottom:0;
+        background:$secondary-color-50;
     }
 }
 
@@ -490,7 +525,7 @@
         height:45px;
     }
     #main {
-        margin:65px auto;
+        margin:60px auto 0;
     }
     footer nav,
     footer nav li {
@@ -596,18 +631,6 @@
     .top-bar-section .nav-social li.active > a:hover:not(.button) {
         color:$secondary-color;
     }
-    .orbit-slide-img {
-        float:right;
-    }
-    .orbit-container .orbit-slides-container img {
-        display:block;
-        margin:0;
-    }
-    .orbit-slide-txt {
-        padding-left:10px;
-        padding-top:0;
-    }
-
     #sidebarContact .panel dl {
         display:block;
         float:none;

@@ -1,3 +1,9 @@
+@import "compass";
+@import "compass/typography";
+@import "compass/css3";
+@import "compass/utilities";
+@import "shadow";
+@import "icons";
 
 $default-text-shadow-color: rgba(black, 0.6);
 $default-text-shadow-blur: 3px;
@@ -36,6 +42,9 @@ $lightest-color:     rgba(255, 255, 255, 1);
 $lightest-color-25:  rgba(255, 255, 255, .25);
 $lightest-color-50:  rgba(255, 255, 255, .50);
 $lightest-color-75:  rgba(255, 255, 255, .75);
+
+$bg-color-list-dark:  rgba(32,  74, 135, .075);
+$bg-color-list-light: rgba(32,  74, 135, .05);
 
 $lighter-color:   rgba(224, 224, 224, 1);
 $light-color:     rgba(204, 204, 204, 1);
@@ -137,7 +146,7 @@ $portrait:  "only screen and (orientation: portrait)";
 
 // Grid Variables
 $row-width:     emCalc(1200px);
-$column-gutter: .5em;
+$column-gutter: .55em;
 $total-columns: 12;
 
 //
@@ -164,11 +173,11 @@ $header-bottom-margin: .5em;
 $header-text-rendering: optimizeLegibility;
 
 // We use these to control header font sizes
-$h1-font-size: emCalc(44px);
-$h2-font-size: emCalc(37px);
-$h3-font-size: emCalc(27px);
-$h4-font-size: emCalc(23px);
-$h5-font-size: emCalc(18px);
+$h1-font-size: emCalc(28px);
+$h2-font-size: emCalc(24px);
+$h3-font-size: emCalc(20px);
+$h4-font-size: emCalc(16px);
+$h5-font-size: emCalc(14px);
 $h6-font-size: 1em;
 
 // These control how subheaders are styled
@@ -739,8 +748,8 @@ $panel-function-factor: 10%;
 $panel-border-color: darken($panel-bg, $panel-function-factor);
 
 // We use these to set default inner padding and bottom margin
-$panel-margin-bottom: emCalc(20px);
-$panel-padding: emCalc(15px);
+$panel-margin-bottom: emCalc(15px);
+$panel-padding: emCalc(10px);
 
 // We use these to set default font colors
 $panel-font-color: #333;
@@ -1057,6 +1066,3 @@ $topbar-transition-speed: 300ms;
 $topbar-breakpoint: emCalc(940px); // Change to 9999px for always mobile layout
 $topbar-media-query: "only screen and (min-width: "#{$topbar-breakpoint}")";
 
-@import "shadow";
-@import "compass/css3";
-@import "icons";

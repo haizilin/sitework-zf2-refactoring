@@ -1,341 +1,81 @@
-$height: 0px;
-$width: 0px;
-$blur: 0px;
-$spread: 0px;
+$dir: "south-east";
+$w: 1;
+$nl: 0px;
+$sp: 0px;
+$color: #000000;
+$inset: false;
 
-@mixin glow($n, $color, $alpha) {
-    $width: $n/5;$height: $n/5; $spread: $n*2; $blur: $n*4;
-    box-shadow: $width $height $blur $spread rgba($color, $alpha);
-}
+$s: 3px;
+$x: $s*.75;
+$y: $s*.75;
+$bl: $s;
+$sp: 0 - $s*.1;
+$alpha: 0.35;
 
-/* simple */
-@mixin north($s, $color, $alpha) {
-    $x: 0;
-    $y: 0 - $s;
-    $bl: $s*2;
-    $sp: 0 - $s*.75;
-    box-shadow:$x $y $bl $sp rgba($color, $alpha);
-}
-@mixin north-east($s, $color, $alpha) {
-    $x: $s*.75;
-    $y: 0 - $s*.75;
-    $bl: $s*3;
-    $sp: $s;
-    box-shadow: $x $y $bl rgba($color, $alpha);
-}
-@mixin east($s, $color, $alpha) {
-    $x: $s;
-    $y: 0;
-    $bl: $s*1.5;
-    $sp: 0 - $s*.5;
-    box-shadow: $x $y $bl $sp rgba($color, $alpha);
-}
-@mixin south-east($s, $color, $alpha) {
-    $x: $s*.75;
-    $y: $s*.75;
-    $bl: $s*1.25;
-    $sp: 0 - $s*.25;
-    box-shadow: $x $y $bl $sp rgba($color, $alpha);
-}
-@mixin south($s, $color, $alpha) {
-    $x: 0;
-    $y: $s;
-    $bl: $s*1.25;
-    $sp: 0 - $s*.5;
-    box-shadow: $x $y $bl $sp rgba($color, $alpha);
-}
-@mixin south-west($s, $color, $alpha) {
-    $x: 0 - $s*.75;
-    $y: 0 - $s*.75;
-    $bl: $s*.25;
-    $sp: 0 - $s*0.25;
-    box-shadow: $x $y $bl $sp, rgba($color, $alpha);
-}
-@mixin west($s, $color, $alpha) {
-    $x: 0 - $s;
-    $y: 0;
-    $bl: $s*1.5;
-    $sp: 0 - $s*.5;
-    box-shadow: $x $y $bl $sp rgba($color, $alpha);
-}
-@mixin north-west($s, $color, $alpha) {
-    $x: 0 - $s*.5;
-    $y: 0 - $s*.5;
-    $bl: $s*1.75;
-    $sp: $s*0;
-    box-shadow: $x $y $bl $sp rgba($color, $alpha);
-}
+@mixin shadow($dir: "south-east", $inset: false) {
 
-/* curls */
-@mixin curl-north($n, $bl, $sp, $color, $alpha) {
-    $h-space: $n*1.5;
-    $v-space: $n*1.75;
-    $width:   0 - $n*.75;
-    $spread:  $n*.75;
-    $blur:    $n*1.25;
-    position:relative;
-    &:before, &:after {
-        content:""; position:absolute; z-index:-1;
-        top:$v-space; width:50%;
-        left:$h-space; top:$v-space;
-        background:rgba($color, $alpha);
-        box-shadow:0 $width $spread $blur rgba($color, $alpha);
-        transform:rotate(2deg);
-        -webkit-transform:rotate(2deg);
+    @if $w == 3 {
+        $s: 15px;
+    } @else if $w == 2 {
+        $s: 10px;
+    } @else {
+        $s: 5px;
     }
-    &:after {
-        right:$h-space;
-        left:auto;
-        transform:rotate(-2deg);
-        -webkit-transform:rotate(-2deg);
+
+    @if $dir == "north" {
+        $x: 0;
+        $y: 0 - $s;
+        $bl: $s*2;
+        $sp: 0 - $s*.75;
+    } @else if $dir == "north-east" {
+        $x: $s*.75;
+        $y: 0 - $s*.75;
+        $bl: $s*3;
+        $sp: $s;
+    } @else if $dir == "east" {
+        $x: $s;
+        $y: 0;
+        $bl: $s*1.5;
+        $sp: 0 - $s*.45;
+    } @else if $dir == "south-east" {
+        $x: $s*.75;
+        $y: $s*.75;
+        $bl: $s;
+        $sp: 0 - $s*.1;
+    } @else if $dir == "south" {
+        $x: 0;
+        $y: $s;
+        $bl: $s*1.5;
+        $sp: 0 - $s*.1;
+    } @else if $dir == "south-west" {
+        $x: 0 - $s*.75;
+        $y: $s*.75;
+        $bl: $s*1.25;
+        $sp: $s*.1;
+    } @else if $dir == "west" {
+        $x: 0 - $s;
+        $y: 0;
+        $bl: $s*1.5;
+        $sp: 0 - $s*.25;
+    } @else if $dir == "north-west" {
+        $x: 0 - $s*.5;
+        $y: 0 - $s*.5;
+        $bl: $s*1.75;
+        $sp: $s*0;
+    } @else if $dir == "glow" {
+        $x: $s/5;
+        $y: $s/5;
+        $bl: $s*2;
+        $sp: $s*4;
+    }
+
+    @if $inset == true {
+        box-shadow:$x $y $bl $sp rgba($color, $alpha) inset;
+        -moz-box-shadow: $x $y $bl $sp rgba($color, $alpha) inset;
+        -webkit-box-shadow: $x $y $bl $sp rgba($color, $alpha) inset;
+    } @else {
+        box-shadow:$x $y $bl $sp rgba($color, $alpha);
+        -moz-box-shadow: $x $y $bl $sp rgba($color, $alpha);
+        -webkit-box-shadow: $x $y $bl $sp rgba($color, $alpha);
     }
 }
-@mixin curl-south($s, $bl, $sp, $color, $alpha) {
-    $h-space: $s;
-    $v-space: $s*.75;
-    $width:   $s;
-    $spread:  $sp*.75;
-    $blur:    $bl*.5;
-    position:relative;
-    &:before, &:after {
-        content:""; position:absolute; z-index:-100;
-        top:50%;width:50%;
-        left:$h-space; bottom:$v-space;
-        background:rgba($color, $alpha);
-        box-shadow:0 $width $spread $blur rgba($color, $alpha);
-        transform:rotate(-3deg);
-        -webkit-transform:rotate(-3deg);
-    }
-    &:after {
-        right:$h-space;
-        left:auto;
-        transform:rotate(3deg);
-        -webkit-transform:rotate(3deg);
-    }
-}
-@mixin curl-south-west($n, $bl, $sp, $color, $alpha) {
-    $h-space: $n;
-    $v-space: $n*1.5;
-    $width:   $n;
-    $spread:  $n*.5;
-    $blur:    $n*.75;
-    position: relative;
-    &:before {
-        bottom:$v-space; left:$h-space;
-        background:rgba($color, $alpha);
-        box-shadow:0 $width $spread $blur rgba($color, $alpha);
-        z-index:-1; position:absolute; content:"";
-        top:50%; width:50%; max-width:90%;
-        -webkit-transform:rotate(-2deg);
-        transform:rotate(-2deg);
-    }
-}
-@mixin curl-south-east($n, $bl, $sp, $color, $alpha) {
-    $h-space: $n;
-    $v-space: $n*1.5;
-    $width:   $n;
-    $spread:  $n*.5;
-    $blur:    $n*.75;
-    position: relative;
-    &:before {
-        bottom: $v-space; right: $h-space;
-        background: rgba($color, $alpha);
-        box-shadow: 0 $width $spread $blur rgba($color, $alpha);
-        z-index: -1; position: absolute; content: "";
-        top: 50%; width: 50%; max-width:90%;
-        -webkit-transform: rotate(2deg);
-        transform: rotate(2deg);
-    }
-}
-
-
-@mixin curl-north-west($n, $bl, $sp, $color, $alpha) {
-    $h-space: $n*1.5;
-    $v-space: $n*1.75;
-    $width:   0 - $n*.75;
-    $spread:  $n*.75;
-    $blur:    $n*1.25;
-    position: relative;
-    &:before {
-        top: $v-space; left: $h-space;
-        background: rgba($color, $alpha);
-        box-shadow: 0 $width $spread $blur rgba($color, $alpha);
-        z-index: -1; position: absolute; content: "";
-        width: 50%; max-width:90%;
-        -webkit-transform: rotate(2deg);
-        transform: rotate(2deg);
-    }
-}
-@mixin curl-north-east($n, $bl, $sp, $color, $alpha) {
-    $h-space: $n*1.5;
-    $v-space: $n*1.75;
-    $width:   0 - $n*.75;
-    $spread:  $n*.75;
-    $blur:    $n*1.25;
-    position: relative;
-    &:before {
-        top: $v-space; right: $h-space;
-        background: rgba($color, $alpha);
-        box-shadow: 0 $width $spread $blur rgba($color, $alpha);
-        z-index: -1; position: absolute; content: "";
-        width: 50%; max-width:90%;
-        -webkit-transform: rotate(-2deg);
-        transform: rotate(-2deg);
-    }
-}
-
-
-
-
-.effect3
-{
-    position: relative;
-}
-.effect3:before
-{
-    z-index: -1;
-    position: absolute;
-    content: "";
-    bottom: 15px;
-    left: 10px;
-    width: 50%;
-    top: 80%;
-    max-width:300px;
-    background: #777;
-    -webkit-box-shadow: 0 15px 10px #777;
-    -moz-box-shadow: 0 15px 10px #777;
-    box-shadow: 0 15px 10px #777;
-    -webkit-transform: rotate(-3deg);
-    -moz-transform: rotate(-3deg);
-    -o-transform: rotate(-3deg);
-    -ms-transform: rotate(-3deg);
-    transform: rotate(-3deg);
-}
-
-
-.effect4
-{
-    position: relative;
-}
-.effect4:after
-{
-    z-index: -1;
-    position: absolute;
-    content: "";
-    bottom: 15px;
-    right: 10px;
-    left: auto;
-    width: 50%;
-    top: 80%;
-    max-width:300px;
-    background: #777;
-    -webkit-box-shadow: 0 15px 10px #777;
-    -moz-box-shadow: 0 15px 10px #777;
-    box-shadow: 0 15px 10px #777;
-    -webkit-transform: rotate(3deg);
-    -moz-transform: rotate(3deg);
-    -o-transform: rotate(3deg);
-    -ms-transform: rotate(3deg);
-    transform: rotate(3deg);
-}
-
-
-.effect5
-{
-    position: relative;
-}
-.effect5:before, .effect5:after
-{
-    z-index: -1;
-    position: absolute;
-    content: "";
-    bottom: 25px;
-    left: 10px;
-    width: 50%;
-    top: 80%;
-    max-width:300px;
-    background: #777;
-    box-shadow: 0 35px 20px #777;
-    -webkit-transform: rotate(-8deg);
-    -moz-transform: rotate(-8deg);
-    -o-transform: rotate(-8deg);
-    -ms-transform: rotate(-8deg);
-    transform: rotate(-8deg);
-}
-.effect5:after
-{
-    -webkit-transform: rotate(8deg);
-    -moz-transform: rotate(8deg);
-    -o-transform: rotate(8deg);
-    -ms-transform: rotate(8deg);
-    transform: rotate(8deg);
-    right: 10px;
-    left: auto;
-}
-
-
-.effect6{
-    position:relative;
-    box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
-}
-.effect6:before, .effect6:after{
-    content:"";
-    position:absolute;
-    z-index:-1;
-    box-shadow:0 0 20px rgba(0,0,0,0.8);
-    top:50%;
-    bottom:0;
-    left:10px;
-    right:10px;
-    border-radius:100px / 10px;
-}
-.effect6:after{
-    right:10px;
-    left:auto;
-    transform:skew(15deg) rotate(12deg);
-}
-
-
-.effect7{
-    position:relative;
-    box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
-}
-.effect7:before, .effect7:after{
-    content:"";
-    position:absolute;
-    z-index:-1;
-    box-shadow:0 0 20px rgba(0,0,0,0.8);
-    top:0;
-    bottom:0;
-    left:10px;
-    right:10px;
-    border-radius:100px / 10px;
-}
-.effect7:after{
-    right:10px;
-    left:auto;
-    transform:skew(8deg) rotate(3deg);
-}
-
-
-.effect8{
-    position:relative;
-    box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
-}
-.effect8:before, .effect8:after{
-    content:"";
-    position:absolute;
-    z-index:-1;
-    box-shadow:0 0 20px rgba(0,0,0,0.8);
-    top:10px;
-    bottom:10px;
-    left:0;
-    right:0;
-    border-radius:100px / 10px;
-}
-.effect8:after{
-    right:10px;
-    left:auto;
-    transform:skew(8deg) rotate(3deg);
-}
-

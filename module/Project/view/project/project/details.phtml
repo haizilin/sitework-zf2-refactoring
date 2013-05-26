@@ -1,43 +1,47 @@
-<div class="row"><div class="small-12 columns">
-<ul data-orbit>
-<?php if ($this->projectsCollection): ?>
-        <?php foreach($this->projectsCollection as $project): ?>
-            <?php $projectDetails = $project->getProjectDetails()->getFirst() ?>
-            <li>
-                <div class="orbit-slide-data">
-                    <div class="orbit-slide-img">
-                        <img class="img" src="<?= $this->image($this->basePath() . '/gfx/project/' . $project->getImg(), 0, 450) ?>"/>
-                    </div>
-                    <div class="orbit-slide-txt">
-                        <p class="description"><?= $projectDetails->getDescription() ?></p>
+<div id="projects" class="row">
+    <div class="small-12 columns">
+        <?php if ($this->projectsCollection): ?>
+            <div class="panel nopad">
+                <ul data-orbit class="orbit-project-details">
+                    <?php foreach($this->projectsCollection as $project): ?>
+                        <?php $projectDetails = $project->getProjectDetails()->getFirst() ?>
+                        <li>
+                            <div class="orbit-caption"><?= $project->getProjectDetails()->getFirst()->getLabel() ?></div>
+                            <div class="detailsContent">
+                                <img class="img" src="<?= $this->image($this->basePath() . '/gfx/project/' . $project->getImg(), 0, 400) ?>"/>
+                                <div class="detailsTxt">
+                                    <p><?= $projectDetails->getDescription() ?></p>
 
-                        <?php $client = $project->getContactRelatedByFkContactClientId() ?>
-                        <?php if (!empty($client)): ?>
-                            <dl class="client attrib">
-                                <dt><?= $this->translate('client') ?>:</dt>
-                                <dd><?= $client->getLabel() ?></dd>
-                            </dl>
-                        <?php endif ?>
+                                    <?php $client = $project->getContactRelatedByFkContactClientId() ?>
+                                    <?php if (!empty($client)): ?>
+                                        <dl class="client attrib">
+                                            <dt><?= $this->translate('client') ?>:</dt>
+                                            <dd><?= $client->getLabel() ?></dd>
+                                        </dl>
+                                    <?php endif ?>
 
-                        <?php  $employer = $project->getContactRelatedByFkContactEmployerId() ?>
-                        <?php if (!empty($employer)): ?>
-                            <dl class="employer attrib">
-                                <dt><?= $this->translate('employer') ?>:</dt>
-                                <dd><?php echo $employer->getLabel() ?></dd>
-                            </dl>
-                        <?php endif ?>
+                                    <?php  $employer = $project->getContactRelatedByFkContactEmployerId() ?>
+                                    <?php if (!empty($employer)): ?>
+                                        <dl class="employer attrib">
+                                            <dt><?= $this->translate('employer') ?>:</dt>
+                                            <dd><?php echo $employer->getLabel() ?></dd>
+                                        </dl>
+                                    <?php endif ?>
 
-                        <dl class="url attrib">
-                            <dt><?= $this->translate('url') ?>:</dt>
-                            <dd><a class="extUlr" href="<?= $project->getUrl() ?>" class="more"><?= $project->getUrl() ?></a></dd>
-                        </dl>
-                    </div>
-                </div>
-                <div class="orbit-caption"><?= $projectDetails->getLabel() ?></div>
-            </li>
-        <?php endforeach; ?>
-<?php else: ?>
-    <?= $this->translate('requested project could not be found.') ?>
-<?php endif; ?>
-</ul>
-</div></div>
+                                    <dl class="url attrib">
+                                        <dt><?= $this->translate('url') ?>:</dt>
+                                        <dd><a class="extUlr" href="<?= $project->getUrl() ?>" class="more"><?= $project->getUrl() ?></a></dd>
+                                    </dl>
+                                </div>
+                            </div>
+                        </li>
+                    <?php endforeach; ?>
+                </ul>
+            </div>
+
+        <?php else: ?>
+            <?= $this->translate('requested project could not be found.') ?>
+        <?php endif; ?>
+    </div>
+</div>
+

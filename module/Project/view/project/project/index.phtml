@@ -1,1 +1,27 @@
-<?= $this->partial('project/project/details.phtml', 'project', array('project' => $this->project));
+<?php use Application\View\Helper\Image; ?>
+<?php //echo $this->partial('project/project/details.phtml', 'project', array('project' => $this->project)); ?>
+<div id="contentProjectTeaser" class="row">
+    <div class="small-12 columns">
+        <div class="panel">
+            <h2><?= $this->translate('Current Projects') ?></h2>
+            <ul>
+            <?php foreach($this->projectsCollection as $project): ?>
+                <li class="projectTeaser">
+                    <div class="entrylabel label">
+                        <?php $date = new DateTime($project->getStartedAt(), new DateTimeZone(date_default_timezone_get())) ?>
+                        <?= $this->dateFormat($date, IntlDateFormatter::TRADITIONAL, IntlDateFormatter::NONE) ?>
+                    </div>
+                    <div class="entryValue">
+                        <img src="<?= $this->image($this->basePath() . '/gfx/project/' . $project->getImg(), 0, 65) ?>"/>
+                        <a title="<?= $this->translate('show details') ?>" href="<?= $this->url('project', array('action' => 'details', 'id' => $project->getId()), true) ?>">
+                            <span class="h3"><?= $project->getProjectDetails()->getFirst()->getLabel() ?></span>
+                            <span class="p"><?= $project->getUrl() ?></span>
+                        </a>
+                        <a class="projectLink icon-circle-arrow-right" href="<?= $this->url('project', array('action' => 'details', 'id' => $project->getId()), true) ?>"></a>
+                    </div>
+                </li>
+            <?php endforeach ?>
+            </ul>
+        </div>
+    </div>
+</div>
