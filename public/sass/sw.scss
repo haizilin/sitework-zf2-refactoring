@@ -3,14 +3,20 @@
 /* We use this media query to add styles to any device that supports media queries */
 @media #{$screen} {
     body { background:#fff; }
-    h1 {
+    h1, .panel h1 {
         text-align:center;
         font-size:20px;
         line-height:27px;
         font-family: "FreeSans";
         margin:0;
-        color:#222;
         @include single-text-shadow;
+    }
+    .panel {
+        @include shadow;
+    }
+    h2, .panel h2, .h2,
+    h3, .panel h3, .h3 {
+        color:$secondary-color;
     }
     .box h6 {
         text-align:center;
@@ -21,7 +27,6 @@
         font-family: "FreeSans";
         margin:0;
         color:#777;
-        @include single-text-shadow;
     }
     .box {
         width:250px;
@@ -31,12 +36,26 @@
         background:#fff;
     }
 
-    /* section { float:left;margin-right:40px;margin-bottom:40px; } */
+    .label,
+    label span{
+        @include gradient($secondary-color-50, $secondary-color-25);
+        border:1px solid $secondary-color-50;
+        border-radius:$global-radius $global-radius 0 0;
+        color:$secondary-color;
+    }
 
+    label span {
+        font-weight:normal;
+        padding:5px 10px;
+        display:block;
+        width:50%;
+    }
     html {
         overflow-y: scroll;
     }
-    footer,
+    footer{
+        height:70px;
+    }
     header{
         height:45px;
     }
@@ -53,10 +72,10 @@
         @include gradient($grad-header-c1, $grad-header-c2);
     }
     header {
-        box-shadow:0 3px 3px $dark-color;
+        @include shadow("south");
     }
     footer {
-        box-shadow:0 -3px 3px $dark-color;
+        @include shadow("north");
     }
     footer .copy,
     footer nav,
@@ -69,19 +88,19 @@
      * project teaser content
      **/
     .projectTeaser .entrylabel {
-        @include gradient($secondary-color-25, $secondary-color-50);
+        @include gradient($secondary-color-50, $secondary-color-25);
         border-radius:$global-radius $global-radius 0 0;
         border:1px solid $secondary-color-50;
-        color:$primary-color;
+        color:$secondary-color;
         font-weight:normal;
         padding:5px 10px;
-        width:30%;
+        width:110px;
         float:right;
+        display:block;
     }
     .projectTeaser {
         overflow:hidden;
         margin-bottom:25px;
-        @include shadow;
     }
 
     .projectTeaser .entryValue:before {
@@ -111,12 +130,13 @@
         padding: 10px 10px 10px 15px;
     }
     .projectTeaser .entryValue a.projectLink {
-        line-height:55px;
-        width:$h3-font-size + $paragraph-line-height;
-        font-size:32px;
+        line-height:100%;
+        height:100%;
+        margin:auto 0;
+        width:45px;
+        font-size:emCalc(28px);
         float:right;
         display:block;
-        text-align:center;
         color:$secondary-color-50;
     }
     .projectTeaser .entryValue a.projectLink:hover {
@@ -130,8 +150,8 @@
    .projectTeaser .entryValue .h3 {
         display:block;
         text-decoration:none;
-        font-size:$h3-font-size;
-        line-height:$h3-font-size;
+        font-size:$h4-font-size;
+        line-height:1.75em;
         font-weight:bold;
     }
 
@@ -143,6 +163,7 @@
     #gmap img {
         border:1px solid $secondary-color;
         border-radius:$global-radius;
+        width:100%;
     }
     ul {
         list-style-type:none;
@@ -174,20 +195,7 @@
         line-height:38px;
         height:38px;
         border-radius:0 $global-radius $global-radius $global-radius;
-        box-shadow: 2px 2px 3px $shadow-color inset;
-    }
-    label span {
-        display:inline-block;
-        width:50%;
-        font-weight:bold;
-        padding:10px;
-        color:$lighter-color;
-        @include gradient($grad-header-c1,$secondary-color-50);
-        border:1px solid $third-color;
-        border-bottom:0;
-        margin-bottom:-1px;
-        border-radius:$global-radius $global-radius 0 0;
-        box-shadow: 2px 0 3px $shadow-color;
+        @include shadow("south-east", true);
     }
     a {
         text-decoration:underline;
@@ -344,12 +352,16 @@
     .orbit-slide-data {
         padding:$panel-padding;
     }
+    .orbit-container {
+        @include shadow;
+    }
     .orbit-container:before {
         padding-top:35px;
         display:block;
         content: " ";
-        border-radius:$global-radius;
-        @include gradient($grad-header-c1, $grad-header-c2);
+        border-radius:$global-radius $global-radius 0 0;
+        border:1px solid $primary-color-50;
+        @include gradient($secondary-color-50, $secondary-color-25);
     }
     .orbit-container .orbit-slides-container {
         height:100%;
@@ -386,7 +398,7 @@
     }
     .orbit-container .orbit-prev > span {
         border-color:transparent;
-        border-right-color:$lightest-color;
+        border-right-color:$secondary-color;
         border-right-style:solid;
     }
     .orbit-container .orbit-prev:hover > span {
@@ -394,7 +406,7 @@
     }
     .orbit-container .orbit-next > span {
         border-color:transparent;
-        border-left-color:$lightest-color;
+        border-left-color:$secondary-color;
         border-left-style:solid;
         margin-left:-10px;
     }
@@ -419,7 +431,7 @@
         border-radius:$global-radius;
     }
     .orbit-bullets li {
-        border-color:$lightest-color;
+        border-color:$secondary-color;
         background:$light-color;
         cursor:pointer;
     }
@@ -435,6 +447,7 @@
         top:10px;
         left:150px;
         font-size:emCalc(14px);
+        color:$secondary-color;
     }
     .orbit-container .orbit-timer {
         position:absolute;
@@ -450,7 +463,7 @@
         display:block; cursor:pointer;
     }
     .orbit-container .orbit-timer > span {
-        border:3px solid $lightest-color;
+        border:3px solid $secondary-color;
         border-top:0;
         border-bottom:0;
     }
@@ -461,7 +474,7 @@
         border-color: transparent transparent transparent $alert-color;
     }
     .orbit-container .orbit-timer.paused > span {
-        border-left:8px solid $lightest-color;
+        border-left:8px solid $secondary-color;
     }
     .orbit-container .orbit-timer .orbit-progress {
         position:absolute;
@@ -475,7 +488,7 @@
         border-radius:$global-radius;
         display:block;
         margin:0 auto;
-        max-width: 100%;
+        width: 100%;
     }
     .orbit-slide-description,
     .orbit-slide-attrib {
@@ -485,28 +498,22 @@
         font-size:emCalc(13px);
         border-top:1px solid $secondary-color;
     }
-    .orbit-slide-attrib dl,
-    .orbit-slide-attrib dt,
-    .orbit-slide-attrib dd {
+    .orbit-slide-attrib dl {
+        margin-bottom: 5px;
         display:block;
     }
-    .orbit-slide-attrib dl {
-        margin-bottom: 10px;
-    }
     .orbit-slide-attrib dt {
-        float: left;
         width:65px;
-        line-height:1;
-        margin-right:5px;
+        display:block;
+        float:left;
+        padding:0;
     }
     .orbit-slide-attrib dd {
         margin-left: 75px;
+        display:block;
+        float:none;
+        white-space: normal;
         padding:0;
-        line-height:1;
-    }
-    .orbit-slide-attrib dd:after {
-        content: " ";
-        clear: left;
     }
     .orbit-caption {
         position:relative;
@@ -517,7 +524,9 @@
 
 /* Used to alter styles for screens at least 768px wide. This is where the grid changes. */
 @media #{$small} {
-    footer,
+    footer {
+        height:40px;
+    }
     header{
         height:90px;
     }
@@ -564,7 +573,7 @@
         border:0;
         border-radius:0 0 $big-radius $big-radius;
         color:$secondary-color;
-        box-shadow:3px 3px 3px $dark-color inset;
+        @include shadow("south-east", true);
     }
     .top-bar-section .nav-primary li,
     .top-bar-section .nav-primary li a {

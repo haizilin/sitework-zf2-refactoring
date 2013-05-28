@@ -4,21 +4,25 @@ namespace Project\Controller;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 use Project\Model;
+use Propel;
 use Zend\Debug\Debug;
+
+
 
 class ProjectController extends AbstractActionController
 {
     public function indexAction () {
         $prjModel = new Model\Project;
-        $projects = $prjModel->getQuery()->limit(10)->find();
+        $projects = $prjModel->getQuery()->orderByFinishedAt('desc')->orderByStartedAt('desc');
 
         $sidebar = new ViewModel();
-        $sidebar->setVariable('projectsCollection', $projects);
+        $sidebar->setVariable('projectsCollection', $projects->limit(7)->find());
         $sidebar->setTemplate('project/partials/sidebar.project.teaser.phtml');
         $this->layout()->addChild($sidebar, 'sidebar');
 
         $view = new ViewModel();
-        $view->setVariable('projectsCollection', $projects);
+        $view->setVariable('currentProjects', $projects->limit(2)->find());
+        $view->setVariable('rescentProjects', $projects->limit(2)->find());
 
         return $view;
     }

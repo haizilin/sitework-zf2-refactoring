@@ -1,15 +1,24 @@
 <?php use Application\View\Helper\Image; ?>
-<?php //echo $this->partial('project/project/details.phtml', 'project', array('project' => $this->project)); ?>
 <div id="contentProjectTeaser" class="row">
+    <div class="small-12 large-6 columns">
+        <div class="panel">
+            <?php echo $this->currentProjects->get(0)->getProjectDetails()->getFirst()->getLabel() ?>
+        </div>
+    </div>
+    <div class="small-12 large-6 columns">
+        <div class="panel">
+            <?php echo $this->currentProjects->get(1)->getProjectDetails()->getFirst()->getLabel() ?>
+        </div>
+    </div>
     <div class="small-12 columns">
         <div class="panel">
-            <h2><?= $this->translate('Current Projects') ?></h2>
+            <h2><?= $this->translate('Rescent Projects') ?></h2>
             <ul>
-            <?php foreach($this->projectsCollection as $project): ?>
+            <?php foreach($this->rescentProjects as $project): ?>
                 <li class="projectTeaser">
                     <div class="entrylabel label">
                         <?php $date = new DateTime($project->getStartedAt(), new DateTimeZone(date_default_timezone_get())) ?>
-                        <?= $this->dateFormat($date, IntlDateFormatter::TRADITIONAL, IntlDateFormatter::NONE) ?>
+                        <?= $this->dateFormat($date, IntlDateFormatter::MEDIUM, IntlDateFormatter::NONE) ?>
                     </div>
                     <div class="entryValue">
                         <img src="<?= $this->image($this->basePath() . '/gfx/project/' . $project->getImg(), 0, 65) ?>"/>

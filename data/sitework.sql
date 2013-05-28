@@ -1,15 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 3.5.6
+-- version 4.0.0
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Erstellungszeit: 14. Apr 2013 um 18:59
--- Server Version: 5.5.29-0ubuntu0.12.10.1
--- PHP-Version: 5.4.6-1ubuntu1.2
+-- Erstellungszeit: 28. Mai 2013 um 07:54
+-- Server Version: 5.5.31-0ubuntu0.13.04.1
+-- PHP-Version: 5.4.9-4ubuntu2
 
 SET FOREIGN_KEY_CHECKS=0;
-SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT=0;
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -83,30 +83,23 @@ CREATE TABLE IF NOT EXISTS `contact` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `label` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=19 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=21 ;
 
 --
 -- Daten für Tabelle `contact`
 --
 
 INSERT INTO `contact` (`id`, `label`) VALUES
-(1, 'Second-Hand-Parts Cyran'),
-(2, 'Autoreparaturen.de'),
-(3, 'Saturn Media GmbH'),
-(4, 'DIRTY JERZ GmbH'),
-(5, 'Joint Forces Media GmbH'),
-(6, 'Styleheads GmbH'),
-(7, 'Eva E. Froese'),
-(8, 'Ratio Wohnungsbaugenossenschaft e.G'),
-(9, 'APB Arbeits- und Personalvermittlung Berlin'),
-(10, 'STEPSEVEN Kreativagentur GmbH'),
-(11, 'Intern'),
-(12, 'IHK Potsdam'),
-(13, 'Zalando GmbH'),
-(14, 'Reinickendorfer HKP Marco Müller GmbH'),
-(15, 'JaCarte Kartographische Dienstleistungen, Jochen Jacoby'),
-(16, 'Car Mobile Systems'),
-(18, 'Lianè Hübner');
+(1, 'Intern'),
+(2, 'Eva E. Froese'),
+(3, 'Second-Hand-Parts Cyran'),
+(4, 'Autoreparaturen.de'),
+(5, 'Car Mobile Systems'),
+(6, 'Reinickendorfer HKP Marco Müller GmbH'),
+(7, 'JaCarte Kartographische Dienstleistungen, Jochen Jacoby'),
+(8, 'Lianè Hübner'),
+(9, 'Frank Müller'),
+(10, 'Rozalina Angelova');
 
 -- --------------------------------------------------------
 
@@ -149,19 +142,21 @@ CREATE TABLE IF NOT EXISTS `project` (
   PRIMARY KEY (`id`),
   KEY `FI_ject_client` (`fk_contact_client_id`),
   KEY `FI_ject_employer` (`fk_contact_employer_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=23 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=26 ;
 
 --
 -- Daten für Tabelle `project`
 --
 
 INSERT INTO `project` (`id`, `fk_contact_client_id`, `fk_contact_employer_id`, `started_at`, `finished_at`, `url`, `img`, `active`) VALUES
-(1, 7, 7, '2004-04-01', NULL, 'http://www.mpu-und-therapie.de', 'mpu-und-therapie.png', 1),
-(8, 1, 16, '2006-03-13', NULL, 'http://www.shpc.de', 'shpc.png', 1),
-(12, 2, 16, '2009-06-13', NULL, 'http://www.autoreparaturen.de', 'autoreparaturen.png', 1),
-(19, 14, 14, '2010-02-01', NULL, 'http://www.muellerpflege.de', 'marco-mueller.png', 1),
-(21, 15, 15, '2011-01-09', NULL, 'http://www.jacarte.de', 'jacarte.png', 1),
-(22, 18, 18, '2012-11-15', '2013-01-05', 'http://www.awhitesheetofpaper.com', 'awsop.png', 1);
+(1, 2, 2, '2004-04-01', '2004-05-25', 'http://www.mpu-und-therapie.de', 'mpu-und-therapie.png', 1),
+(2, 2, 5, '2006-03-13', '2006-08-01', 'http://www.shpc.de', 'shpc.png', 1),
+(3, 3, 5, '2009-06-13', '2010-01-02', 'http://www.autoreparaturen.de', 'autoreparaturen.png', 1),
+(4, 6, 6, '2010-02-01', '2010-03-01', 'http://www.muellerpflege.de', 'marco-mueller.png', 1),
+(5, 7, 7, '2011-01-09', '2011-10-20', 'http://www.jacarte.de', 'jacarte.png', 1),
+(6, 8, 8, '2012-11-15', '2013-01-05', 'http://www.awhitesheetofpaper.com', 'awsop.png', 1),
+(7, 9, 9, '2013-03-15', NULL, NULL, NULL, 1),
+(8, 10, 10, '2013-05-15', NULL, NULL, NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -184,12 +179,14 @@ CREATE TABLE IF NOT EXISTS `project_detail` (
 --
 
 INSERT INTO `project_detail` (`fk_project_id`, `fk_lang_id`, `label`, `description`) VALUES
-(1, 2, 'MPU und Therapie', 'Bei diesem Projekt handelt es sich um eine kleine Website für eine psychotherapeutische Praxis.'),
-(8, 2, 'Second-Hand-Parts Cyran', 'Die Website stellt eine Plattform zur Vermittlung von gebrauchten Autoersatzteilen dar. Die Website stellt ein Account-System für Anbieter von Ersatzteilen und ein CMS zur Verwaltung der Clients zur Verfügung.'),
-(12, 2, 'Autoreparaturen.de', 'Plattform zur Vermittlung von Kfz-Werkstattleistungen.'),
-(19, 2, 'Marco Müller - Hauskrankenpflege', '<p>Website zur Präsentation der Reinickendorfer Hauskrankenpflege Marco Müller GmbH. Dieses Projekt beinhaltete  sowohl die Entwicklung des Designs, als auch dessen technische Umsetzung.</p><p>Zum Einsatz kommen hierzu PHP mit dem Zend Framework und MySQL. Das Konzept ermöglicht eine einfache Pflege und bedarfsorientierte Möglichkeiten zur Erweiterung der Website zu einem späteren Zeitpunkt.</p>\r\n'),
-(21, 2, 'JaCarte - Kartographie', 'Jochen Jacoby unterbreitet auf seiner Website ein Angebot und zeigt Referenzen zur Erbringung von kartographische Dienstleistungen. Inhalt und Gestaltung stammen dabei zu einem großen teil von Herrn Jacoby und wurden auf basis des Zend Framework auf <a href="http://www.jacarte.de">www.jacarte.de</a> umgesetzt.'),
-(22, 2, 'AWHITESHEETOFPAPER.COM', NULL);
+(1, 2, 'MPU und Therapie', '<p>Bei diesem Projekt handelt es sich um eine kleine Website für eine psychotherapeutische Praxis.</p>'),
+(2, 2, 'Second-Hand-Parts Cyran', '<p>Die Website stellt eine Plattform zur Vermittlung von gebrauchten Autoersatzteilen dar. Die Website stellt ein Account-System für Anbieter von Ersatzteilen und ein CMS zur Verwaltung der Clients zur Verfügung.</p>'),
+(3, 2, 'Autoreparaturen.de', '<p>Plattform zur Vermittlung von Kfz-Werkstattleistungen.</p>'),
+(4, 2, 'Marco Müller - Hauskrankenpflege', '<p>Website zur Präsentation der Reinickendorfer Hauskrankenpflege Marco Müller GmbH. Dieses Projekt beinhaltete  sowohl die Entwicklung des Designs, als auch dessen technische Umsetzung.</p><p>Zum Einsatz kommen hierzu PHP mit dem Zend Framework und MySQL. Das Konzept ermöglicht eine einfache Pflege und bedarfsorientierte Möglichkeiten zur Erweiterung der Website zu einem späteren Zeitpunkt.</p>\r\n'),
+(5, 2, 'JaCarte - Kartographie', '<p>Jochen Jacoby unterbreitet auf seiner Website ein Angebot und zeigt Referenzen zur Erbringung von kartographische Dienstleistungen. Inhalt und Gestaltung stammen dabei zu einem großen teil von Herrn Jacoby und wurden auf basis des Zend Framework auf <a href="http://www.jacarte.de">www.jacarte.de</a> umgesetzt.</p>'),
+(6, 2, 'AWHITESHEETOFPAPER.COM', NULL),
+(7, 2, 'Sportfischen vor Puerto Angel ', 'Website für ein Angebot für Sportfischen an der mexikanischen Pazifikküste.'),
+(8, 2, 'Stress Free Motion', 'Website für ein Angebot für Coaching, Yoga und Vermittlung von Techniken zur Stressbewältigung und Verbesserung der lebensqualität durch eine positive Einstellung.');
 
 -- --------------------------------------------------------
 
