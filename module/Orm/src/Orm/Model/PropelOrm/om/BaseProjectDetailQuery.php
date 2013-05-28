@@ -69,14 +69,8 @@ abstract class BaseProjectDetailQuery extends ModelCriteria
      * @param     string $modelName The phpName of a model, e.g. 'Book'
      * @param     string $modelAlias The alias for the model in this query, e.g. 'b'
      */
-    public function __construct($dbName = null, $modelName = null, $modelAlias = null)
+    public function __construct($dbName = 'PropelOrm', $modelName = 'Orm\\Model\\PropelOrm\\ProjectDetail', $modelAlias = null)
     {
-        if (null === $dbName) {
-            $dbName = 'PropelOrm';
-        }
-        if (null === $modelName) {
-            $modelName = 'Orm\\Model\\PropelOrm\\ProjectDetail';
-        }
         parent::__construct($dbName, $modelName, $modelAlias);
     }
 
@@ -84,7 +78,7 @@ abstract class BaseProjectDetailQuery extends ModelCriteria
      * Returns a new ProjectDetailQuery object.
      *
      * @param     string $modelAlias The alias of a model in the query
-     * @param   ProjectDetailQuery|Criteria $criteria Optional Criteria to build the query from
+     * @param     ProjectDetailQuery|Criteria $criteria Optional Criteria to build the query from
      *
      * @return ProjectDetailQuery
      */
@@ -93,8 +87,10 @@ abstract class BaseProjectDetailQuery extends ModelCriteria
         if ($criteria instanceof ProjectDetailQuery) {
             return $criteria;
         }
-        $query = new ProjectDetailQuery(null, null, $modelAlias);
-
+        $query = new ProjectDetailQuery();
+        if (null !== $modelAlias) {
+            $query->setModelAlias($modelAlias);
+        }
         if ($criteria instanceof Criteria) {
             $query->mergeWith($criteria);
         }
@@ -123,7 +119,7 @@ abstract class BaseProjectDetailQuery extends ModelCriteria
             return null;
         }
         if ((null !== ($obj = ProjectDetailPeer::getInstanceFromPool(serialize(array((string) $key[0], (string) $key[1]))))) && !$this->formatter) {
-            // the object is already in the instance pool
+            // the object is alredy in the instance pool
             return $obj;
         }
         if ($con === null) {
@@ -146,8 +142,8 @@ abstract class BaseProjectDetailQuery extends ModelCriteria
      * @param     mixed $key Primary key to use for the query
      * @param     PropelPDO $con A connection object
      *
-     * @return                 ProjectDetail A model object, or null if the key is not found
-     * @throws PropelException
+     * @return   ProjectDetail A model object, or null if the key is not found
+     * @throws   PropelException
      */
     protected function findPkSimple($key, $con)
     {
@@ -259,8 +255,7 @@ abstract class BaseProjectDetailQuery extends ModelCriteria
      * <code>
      * $query->filterByFkProjectId(1234); // WHERE fk_project_id = 1234
      * $query->filterByFkProjectId(array(12, 34)); // WHERE fk_project_id IN (12, 34)
-     * $query->filterByFkProjectId(array('min' => 12)); // WHERE fk_project_id >= 12
-     * $query->filterByFkProjectId(array('max' => 12)); // WHERE fk_project_id <= 12
+     * $query->filterByFkProjectId(array('min' => 12)); // WHERE fk_project_id > 12
      * </code>
      *
      * @see       filterByProject()
@@ -275,22 +270,8 @@ abstract class BaseProjectDetailQuery extends ModelCriteria
      */
     public function filterByFkProjectId($fkProjectId = null, $comparison = null)
     {
-        if (is_array($fkProjectId)) {
-            $useMinMax = false;
-            if (isset($fkProjectId['min'])) {
-                $this->addUsingAlias(ProjectDetailPeer::FK_PROJECT_ID, $fkProjectId['min'], Criteria::GREATER_EQUAL);
-                $useMinMax = true;
-            }
-            if (isset($fkProjectId['max'])) {
-                $this->addUsingAlias(ProjectDetailPeer::FK_PROJECT_ID, $fkProjectId['max'], Criteria::LESS_EQUAL);
-                $useMinMax = true;
-            }
-            if ($useMinMax) {
-                return $this;
-            }
-            if (null === $comparison) {
-                $comparison = Criteria::IN;
-            }
+        if (is_array($fkProjectId) && null === $comparison) {
+            $comparison = Criteria::IN;
         }
 
         return $this->addUsingAlias(ProjectDetailPeer::FK_PROJECT_ID, $fkProjectId, $comparison);
@@ -303,8 +284,7 @@ abstract class BaseProjectDetailQuery extends ModelCriteria
      * <code>
      * $query->filterByFkLangId(1234); // WHERE fk_lang_id = 1234
      * $query->filterByFkLangId(array(12, 34)); // WHERE fk_lang_id IN (12, 34)
-     * $query->filterByFkLangId(array('min' => 12)); // WHERE fk_lang_id >= 12
-     * $query->filterByFkLangId(array('max' => 12)); // WHERE fk_lang_id <= 12
+     * $query->filterByFkLangId(array('min' => 12)); // WHERE fk_lang_id > 12
      * </code>
      *
      * @see       filterByLanguage()
@@ -319,22 +299,8 @@ abstract class BaseProjectDetailQuery extends ModelCriteria
      */
     public function filterByFkLangId($fkLangId = null, $comparison = null)
     {
-        if (is_array($fkLangId)) {
-            $useMinMax = false;
-            if (isset($fkLangId['min'])) {
-                $this->addUsingAlias(ProjectDetailPeer::FK_LANG_ID, $fkLangId['min'], Criteria::GREATER_EQUAL);
-                $useMinMax = true;
-            }
-            if (isset($fkLangId['max'])) {
-                $this->addUsingAlias(ProjectDetailPeer::FK_LANG_ID, $fkLangId['max'], Criteria::LESS_EQUAL);
-                $useMinMax = true;
-            }
-            if ($useMinMax) {
-                return $this;
-            }
-            if (null === $comparison) {
-                $comparison = Criteria::IN;
-            }
+        if (is_array($fkLangId) && null === $comparison) {
+            $comparison = Criteria::IN;
         }
 
         return $this->addUsingAlias(ProjectDetailPeer::FK_LANG_ID, $fkLangId, $comparison);
@@ -404,8 +370,8 @@ abstract class BaseProjectDetailQuery extends ModelCriteria
      * @param   Project|PropelObjectCollection $project The related object(s) to use as filter
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
-     * @return                 ProjectDetailQuery The current query, for fluid interface
-     * @throws PropelException - if the provided filter is invalid.
+     * @return   ProjectDetailQuery The current query, for fluid interface
+     * @throws   PropelException - if the provided filter is invalid.
      */
     public function filterByProject($project, $comparison = null)
     {
@@ -480,8 +446,8 @@ abstract class BaseProjectDetailQuery extends ModelCriteria
      * @param   Language|PropelObjectCollection $language The related object(s) to use as filter
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
-     * @return                 ProjectDetailQuery The current query, for fluid interface
-     * @throws PropelException - if the provided filter is invalid.
+     * @return   ProjectDetailQuery The current query, for fluid interface
+     * @throws   PropelException - if the provided filter is invalid.
      */
     public function filterByLanguage($language, $comparison = null)
     {

@@ -54,7 +54,7 @@ abstract class BaseContactPeer
     const DEFAULT_STRING_FORMAT = 'YAML';
 
     /**
-     * An identity map to hold any loaded instances of Contact objects.
+     * An identiy map to hold any loaded instances of Contact objects.
      * This must be public so that other peer classes can access this when hydrating from JOIN
      * queries.
      * @var        array Contact[]
@@ -358,8 +358,10 @@ abstract class BaseContactPeer
      */
     public static function clearInstancePool($and_clear_all_references = false)
     {
-      if ($and_clear_all_references) {
-        foreach (ContactPeer::$instances as $instance) {
+      if ($and_clear_all_references)
+      {
+        foreach (ContactPeer::$instances as $instance)
+        {
           $instance->clearAllReferences(true);
         }
       }
@@ -497,7 +499,7 @@ abstract class BaseContactPeer
      *
      * @return string ClassName
      */
-    public static function getOMClass($row = 0, $colnum = 0)
+    public static function getOMClass()
     {
         return ContactPeer::OM_CLASS;
     }

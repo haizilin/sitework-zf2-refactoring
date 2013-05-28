@@ -57,7 +57,7 @@ abstract class BaseLanguagePeer
     const DEFAULT_STRING_FORMAT = 'YAML';
 
     /**
-     * An identity map to hold any loaded instances of Language objects.
+     * An identiy map to hold any loaded instances of Language objects.
      * This must be public so that other peer classes can access this when hydrating from JOIN
      * queries.
      * @var        array Language[]
@@ -363,8 +363,10 @@ abstract class BaseLanguagePeer
      */
     public static function clearInstancePool($and_clear_all_references = false)
     {
-      if ($and_clear_all_references) {
-        foreach (LanguagePeer::$instances as $instance) {
+      if ($and_clear_all_references)
+      {
+        foreach (LanguagePeer::$instances as $instance)
+        {
           $instance->clearAllReferences(true);
         }
       }
@@ -502,7 +504,7 @@ abstract class BaseLanguagePeer
      *
      * @return string ClassName
      */
-    public static function getOMClass($row = 0, $colnum = 0)
+    public static function getOMClass()
     {
         return LanguagePeer::OM_CLASS;
     }

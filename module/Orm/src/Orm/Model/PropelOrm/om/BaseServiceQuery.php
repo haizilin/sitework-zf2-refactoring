@@ -68,14 +68,8 @@ abstract class BaseServiceQuery extends ModelCriteria
      * @param     string $modelName The phpName of a model, e.g. 'Book'
      * @param     string $modelAlias The alias for the model in this query, e.g. 'b'
      */
-    public function __construct($dbName = null, $modelName = null, $modelAlias = null)
+    public function __construct($dbName = 'PropelOrm', $modelName = 'Orm\\Model\\PropelOrm\\Service', $modelAlias = null)
     {
-        if (null === $dbName) {
-            $dbName = 'PropelOrm';
-        }
-        if (null === $modelName) {
-            $modelName = 'Orm\\Model\\PropelOrm\\Service';
-        }
         parent::__construct($dbName, $modelName, $modelAlias);
     }
 
@@ -83,7 +77,7 @@ abstract class BaseServiceQuery extends ModelCriteria
      * Returns a new ServiceQuery object.
      *
      * @param     string $modelAlias The alias of a model in the query
-     * @param   ServiceQuery|Criteria $criteria Optional Criteria to build the query from
+     * @param     ServiceQuery|Criteria $criteria Optional Criteria to build the query from
      *
      * @return ServiceQuery
      */
@@ -92,8 +86,10 @@ abstract class BaseServiceQuery extends ModelCriteria
         if ($criteria instanceof ServiceQuery) {
             return $criteria;
         }
-        $query = new ServiceQuery(null, null, $modelAlias);
-
+        $query = new ServiceQuery();
+        if (null !== $modelAlias) {
+            $query->setModelAlias($modelAlias);
+        }
         if ($criteria instanceof Criteria) {
             $query->mergeWith($criteria);
         }
@@ -121,7 +117,7 @@ abstract class BaseServiceQuery extends ModelCriteria
             return null;
         }
         if ((null !== ($obj = ServicePeer::getInstanceFromPool((string) $key))) && !$this->formatter) {
-            // the object is already in the instance pool
+            // the object is alredy in the instance pool
             return $obj;
         }
         if ($con === null) {
@@ -143,8 +139,8 @@ abstract class BaseServiceQuery extends ModelCriteria
      * @param     mixed $key Primary key to use for the query
      * @param     PropelPDO $con A connection object
      *
-     * @return                 Service A model object, or null if the key is not found
-     * @throws PropelException
+     * @return   Service A model object, or null if the key is not found
+     * @throws   PropelException
      */
      public function findOneById($key, $con = null)
      {
@@ -158,8 +154,8 @@ abstract class BaseServiceQuery extends ModelCriteria
      * @param     mixed $key Primary key to use for the query
      * @param     PropelPDO $con A connection object
      *
-     * @return                 Service A model object, or null if the key is not found
-     * @throws PropelException
+     * @return   Service A model object, or null if the key is not found
+     * @throws   PropelException
      */
     protected function findPkSimple($key, $con)
     {
@@ -259,8 +255,7 @@ abstract class BaseServiceQuery extends ModelCriteria
      * <code>
      * $query->filterById(1234); // WHERE id = 1234
      * $query->filterById(array(12, 34)); // WHERE id IN (12, 34)
-     * $query->filterById(array('min' => 12)); // WHERE id >= 12
-     * $query->filterById(array('max' => 12)); // WHERE id <= 12
+     * $query->filterById(array('min' => 12)); // WHERE id > 12
      * </code>
      *
      * @param     mixed $id The value to use as filter.
@@ -273,22 +268,8 @@ abstract class BaseServiceQuery extends ModelCriteria
      */
     public function filterById($id = null, $comparison = null)
     {
-        if (is_array($id)) {
-            $useMinMax = false;
-            if (isset($id['min'])) {
-                $this->addUsingAlias(ServicePeer::ID, $id['min'], Criteria::GREATER_EQUAL);
-                $useMinMax = true;
-            }
-            if (isset($id['max'])) {
-                $this->addUsingAlias(ServicePeer::ID, $id['max'], Criteria::LESS_EQUAL);
-                $useMinMax = true;
-            }
-            if ($useMinMax) {
-                return $this;
-            }
-            if (null === $comparison) {
-                $comparison = Criteria::IN;
-            }
+        if (is_array($id) && null === $comparison) {
+            $comparison = Criteria::IN;
         }
 
         return $this->addUsingAlias(ServicePeer::ID, $id, $comparison);
@@ -301,8 +282,7 @@ abstract class BaseServiceQuery extends ModelCriteria
      * <code>
      * $query->filterByFkCategoryId(1234); // WHERE fk_category_id = 1234
      * $query->filterByFkCategoryId(array(12, 34)); // WHERE fk_category_id IN (12, 34)
-     * $query->filterByFkCategoryId(array('min' => 12)); // WHERE fk_category_id >= 12
-     * $query->filterByFkCategoryId(array('max' => 12)); // WHERE fk_category_id <= 12
+     * $query->filterByFkCategoryId(array('min' => 12)); // WHERE fk_category_id > 12
      * </code>
      *
      * @see       filterByCategory()
@@ -345,8 +325,7 @@ abstract class BaseServiceQuery extends ModelCriteria
      * <code>
      * $query->filterByPos(1234); // WHERE pos = 1234
      * $query->filterByPos(array(12, 34)); // WHERE pos IN (12, 34)
-     * $query->filterByPos(array('min' => 12)); // WHERE pos >= 12
-     * $query->filterByPos(array('max' => 12)); // WHERE pos <= 12
+     * $query->filterByPos(array('min' => 12)); // WHERE pos > 12
      * </code>
      *
      * @param     mixed $pos The value to use as filter.
@@ -413,8 +392,8 @@ abstract class BaseServiceQuery extends ModelCriteria
      * @param   Category|PropelObjectCollection $category The related object(s) to use as filter
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
-     * @return                 ServiceQuery The current query, for fluid interface
-     * @throws PropelException - if the provided filter is invalid.
+     * @return   ServiceQuery The current query, for fluid interface
+     * @throws   PropelException - if the provided filter is invalid.
      */
     public function filterByCategory($category, $comparison = null)
     {
@@ -489,8 +468,8 @@ abstract class BaseServiceQuery extends ModelCriteria
      * @param   ServiceDetail|PropelObjectCollection $serviceDetail  the related object to use as filter
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
-     * @return                 ServiceQuery The current query, for fluid interface
-     * @throws PropelException - if the provided filter is invalid.
+     * @return   ServiceQuery The current query, for fluid interface
+     * @throws   PropelException - if the provided filter is invalid.
      */
     public function filterByServiceDetail($serviceDetail, $comparison = null)
     {

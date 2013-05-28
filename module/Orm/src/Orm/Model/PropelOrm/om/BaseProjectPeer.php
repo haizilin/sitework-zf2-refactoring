@@ -73,7 +73,7 @@ abstract class BaseProjectPeer
     const DEFAULT_STRING_FORMAT = 'YAML';
 
     /**
-     * An identity map to hold any loaded instances of Project objects.
+     * An identiy map to hold any loaded instances of Project objects.
      * This must be public so that other peer classes can access this when hydrating from JOIN
      * queries.
      * @var        array Project[]
@@ -389,8 +389,10 @@ abstract class BaseProjectPeer
      */
     public static function clearInstancePool($and_clear_all_references = false)
     {
-      if ($and_clear_all_references) {
-        foreach (ProjectPeer::$instances as $instance) {
+      if ($and_clear_all_references)
+      {
+        foreach (ProjectPeer::$instances as $instance)
+        {
           $instance->clearAllReferences(true);
         }
       }
@@ -1107,7 +1109,7 @@ abstract class BaseProjectPeer
      *
      * @return string ClassName
      */
-    public static function getOMClass($row = 0, $colnum = 0)
+    public static function getOMClass()
     {
         return ProjectPeer::OM_CLASS;
     }

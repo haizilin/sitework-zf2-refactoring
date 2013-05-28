@@ -59,7 +59,7 @@ abstract class BaseServiceDetailPeer
     const DEFAULT_STRING_FORMAT = 'YAML';
 
     /**
-     * An identity map to hold any loaded instances of ServiceDetail objects.
+     * An identiy map to hold any loaded instances of ServiceDetail objects.
      * This must be public so that other peer classes can access this when hydrating from JOIN
      * queries.
      * @var        array ServiceDetail[]
@@ -365,8 +365,10 @@ abstract class BaseServiceDetailPeer
      */
     public static function clearInstancePool($and_clear_all_references = false)
     {
-      if ($and_clear_all_references) {
-        foreach (ServiceDetailPeer::$instances as $instance) {
+      if ($and_clear_all_references)
+      {
+        foreach (ServiceDetailPeer::$instances as $instance)
+        {
           $instance->clearAllReferences(true);
         }
       }
@@ -1135,7 +1137,7 @@ abstract class BaseServiceDetailPeer
      *
      * @return string ClassName
      */
-    public static function getOMClass($row = 0, $colnum = 0)
+    public static function getOMClass()
     {
         return ServiceDetailPeer::OM_CLASS;
     }

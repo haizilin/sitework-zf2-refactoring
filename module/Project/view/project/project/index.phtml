@@ -1,15 +1,26 @@
 <?php use Application\View\Helper\Image; ?>
 <div id="contentProjectTeaser" class="row">
-    <div class="small-12 large-6 columns">
+
+    <?php if ($this->currentProjects->count() > 1): ?>
+        <div class="small-12 large-6 columns">
+            <div class="panel">
+                <?php echo $this->currentProjects->get(0)->getProjectDetails()->getFirst()->getLabel() ?>
+            </div>
+        </div>
+        <div class="small-12 large-6 columns">
+            <div class="panel">
+                <?php echo $this->currentProjects->get(1)->getProjectDetails()->getFirst()->getLabel() ?>
+            </div>
+        </div>
+    <?php elseif (!$this->currentProjects->isEmpty()): ?>
+    <div class="small-12 large-12 columns">
         <div class="panel">
             <?php echo $this->currentProjects->get(0)->getProjectDetails()->getFirst()->getLabel() ?>
         </div>
     </div>
-    <div class="small-12 large-6 columns">
-        <div class="panel">
-            <?php echo $this->currentProjects->get(1)->getProjectDetails()->getFirst()->getLabel() ?>
-        </div>
-    </div>
+    <?php endif ?>
+
+    <?php if (!$this->rescentProjects->isEmpty()): ?>
     <div class="small-12 columns">
         <div class="panel">
             <h2><?= $this->translate('Rescent Projects') ?></h2>
@@ -33,4 +44,5 @@
             </ul>
         </div>
     </div>
+    <?php endif ?>
 </div>

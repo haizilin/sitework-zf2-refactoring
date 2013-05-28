@@ -68,7 +68,7 @@
         <column name="fk_contact_client_id" type="INTEGER" required="false" default="null"/>
         <column name="fk_contact_employer_id" type="INTEGER" required="false" default="null"/>
         <column name="started_at" type="DATE" required="true"/>
-        <column name="finished_at" type="DATE"/>
+        <column name="finished_at" type="DATE" default="null"/>
         <column name="url" type="VARCHAR" size="255"/>
         <column name="img" type="VARCHAR" size="255"/>
         <column name="active" type="BOOLEAN" default="true" required="true" />

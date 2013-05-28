@@ -46,7 +46,7 @@ abstract class BaseProject extends BaseObject implements Persistent
     protected static $peer;
 
     /**
-     * The flag var to prevent infinite loop in deep copy
+     * The flag var to prevent infinit loop in deep copy
      * @var       boolean
      */
     protected $startCopy = false;
@@ -170,7 +170,6 @@ abstract class BaseProject extends BaseObject implements Persistent
      */
     public function getId()
     {
-
         return $this->id;
     }
 
@@ -181,7 +180,6 @@ abstract class BaseProject extends BaseObject implements Persistent
      */
     public function getFkContactClientId()
     {
-
         return $this->fk_contact_client_id;
     }
 
@@ -192,7 +190,6 @@ abstract class BaseProject extends BaseObject implements Persistent
      */
     public function getFkContactEmployerId()
     {
-
         return $this->fk_contact_employer_id;
     }
 
@@ -283,7 +280,6 @@ abstract class BaseProject extends BaseObject implements Persistent
      */
     public function getUrl()
     {
-
         return $this->url;
     }
 
@@ -294,7 +290,6 @@ abstract class BaseProject extends BaseObject implements Persistent
      */
     public function getImg()
     {
-
         return $this->img;
     }
 
@@ -305,7 +300,6 @@ abstract class BaseProject extends BaseObject implements Persistent
      */
     public function getActive()
     {
-
         return $this->active;
     }
 
@@ -524,7 +518,7 @@ abstract class BaseProject extends BaseObject implements Persistent
      * more tables.
      *
      * @param array $row The row returned by PDOStatement->fetch(PDO::FETCH_NUM)
-     * @param int $startcol 0-based offset column which indicates which resultset column to start with.
+     * @param int $startcol 0-based offset column which indicates which restultset column to start with.
      * @param boolean $rehydrate Whether this object is being re-hydrated from the database.
      * @return int             next starting column
      * @throws PropelException - Any caught Exception will be rewrapped as a PropelException.
@@ -549,7 +543,6 @@ abstract class BaseProject extends BaseObject implements Persistent
                 $this->ensureConsistency();
             }
             $this->postHydrate($row, $startcol, $rehydrate);
-
             return $startcol + 8; // 8 = ProjectPeer::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
@@ -736,7 +729,7 @@ abstract class BaseProject extends BaseObject implements Persistent
             $this->alreadyInSave = true;
 
             // We call the save method on the following object(s) if they
-            // were passed to this object by their corresponding set
+            // were passed to this object by their coresponding set
             // method.  This object relates to these object(s) by a
             // foreign key reference.
 
@@ -767,10 +760,9 @@ abstract class BaseProject extends BaseObject implements Persistent
 
             if ($this->projectDetailsScheduledForDeletion !== null) {
                 if (!$this->projectDetailsScheduledForDeletion->isEmpty()) {
-                    foreach ($this->projectDetailsScheduledForDeletion as $projectDetail) {
-                        // need to save related object because we set the relation to null
-                        $projectDetail->save($con);
-                    }
+                    ProjectDetailQuery::create()
+                        ->filterByPrimaryKeys($this->projectDetailsScheduledForDeletion->getPrimaryKeys(false))
+                        ->delete($con);
                     $this->projectDetailsScheduledForDeletion = null;
                 }
             }
@@ -948,10 +940,10 @@ abstract class BaseProject extends BaseObject implements Persistent
      *
      * In addition to checking the current object, all related objects will
      * also be validated.  If all pass then <code>true</code> is returned; otherwise
-     * an aggregated array of ValidationFailed objects will be returned.
+     * an aggreagated array of ValidationFailed objects will be returned.
      *
      * @param array $columns Array of column names to validate.
-     * @return mixed <code>true</code> if all validations pass; array of <code>ValidationFailed</code> objects otherwise.
+     * @return mixed <code>true</code> if all validations pass; array of <code>ValidationFailed</code> objets otherwise.
      */
     protected function doValidate($columns = null)
     {
@@ -963,7 +955,7 @@ abstract class BaseProject extends BaseObject implements Persistent
 
 
             // We call the validate method on the following object(s) if they
-            // were passed to this object by their corresponding set
+            // were passed to this object by their coresponding set
             // method.  This object relates to these object(s) by a
             // foreign key reference.
 
@@ -1346,7 +1338,7 @@ abstract class BaseProject extends BaseObject implements Persistent
     /**
      * Declares an association between this object and a Contact object.
      *
-     * @param   Contact $v
+     * @param             Contact $v
      * @return Project The current object (for fluent API support)
      * @throws PropelException
      */
@@ -1398,7 +1390,7 @@ abstract class BaseProject extends BaseObject implements Persistent
     /**
      * Declares an association between this object and a Contact object.
      *
-     * @param   Contact $v
+     * @param             Contact $v
      * @return Project The current object (for fluent API support)
      * @throws PropelException
      */
@@ -1540,7 +1532,7 @@ abstract class BaseProject extends BaseObject implements Persistent
                     if (false !== $this->collProjectDetailsPartial && count($collProjectDetails)) {
                       $this->initProjectDetails(false);
 
-                      foreach ($collProjectDetails as $obj) {
+                      foreach($collProjectDetails as $obj) {
                         if (false == $this->collProjectDetails->contains($obj)) {
                           $this->collProjectDetails->append($obj);
                         }
@@ -1550,13 +1542,12 @@ abstract class BaseProject extends BaseObject implements Persistent
                     }
 
                     $collProjectDetails->getInternalIterator()->rewind();
-
                     return $collProjectDetails;
                 }
 
-                if ($partial && $this->collProjectDetails) {
-                    foreach ($this->collProjectDetails as $obj) {
-                        if ($obj->isNew()) {
+                if($partial && $this->collProjectDetails) {
+                    foreach($this->collProjectDetails as $obj) {
+                        if($obj->isNew()) {
                             $collProjectDetails[] = $obj;
                         }
                     }
@@ -1584,11 +1575,7 @@ abstract class BaseProject extends BaseObject implements Persistent
     {
         $projectDetailsToDelete = $this->getProjectDetails(new Criteria(), $con)->diff($projectDetails);
 
-
-        //since at least one column in the foreign key is at the same time a PK
-        //we can not just set a PK to NULL in the lines below. We have to store
-        //a backup of all values, so we are able to manipulate these items based on the onDelete value later.
-        $this->projectDetailsScheduledForDeletion = clone $projectDetailsToDelete;
+        $this->projectDetailsScheduledForDeletion = unserialize(serialize($projectDetailsToDelete));
 
         foreach ($projectDetailsToDelete as $projectDetailRemoved) {
             $projectDetailRemoved->setProject(null);
@@ -1622,7 +1609,7 @@ abstract class BaseProject extends BaseObject implements Persistent
                 return 0;
             }
 
-            if ($partial && !$criteria) {
+            if($partial && !$criteria) {
                 return count($this->getProjectDetails());
             }
             $query = ProjectDetailQuery::create(null, $criteria);
@@ -1642,7 +1629,7 @@ abstract class BaseProject extends BaseObject implements Persistent
      * Method called to associate a ProjectDetail object to this object
      * through the ProjectDetail foreign key attribute.
      *
-     * @param   ProjectDetail $l ProjectDetail
+     * @param    ProjectDetail $l ProjectDetail
      * @return Project The current object (for fluent API support)
      */
     public function addProjectDetail(ProjectDetail $l)
@@ -1739,7 +1726,7 @@ abstract class BaseProject extends BaseObject implements Persistent
      *
      * This method is a user-space workaround for PHP's inability to garbage collect
      * objects with circular references (even in PHP 5.3). This is currently necessary
-     * when using Propel in certain daemon or large-volume/high-memory operations.
+     * when using Propel in certain daemon or large-volumne/high-memory operations.
      *
      * @param boolean $deep Whether to also clear the references on all referrer objects.
      */

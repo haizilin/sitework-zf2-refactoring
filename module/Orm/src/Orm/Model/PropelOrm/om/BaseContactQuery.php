@@ -59,14 +59,8 @@ abstract class BaseContactQuery extends ModelCriteria
      * @param     string $modelName The phpName of a model, e.g. 'Book'
      * @param     string $modelAlias The alias for the model in this query, e.g. 'b'
      */
-    public function __construct($dbName = null, $modelName = null, $modelAlias = null)
+    public function __construct($dbName = 'PropelOrm', $modelName = 'Orm\\Model\\PropelOrm\\Contact', $modelAlias = null)
     {
-        if (null === $dbName) {
-            $dbName = 'PropelOrm';
-        }
-        if (null === $modelName) {
-            $modelName = 'Orm\\Model\\PropelOrm\\Contact';
-        }
         parent::__construct($dbName, $modelName, $modelAlias);
     }
 
@@ -74,7 +68,7 @@ abstract class BaseContactQuery extends ModelCriteria
      * Returns a new ContactQuery object.
      *
      * @param     string $modelAlias The alias of a model in the query
-     * @param   ContactQuery|Criteria $criteria Optional Criteria to build the query from
+     * @param     ContactQuery|Criteria $criteria Optional Criteria to build the query from
      *
      * @return ContactQuery
      */
@@ -83,8 +77,10 @@ abstract class BaseContactQuery extends ModelCriteria
         if ($criteria instanceof ContactQuery) {
             return $criteria;
         }
-        $query = new ContactQuery(null, null, $modelAlias);
-
+        $query = new ContactQuery();
+        if (null !== $modelAlias) {
+            $query->setModelAlias($modelAlias);
+        }
         if ($criteria instanceof Criteria) {
             $query->mergeWith($criteria);
         }
@@ -112,7 +108,7 @@ abstract class BaseContactQuery extends ModelCriteria
             return null;
         }
         if ((null !== ($obj = ContactPeer::getInstanceFromPool((string) $key))) && !$this->formatter) {
-            // the object is already in the instance pool
+            // the object is alredy in the instance pool
             return $obj;
         }
         if ($con === null) {
@@ -134,8 +130,8 @@ abstract class BaseContactQuery extends ModelCriteria
      * @param     mixed $key Primary key to use for the query
      * @param     PropelPDO $con A connection object
      *
-     * @return                 Contact A model object, or null if the key is not found
-     * @throws PropelException
+     * @return   Contact A model object, or null if the key is not found
+     * @throws   PropelException
      */
      public function findOneById($key, $con = null)
      {
@@ -149,8 +145,8 @@ abstract class BaseContactQuery extends ModelCriteria
      * @param     mixed $key Primary key to use for the query
      * @param     PropelPDO $con A connection object
      *
-     * @return                 Contact A model object, or null if the key is not found
-     * @throws PropelException
+     * @return   Contact A model object, or null if the key is not found
+     * @throws   PropelException
      */
     protected function findPkSimple($key, $con)
     {
@@ -250,8 +246,7 @@ abstract class BaseContactQuery extends ModelCriteria
      * <code>
      * $query->filterById(1234); // WHERE id = 1234
      * $query->filterById(array(12, 34)); // WHERE id IN (12, 34)
-     * $query->filterById(array('min' => 12)); // WHERE id >= 12
-     * $query->filterById(array('max' => 12)); // WHERE id <= 12
+     * $query->filterById(array('min' => 12)); // WHERE id > 12
      * </code>
      *
      * @param     mixed $id The value to use as filter.
@@ -264,22 +259,8 @@ abstract class BaseContactQuery extends ModelCriteria
      */
     public function filterById($id = null, $comparison = null)
     {
-        if (is_array($id)) {
-            $useMinMax = false;
-            if (isset($id['min'])) {
-                $this->addUsingAlias(ContactPeer::ID, $id['min'], Criteria::GREATER_EQUAL);
-                $useMinMax = true;
-            }
-            if (isset($id['max'])) {
-                $this->addUsingAlias(ContactPeer::ID, $id['max'], Criteria::LESS_EQUAL);
-                $useMinMax = true;
-            }
-            if ($useMinMax) {
-                return $this;
-            }
-            if (null === $comparison) {
-                $comparison = Criteria::IN;
-            }
+        if (is_array($id) && null === $comparison) {
+            $comparison = Criteria::IN;
         }
 
         return $this->addUsingAlias(ContactPeer::ID, $id, $comparison);
@@ -320,8 +301,8 @@ abstract class BaseContactQuery extends ModelCriteria
      * @param   Project|PropelObjectCollection $project  the related object to use as filter
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
-     * @return                 ContactQuery The current query, for fluid interface
-     * @throws PropelException - if the provided filter is invalid.
+     * @return   ContactQuery The current query, for fluid interface
+     * @throws   PropelException - if the provided filter is invalid.
      */
     public function filterByProjectRelatedByFkContactClientId($project, $comparison = null)
     {
@@ -394,8 +375,8 @@ abstract class BaseContactQuery extends ModelCriteria
      * @param   Project|PropelObjectCollection $project  the related object to use as filter
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
-     * @return                 ContactQuery The current query, for fluid interface
-     * @throws PropelException - if the provided filter is invalid.
+     * @return   ContactQuery The current query, for fluid interface
+     * @throws   PropelException - if the provided filter is invalid.
      */
     public function filterByProjectRelatedByFkContactEmployerId($project, $comparison = null)
     {

@@ -7,7 +7,8 @@ use Project\Model;
 use Propel;
 use Zend\Debug\Debug;
 
-
+Propel::autoload('Criteria');
+Propel::autoload('ModelCriteria');
 
 class ProjectController extends AbstractActionController
 {
@@ -16,7 +17,7 @@ class ProjectController extends AbstractActionController
         $projects = $prjModel->getQuery()->orderByFinishedAt('desc')->orderByStartedAt('desc');
 
         $sidebar = new ViewModel();
-        $sidebar->setVariable('projectsCollection', $projects->limit(7)->find());
+        $sidebar->setVariable('sidebarProjects', $projects->limit(7)->find());
         $sidebar->setTemplate('project/partials/sidebar.project.teaser.phtml');
         $this->layout()->addChild($sidebar, 'sidebar');
 
