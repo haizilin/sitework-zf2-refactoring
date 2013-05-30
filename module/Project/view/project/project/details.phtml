@@ -1,47 +1,65 @@
-<div id="projects" class="row">
-    <div class="small-12 columns">
-        <?php if ($this->projectsCollection): ?>
-            <div class="panel nopad">
-                <ul data-orbit class="orbit-project-details">
-                    <?php foreach($this->projectsCollection as $project): ?>
-                        <?php $projectDetails = $project->getProjectDetails()->getFirst() ?>
-                        <li>
-                            <div class="orbit-caption"><?= $project->getProjectDetails()->getFirst()->getLabel() ?></div>
-                            <div class="detailsContent">
-                                <img class="img" src="<?= $this->image($this->basePath() . '/gfx/project/' . $project->getImg(), 0, 400) ?>"/>
-                                <div class="detailsTxt">
-                                    <p><?= $projectDetails->getDescription() ?></p>
+<div id="projectDetails" class="panel">
+    <div class="row">
+        <div class="small-12 columns">
+            <h2><?= $this->translate('Projekt Details') ?></h2>
+            <?php if ($this->projects): ?>
 
-                                    <?php $client = $project->getContactRelatedByFkContactClientId() ?>
-                                    <?php if (!empty($client)): ?>
-                                        <dl class="client attrib">
-                                            <dt><?= $this->translate('client') ?>:</dt>
-                                            <dd><?= $client->getLabel() ?></dd>
-                                        </dl>
-                                    <?php endif ?>
+                    <div id="projectDetailsSections" class="section-container vertical-tabs" data-section="vertical-tabs">
+                        <?php foreach($this->projects as $i => $project): ?>
+                            <section class="section" data-section-region>
+                                <p class="section-title" data-section-title="section-title">
+                                    <a href="#section<?= $i ?>"><?= $project->getProjectDetails()->getFirst()->getLabel() ?></a>
+                                </p>
+                                <div class="section-content" data-slug="section<?= $i ?>" data-section-content="section-content">
+                                    <h3><?= $project->getProjectDetails()->getFirst()->getLabel() ?></h3>
 
-                                    <?php  $employer = $project->getContactRelatedByFkContactEmployerId() ?>
-                                    <?php if (!empty($employer)): ?>
-                                        <dl class="employer attrib">
-                                            <dt><?= $this->translate('employer') ?>:</dt>
-                                            <dd><?php echo $employer->getLabel() ?></dd>
-                                        </dl>
-                                    <?php endif ?>
+                                    <div class="row">
+                                        <div class="small-8 columns project-attribs">
 
-                                    <dl class="url attrib">
-                                        <dt><?= $this->translate('url') ?>:</dt>
-                                        <dd><a class="extUlr" href="<?= $project->getUrl() ?>" class="more"><?= $project->getUrl() ?></a></dd>
-                                    </dl>
+                                            <?php $employer = $project->getContactRelatedByFkContactEmployerId() ?>
+                                            <?php if (!empty($employer)): ?>
+                                                <dl class="employer">
+                                                    <dt class="label"><?=  $this->translate('Auftrag') ?>:</dt>
+                                                    <dd><?= $employer->getLabel() ?></dd>
+                                                </dl>
+                                            <?php endif ?>
+
+                                            <?php $client = $project->getContactRelatedByFkContactClientId() ?>
+                                            <?php if (!empty($client)): ?>
+                                                <dl class="client">
+                                                    <dt class="label"><?= $this->translate('Kunde') ?>:</dt>
+                                                    <dd><?= $client->getLabel() ?></dd>
+                                                </dl>
+                                            <?php endif ?>
+
+                                            <dl class="url">
+                                                <dt class="label"><?= $this->translate('URL') ?>:</dt>
+                                                <dd>
+                                                    <?php if ($project->getUrl()): ?>
+                                                        <a class="extUlr" href="<?= $project->getUrl() ?>" class="link-more"><?= $project->getUrl() ?></a>
+                                                    <?php else: ?>
+                                                        <?= $this->translate('nicht veröffentlicht') ?>
+                                                    <?php endif ?>
+                                                </dd>
+                                            </dl>
+                                        </div>
+                                        <div class="small-4 columns project-img">
+                                            <img class="img right" src="<?= $this->image($this->basePath() . '/gfx/project/' . $project->getImg(), 0, 200) ?>"/>
+                                        </div>
+                                    </div>
+                                    <p class="description"><?= strip_tags($project->getProjectDetails()->getFirst()->getDescription()) ?></p>
+
                                 </div>
-                            </div>
-                        </li>
-                    <?php endforeach; ?>
-                </ul>
-            </div>
+                            </section>
+                        <?php endforeach ?>
+                    </div>
 
-        <?php else: ?>
-            <?= $this->translate('requested project could not be found.') ?>
-        <?php endif; ?>
+            <?php else: ?>
+                <?= $this->translate('Es konnten keine Projekte zur Auswahl ermittelt werden.') ?>
+            <?php endif; ?>
+        </div>
+
     </div>
+
 </div>
 

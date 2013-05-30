@@ -30,6 +30,7 @@
     <div class="row recentProject">
         <div class="small-12 columns">
             <div class="panel">
+                <a class="show-all" href="<?= $this->url('project', array('action' => 'details'), true) ?>"><?= $this->translate('Alle Projekte anzeigen') ?></a>
                 <h2><?= $this->translate('Zuletzt abgeschlossene Projekte') ?></h2>
                 <ul>
                 <?php foreach($this->rescentProjects as $project): ?>

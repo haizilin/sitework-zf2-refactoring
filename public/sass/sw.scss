@@ -153,6 +153,10 @@
     /**
      * project teaser content
      **/
+    .recentProject .show-all {
+        display:block;
+        float:right;
+    }
     .projectTeaser .entrylabel {
         @include gradient($secondary-color-50, $secondary-color-25);
         border-radius:$global-radius $global-radius 0 0;
@@ -341,7 +345,8 @@
         padding:0;
         height:100%;
     }
-    .orbit-container .label {
+    .orbit-container .label,
+    .section-content .label {
         border-radius:3px;
     }
     .orbit-slide-data {
@@ -478,23 +483,30 @@
         margin:0 auto;
         width: 100%;
     }
-    .orbit-slide-description,
-    .orbit-slide-attrib {
+    .orbit-slide-attrib .description,
+    .section-content .description {
         display:block;
         margin-top:15px;
         padding-top:15px;
         border-top:1px solid $secondary-color;
     }
-    .orbit-slide-attrib dl {
+    .section-content .row {
+        display:block;
+        padding-top:15px;
+        border-top:1px solid $secondary-color;
+    }
+    .orbit-slide-attrib {
         margin-bottom: 5px;
         display:block;
     }
-    .orbit-slide-attrib dt {
+    .orbit-slide-attrib dt,
+    .project-attribs dt {
         width:85px;
         display:block;
         float:left;
     }
-    .orbit-slide-attrib dd {
+    .orbit-slide-attrib dd,
+    .project-attribs dd {
         margin-left: 90px;
         display:block;
         float:none;
@@ -505,6 +517,11 @@
         position:relative;
         bottom:0;
         background:$secondary-color-50;
+    }
+
+    .section-container {
+        @include section-container($section-type:accordion);
+        & > section { @include section($section-type:accordion, $title-selector:".section-title", $content-selector:".section-content"); }
     }
 }
 
@@ -647,6 +664,20 @@
     }
     #contact .panel textarea {
         height:emCalc(250px);
+    }
+
+    #projectDetailsSections {
+        @include section-container($section-type:vertical-tabs);
+        & > section { @include section($section-type:vertical-tabs, $title-selector:".section-title", $content-selector:".section-content"); }
+    }
+    projectDetailsSections {
+        max-width:100%;
+        margin:10px;
+    }
+    #projectDetailsSections > section.active > .section-title,
+    #projectDetailsSections > section.active > .section-title a {
+        max-width:290px;
+        width:290px;
     }
 }
 

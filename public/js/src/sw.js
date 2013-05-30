@@ -41,6 +41,7 @@
 
     var SW = SW || {
         init : function () {
+            this._projectDetails();
             this._orbit();
             this._topbar();
         },
@@ -49,7 +50,6 @@
         },
         _orbit : function () {
             $doc.foundation($('#featured'), 'orbit', {
-                'settings' : {
                     timer_speed: 5000,
                     animation_speed: 500,
                     bullets: false,
@@ -68,8 +68,10 @@
                     caption_class: 'orbit-caption',
                     active_slide_class: 'active',
                     orbit_transition_class: 'orbit-transitioning'
-                }
             });
+        },
+        _projectDetails : function () {
+            $doc.foundation('section');
         },
         googleMap : function (mapElementId, lon, lat, address) {
             if (GBrowserIsCompatible()) {

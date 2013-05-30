@@ -8,6 +8,7 @@ return array(
         'custom.modernizr.min.js',
         'src/foundation.js',
         //'src/lte-ie7.js',
+        'src/foundation.section.js',
         'src/foundation.orbit.js',
         'src/foundation.placeholder.js',
         'src/foundation.topbar.js',

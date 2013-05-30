@@ -18,8 +18,8 @@ class ProjectController extends AbstractActionController
         $p3 = $prjModel->getQuery()->orderByFinishedAt('desc')->orderByStartedAt('desc');
 
         $sidebar = new ViewModel();
-        $sidebar->setVariable('sidebarProjects', $p1->filterByFinishedAt(null, \Criteria::ISNOTNULL)->offset(3)->limit(5)->find());
-        $sidebar->setTemplate('project/partials/sidebar.project.teaser.phtml');
+        $sidebar->setVariable('sidebarProjects', $p1->filterByFinishedAt(null, \Criteria::ISNOTNULL)->offset(3)->limit(10)->find());
+        $sidebar->setTemplate('project/partials/sidebar.project.index.phtml');
         $this->layout()->addChild($sidebar, 'sidebar');
 
         $view = new ViewModel();
@@ -31,16 +31,12 @@ class ProjectController extends AbstractActionController
 
     public function detailsAction () {
         $prjModel = new Model\Project;
-        $projects = $prjModel->getQuery()->find();
-
-        $sidebar = new ViewModel();
-        $sidebar->setVariable('projectsCollection', $projects);
-        $sidebar->setTemplate('project/partials/sidebar.project.teaser.phtml');
-        $this->layout()->addChild($sidebar, 'sidebar');
+        $projects = $prjModel->getQuery()->orderByFinishedAt('desc')->orderByStartedAt('desc')->find();
 
         $view = new ViewModel();
         $project = $prjModel->getQuery()->findOneBy('id', $this->getEvent()->getRouteMatch()->getParam('id', 1));
         $view->setVariable('project', $project);
+        $view->setVariable('projects', $projects);
 
         return $view;
     }

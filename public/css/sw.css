@@ -528,6 +528,11 @@ you can use the generic selector below, but it's slower:
   /**
    * project teaser content
    **/
+  .recentProject .show-all {
+    display: block;
+    float: right;
+  }
+
   .projectTeaser .entrylabel {
     background: rgba(32, 74, 135, 0.5);
     background: -moz-linear-gradient(top, rgba(32, 74, 135, 0.5) 0%, rgba(32, 74, 135, 0.25) 100%);
@@ -793,7 +798,8 @@ you can use the generic selector below, but it's slower:
     height: 100%;
   }
 
-  .orbit-container .label {
+  .orbit-container .label,
+  .section-content .label {
     border-radius: 3px;
   }
 
@@ -967,26 +973,34 @@ you can use the generic selector below, but it's slower:
     width: 100%;
   }
 
-  .orbit-slide-description,
-  .orbit-slide-attrib {
+  .orbit-slide-attrib .description,
+  .section-content .description {
     display: block;
     margin-top: 15px;
     padding-top: 15px;
     border-top: 1px solid #204a87;
   }
 
-  .orbit-slide-attrib dl {
+  .section-content .row {
+    display: block;
+    padding-top: 15px;
+    border-top: 1px solid #204a87;
+  }
+
+  .orbit-slide-attrib {
     margin-bottom: 5px;
     display: block;
   }
 
-  .orbit-slide-attrib dt {
+  .orbit-slide-attrib dt,
+  .project-attribs dt {
     width: 85px;
     display: block;
     float: left;
   }
 
-  .orbit-slide-attrib dd {
+  .orbit-slide-attrib dd,
+  .project-attribs dd {
     margin-left: 90px;
     display: block;
     float: none;
@@ -998,6 +1012,61 @@ you can use the generic selector below, but it's slower:
     position: relative;
     bottom: 0;
     background: rgba(32, 74, 135, 0.5);
+  }
+
+  .section-container {
+    border: 1px solid #cccccc;
+    border-top: none;
+  }
+  .section-container > section {
+    position: relative;
+  }
+  .section-container > section > .section-title {
+    background-color: #efefef;
+    cursor: 0;
+    margin-bottom: 0;
+  }
+  .section-container > section > .section-title a {
+    padding: 0.9375em;
+    display: inline-block;
+    color: #333333;
+    font-size: 0.875em;
+    white-space: nowrap;
+  }
+  .section-container > section > .section-title:hover {
+    background-color: #e2e2e2;
+  }
+  .section-container > section .section-content {
+    display: none;
+    padding: 0.9375em;
+    background-color: white;
+  }
+  .section-container > section .section-content > *:last-child {
+    margin-bottom: 0;
+  }
+  .section-container > section .section-content > *:first-child {
+    padding-top: 0;
+  }
+  .section-container > section .section-content > *:last-child {
+    padding-bottom: 0;
+  }
+  .section-container > section.active > .section-content {
+    display: block;
+  }
+  .section-container > section.active > .section-title {
+    background: #d5d5d5;
+  }
+  .section-container > section.active > .section-title a {
+    color: #333333;
+  }
+  .section-container > section > .section-title {
+    top: 0;
+    width: 100%;
+    margin: 0;
+    border-top: solid 1px #cccccc;
+  }
+  .section-container > section > .section-title a {
+    width: 100%;
   }
 }
 /* Used to alter styles for screens at least 768px wide. This is where the grid changes. */
@@ -1207,6 +1276,89 @@ you can use the generic selector below, but it's slower:
 
   #contact .panel textarea {
     height: 15.625em;
+  }
+
+  #projectDetailsSections {
+    border: 1px solid #cccccc;
+    position: relative;
+  }
+  #projectDetailsSections > section {
+    padding-top: 0 !important;
+    border: 0;
+    position: static;
+  }
+  #projectDetailsSections > section > .section-title {
+    background-color: #efefef;
+    cursor: 0;
+    margin-bottom: 0;
+  }
+  #projectDetailsSections > section > .section-title a {
+    padding: 0.9375em;
+    display: inline-block;
+    color: #333333;
+    font-size: 0.875em;
+    white-space: nowrap;
+  }
+  #projectDetailsSections > section > .section-title:hover {
+    background-color: #e2e2e2;
+  }
+  #projectDetailsSections > section .section-content {
+    display: none;
+    padding: 0.9375em;
+    background-color: white;
+  }
+  #projectDetailsSections > section .section-content > *:last-child {
+    margin-bottom: 0;
+  }
+  #projectDetailsSections > section .section-content > *:first-child {
+    padding-top: 0;
+  }
+  #projectDetailsSections > section .section-content > *:last-child {
+    padding-bottom: 0;
+  }
+  #projectDetailsSections > section.active > .section-content {
+    display: block;
+  }
+  #projectDetailsSections > section.active > .section-title {
+    background: #d5d5d5;
+  }
+  #projectDetailsSections > section.active > .section-title a {
+    color: #333333;
+  }
+  #projectDetailsSections > section > .section-title {
+    position: absolute;
+    border-top: solid 1px #cccccc;
+    width: 18.125em;
+  }
+  #projectDetailsSections > section:first-child .section-title {
+    border-top: 0;
+  }
+  #projectDetailsSections > section .section-content {
+    display: block;
+    position: relative;
+    left: 18.125em;
+    border-left: solid 1px #cccccc;
+    z-index: 10;
+  }
+  #projectDetailsSections > section.active > .section-title {
+    background-color: #d5d5d5;
+    width: 18.1875em;
+    border-right: solid 0 transparent;
+    z-index: 11;
+  }
+  #projectDetailsSections > section.active:last-child .section-title {
+    border-bottom: 0;
+  }
+
+  projectDetailsSections {
+    max-width: 100%;
+    margin: 10px;
+  }
+
+  #projectDetailsSections > section.active > .section-title,
+  #projectDetailsSections > section.active > .section-title a {
+    max-width: 290px;
+    width: 290px;
   }
 }
 /* Used to alter styles for screens at least 1280px wide. */
