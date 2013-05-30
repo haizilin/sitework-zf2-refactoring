@@ -3,63 +3,24 @@
         <div class="small-12 columns">
             <h2><?= $this->translate('Projekt Details') ?></h2>
             <?php if ($this->projects): ?>
-
-                    <div id="projectDetailsSections" class="section-container vertical-tabs" data-section="vertical-tabs">
-                        <?php foreach($this->projects as $i => $project): ?>
-                            <section class="section" data-section-region>
-                                <p class="section-title" data-section-title="section-title">
-                                    <a href="#section<?= $i ?>"><?= $project->getProjectDetails()->getFirst()->getLabel() ?></a>
-                                </p>
-                                <div class="section-content" data-slug="section<?= $i ?>" data-section-content="section-content">
-                                    <h3><?= $project->getProjectDetails()->getFirst()->getLabel() ?></h3>
-
-                                    <div class="row">
-                                        <div class="small-8 columns project-attribs">
-
-                                            <?php $employer = $project->getContactRelatedByFkContactEmployerId() ?>
-                                            <?php if (!empty($employer)): ?>
-                                                <dl class="employer">
-                                                    <dt class="label"><?=  $this->translate('Auftrag') ?>:</dt>
-                                                    <dd><?= $employer->getLabel() ?></dd>
-                                                </dl>
-                                            <?php endif ?>
-
-                                            <?php $client = $project->getContactRelatedByFkContactClientId() ?>
-                                            <?php if (!empty($client)): ?>
-                                                <dl class="client">
-                                                    <dt class="label"><?= $this->translate('Kunde') ?>:</dt>
-                                                    <dd><?= $client->getLabel() ?></dd>
-                                                </dl>
-                                            <?php endif ?>
-
-                                            <dl class="url">
-                                                <dt class="label"><?= $this->translate('URL') ?>:</dt>
-                                                <dd>
-                                                    <?php if ($project->getUrl()): ?>
-                                                        <a class="extUlr" href="<?= $project->getUrl() ?>" class="link-more"><?= $project->getUrl() ?></a>
-                                                    <?php else: ?>
-                                                        <?= $this->translate('nicht veröffentlicht') ?>
-                                                    <?php endif ?>
-                                                </dd>
-                                            </dl>
-                                        </div>
-                                        <div class="small-4 columns project-img">
-                                            <img class="img right" src="<?= $this->image($this->basePath() . '/gfx/project/' . $project->getImg(), 0, 200) ?>"/>
-                                        </div>
-                                    </div>
-                                    <p class="description"><?= strip_tags($project->getProjectDetails()->getFirst()->getDescription()) ?></p>
-
-                                </div>
-                            </section>
-                        <?php endforeach ?>
-                    </div>
-
+                <div class="section-container vertical-tabs" data-section="vertical-tabs">
+                    <?php foreach($this->projects as $i => $project): ?>
+                        <?php $projectDetails = $project->getProjectDetails()->getFirst() ?>
+                        <section class="section" data-section-region>
+                            <p class="section-title" data-section-title="section-title">
+                                <a href="#project-<?= $project->getId() ?>"><?= $projectDetails->getLabel() ?></a>
+                            </p>
+                            <div class="section-content" data-slug="section<?= $i ?>" data-section-content="section-content">
+                                <h3><?= $projectDetails->getLabel() ?></h3>
+                                <?= $this->partial('partials/project.attribs.phtml', array('project' => $project, 'projectDetails' => $projectDetails)) ?>
+                            </div>
+                        </section>
+                    <?php endforeach ?>
+                </div>
             <?php else: ?>
                 <?= $this->translate('Es konnten keine Projekte zur Auswahl ermittelt werden.') ?>
             <?php endif; ?>
         </div>
-
     </div>
-
 </div>
 

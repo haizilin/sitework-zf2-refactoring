@@ -7,44 +7,11 @@
                     <?php $projectDetails = $project->getProjectDetails()->getFirst() ?>
                     <li>
                         <div class="panel">
-                        <div class="orbit-slide-data">
-
-                                <div class="orbit-slide-img">
-                                    <img class="img" src="<?= $this->image($this->basePath() . '/gfx/project/' . $project->getImg(), 0, 255) ?>"/>
-                                </div>
-                                <div class="orbit-slide-attrib">
-
-                                    <?php $employer = $project->getContactRelatedByFkContactEmployerId() ?>
-                                    <?php if (!empty($employer)): ?>
-                                        <dl class="employer">
-                                            <dt class="label"><?=  $this->translate('Auftrag') ?>:</dt>
-                                            <dd><?= $employer->getLabel() ?></dd>
-                                        </dl>
-                                    <?php endif ?>
-
-                                    <?php $client = $project->getContactRelatedByFkContactClientId() ?>
-                                    <?php if (!empty($client)): ?>
-                                        <dl class="client">
-                                            <dt class="label"><?= $this->translate('Kunde') ?>:</dt>
-                                            <dd><?= $client->getLabel() ?></dd>
-                                        </dl>
-                                    <?php endif ?>
-
-                                    <dl class="url">
-                                        <dt class="label"><?= $this->translate('URL') ?>:</dt>
-                                        <dd>
-                                            <?php if ($project->getUrl()): ?>
-                                            <a class="extUlr" href="<?= $project->getUrl() ?>" class="link-more"><?= $project->getUrl() ?></a>
-                                            <?php else: ?>
-                                                <?= $this->translate('nicht veröffentlicht') ?>
-                                            <?php endif ?>
-                                        </dd>
-                                    </dl>
-                                    <div class="description"><?= $projectDetails->getDescription() ?></div>
-                                </div>
+                            <div class="orbit-slide-data">
+                                <?= $this->partial('partials/project.attribs.phtml', array('project' => $project, 'projectDetails' => $projectDetails)) ?>
                             </div>
+                            <div class="orbit-caption"><?= $projectDetails->getLabel() ?></div>
                         </div>
-                        <div class="orbit-caption"><?= $projectDetails->getLabel() ?></div>
                     </li>
                 <?php endforeach; ?>
             <?php else: ?>

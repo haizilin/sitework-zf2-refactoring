@@ -1,0 +1,38 @@
+<div class="project-attribs">
+    <div class="labels row">
+        <div class="small-12 columns">
+
+            <?php $employer = $project->getContactRelatedByFkContactEmployerId() ?>
+            <?php if (!empty($employer)): ?>
+                <dl class="employer">
+                    <dt class="label"><?=  $this->translate('Auftrag') ?>:</dt>
+                    <dd><?= $employer->getLabel() ?></dd>
+                </dl>
+            <?php endif ?>
+
+            <?php $client = $project->getContactRelatedByFkContactClientId() ?>
+            <?php if (!empty($client)): ?>
+                <dl class="client">
+                    <dt class="label"><?= $this->translate('Kunde') ?>:</dt>
+                    <dd><?= $client->getLabel() ?></dd>
+                </dl>
+            <?php endif ?>
+
+            <dl class="url">
+                <dt class="label"><?= $this->translate('URL') ?>:</dt>
+                <dd>
+                    <?php if ($project->getUrl()): ?>
+                        <a class="extUlr" href="<?= $project->getUrl() ?>" class="link-more"><?= $project->getUrl() ?></a>
+                    <?php else: ?>
+                        <?= $this->translate('bisher nicht veröffentlicht') ?>
+                    <?php endif ?>
+                </dd>
+            </dl>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="description small-12 large-8 columns"><p><?= strip_tags($$projectDetails->getDescription()) ?></p></div>
+        <div class="img small-12 large-4 columns"><img src="<?= $this->image($this->basePath() . '/gfx/project/' . $project->getImg(), 0, 255) ?>"/></div>
+    </div>
+</div>
