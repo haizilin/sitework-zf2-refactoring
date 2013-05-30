@@ -1,9 +1,9 @@
 <div id="sidebarContact" class="row">
     <div class="small-12 columns">
         <div class="panel">
-            <h2><?= $this->translate('Contact') ?></h2>
+            <h2><?= $this->translate('Kontakt') ?></h2>
             <dl>
-                <dt><?= $this->translate('Post address') ?></dt>
+                <dt><?= $this->translate('Adresse') ?></dt>
                 <dd>
                     <?= $this->translate('Blücherstr. 37a') ?>,<br/>
                     <?= $this->translate('10961 Berlin') ?>
@@ -11,23 +11,26 @@
                 </dd>
             </dl>
             <dl>
-                <dt><?= $this->translate('Online') ?></dt>
+                <dt><?= $this->translate('Profile Online') ?></dt>
                 <dd class="icon icon-mail">
                     <?= $this->mailto(array(
                         'address' => 'matthias.kruschke@gmail.com',
-                        'text' => $this->translate('Send E-mail'),
+                        'text' => $this->translate('E-Mail'),
                         'encode' => 'hex',
                     )) ?>
                 </dd>
-                <dd class="icon icon-google-plus">matthias.kruschke</dd>
-                <dd class="icon icon-twitter">sitewalker</dd>
-                <dd class="icon icon-github">sitework</dd>
+                <dd class="icon icon-xing"><a href="http://www.xing.com/profile/Matthias_Kruschke">XING</a></dd>
+                <dd class="icon icon-linkedin"><a href="http://de.linkedin.com/pub/matthias-kruschke/42/a10/7a2/">LinkedIn</a></dd>
+                <dd class="icon icon-google-plus"><a href="http://www.facebook.com/matthias.kruschke">Google+</a></dd>
+                <dd class="icon icon-facebook"><a href="http://www.facebook.com/matthias.kruschke">Facebook</a></dd>
+                <dd class="icon icon-twitter"><a href="http://twitter.com/sitewalker">Twitter</a></dd>
+                <dd class="icon icon-github"><a href="http://github.com/sitework">Github</a></dd>
             </dl>
             <dl>
-                <dt><?= $this->translate('Tax info') ?></dt>
+                <dt><?= $this->translate('Steuer Informationen') ?></dt>
                 <dd>
                     <?= $this->translate('FA Berlin-Kreuzberg') ?><br/>
-                    <?= $this->translate('Tax no.') ?>: 14/402/61633
+                    <?= $this->translate('Steuer Nummer') ?>: 14/402/61633
                 </dd>
             </dl>
         </div>

@@ -31,7 +31,7 @@ return array(
     'navigation' => array(
         'default' => array(
             array(
-                'label' => 'Projects',
+                'label' => 'Projekte',
                 'route' => 'project',
                 'order' => 2
             ),

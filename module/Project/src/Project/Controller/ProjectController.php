@@ -8,22 +8,23 @@ use Propel;
 use Zend\Debug\Debug;
 
 Propel::autoload('Criteria');
-Propel::autoload('ModelCriteria');
 
 class ProjectController extends AbstractActionController
 {
     public function indexAction () {
         $prjModel = new Model\Project;
-        $projects = $prjModel->getQuery()->orderByFinishedAt('desc')->orderByStartedAt('desc');
+        $p1 = $prjModel->getQuery()->orderByFinishedAt('desc')->orderByStartedAt('desc');
+        $p2 = $prjModel->getQuery()->orderByFinishedAt('desc')->orderByStartedAt('desc');
+        $p3 = $prjModel->getQuery()->orderByFinishedAt('desc')->orderByStartedAt('desc');
 
         $sidebar = new ViewModel();
-        $sidebar->setVariable('sidebarProjects', $projects->limit(7)->find());
+        $sidebar->setVariable('sidebarProjects', $p1->filterByFinishedAt(null, \Criteria::ISNOTNULL)->offset(3)->limit(5)->find());
         $sidebar->setTemplate('project/partials/sidebar.project.teaser.phtml');
         $this->layout()->addChild($sidebar, 'sidebar');
 
         $view = new ViewModel();
-        $view->setVariable('currentProjects', $projects->limit(2)->find());
-        $view->setVariable('rescentProjects', $projects->limit(2)->find());
+        $view->setVariable('currentProjects', $p2->filterByFinishedAt(null, \Criteria::ISNULL)->limit(2)->find());
+        $view->setVariable('rescentProjects', $p3->filterByFinishedAt(null, \Criteria::ISNOTNULL)->limit(2)->find());
 
         return $view;
     }

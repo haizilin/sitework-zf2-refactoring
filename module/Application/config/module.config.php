@@ -127,27 +127,39 @@ return array(
             'social_navigation' => 'Application\Navigation\Service\SocialNavigationFactory',
         ),
     ),
+    'acl' => array(
+        'guest'=> array(
+            'home',
+            'login',
+            'register'
+        ),
+        'admin'=> array(
+            'admin',
+            'add-user',
+            'delete-user'
+        ),
+    ),
     'navigation' => array(
         'default' => array(
             array(
-                'label' => 'Home',
+                'label' => 'Sitework',
                 'route' => 'home',
                 'order' => 1
             ),
             array(
-                'label' => 'Contact',
+                'label' => 'Kontakt',
                 'route' => 'contact',
                 'order' => 3
             ),
         ),
         'footer' => array(
             array(
-                'label' => 'Imprint',
+                'label' => 'Impressum',
                 'route' => 'imprint',
                 'order' => 1
             ),
             array(
-                'label' => 'Disclaimer',
+                'label' => 'Haftungsbeschränkung',
                 'route' => 'disclaimer',
                 'order' => 2
             ),
@@ -164,37 +176,37 @@ return array(
         ),
         'social' => array(
             array(
-                'class' => 'icon-xing has-tooltip',
+                'class' => 'icon icon-xing has-tooltip',
                 'uri' => 'http://www.xing.com/profile/Matthias_Kruschke',
                 'title' => 'XING.',
                 'order' => 1
             ),
             array(
-                'class' => 'icon-linkedin has-tooltip',
+                'class' => 'icon icon-linkedin has-tooltip',
                 'uri' => 'http://de.linkedin.com/pub/matthias-kruschke/42/a10/7a2/',
                 'title' => 'LinkedIn.',
                 'order' => 2
             ),
             array(
-                'class' => 'icon-google-plus has-tooltip',
+                'class' => 'icon icon-google-plus has-tooltip',
                 'uri' => 'http://www.facebook.com/matthias.kruschke',
                 'title' => 'google+.',
                 'order' => 3
             ),
             array(
-                'class' => 'icon-facebook has-tooltip',
+                'class' => 'icon icon-facebook has-tooltip',
                 'uri' => 'http://www.facebook.com/matthias.kruschke',
                 'title' => 'facebook.',
                 'order' => 4
             ),
             array(
-                'class' => 'icon-twitter has-tooltip',
+                'class' => 'icon icon-twitter has-tooltip',
                 'uri' => 'http://twitter.com/sitewalker',
                 'title' => 'Twitter.',
                 'order' => 5
             ),
             array(
-                'class' => 'icon-github has-tooltip',
+                'class' => 'icon icon-github has-tooltip',
                 'uri' => 'http://github.com/sitework',
                 'title' => 'Github.',
                 'order' => 6

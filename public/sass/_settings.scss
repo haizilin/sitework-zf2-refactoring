@@ -33,9 +33,19 @@ $em-base: 16px !default;
 // We use these as default colors throughout
 $shadow-color:   rgba(34,  34,  34, .5);
 
-$darkest-color:   rgba(34,  34,  34, 1);
+$darkest-color:       rgba(34,  34,  34, 1);
+$darkest-color-25:    rgba(34,  34,  34, .25);
+$darkest-color-50:    rgba(34,  34,  34, .50);
+$darkest-color-75:    rgba(34,  34,  34, .75);
+
 $darker-color:    rgba(54,  54,  54, 1);
+$darker-color-25:    rgba(54,  54,  54, .25);
+$darker-color-50:    rgba(54,  54,  54, .50);
+$darker-color-75:    rgba(54,  54,  54, .75);
+
 $dark-color:      rgba(74,  74,  74, 1);
+$dark-color-25:   rgba(74,  74,  74, .25);
+$dark-color-50:   rgba(74,  74,  74, .50);
 $dark-color-75:   rgba(74,  74,  74, .75);
 
 $lightest-color:     rgba(255, 255, 255, 1);
@@ -91,9 +101,10 @@ $nav-primary-active-color: rgba(230, 230, 230,.8);
 
 
 // We use these to control various global styles
+@import url(http://fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700);
 $body-bg:         rgb(255, 255, 255);
 $body-font-color: rgb( 34,  34,  34);
-$body-font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+$body-font-family: 'PT Sans Narrow', sans-serif;
 $body-font-weight: normal;
 $body-font-style: normal;
 
@@ -104,7 +115,7 @@ $font-smoothing: antialiased;
 $text-direction: ltr;
 
 // We use these to make sure border radius matches unless we want it different.
-$global-radius: emCalc(4px);
+$global-radius: emCalc(5px);
 $big-radius: emCalc(10px);
 $global-rounded: 1000px;
 
@@ -114,7 +125,7 @@ $shiny-edge-color: rgba(#fff, .5);
 $shiny-edge-active-color: rgba(#000, .2);
 
 // We use this to control whether or not CSS classes come through in the gem files.
-$include-html-classes: true;
+$include-html-classes: false;
 // $include-print-styles: true;
 $include-html-grid-classes: $include-html-classes;
 $include-html-visibility-classes: $include-html-classes;
@@ -146,7 +157,7 @@ $portrait:  "only screen and (orientation: portrait)";
 
 // Grid Variables
 $row-width:     emCalc(1200px);
-$column-gutter: .55em;
+$column-gutter: .65em;
 $total-columns: 12;
 
 //
@@ -163,7 +174,7 @@ $block-grid-media-queries: true;
 // Typography Variables
 //
 // We use these to control header font styles
-$header-font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+$header-font-family: 'PT Sans Narrow', sans-serif;
 $header-font-weight: bold;
 $header-font-style: normal;
 $header-font-color: $secondary-color;
@@ -195,8 +206,8 @@ $small-font-color: lighten($header-font-color, 30%);
 $paragraph-font-family: inherit;
 $paragraph-font-weight: normal;
 $paragraph-font-size: 1em;
-$paragraph-line-height: 1.6;
-$paragraph-margin-bottom: emCalc(20px);
+$paragraph-line-height: 1.4;
+$paragraph-margin-bottom: emCalc(10px);
 $paragraph-aside-font-size: emCalc(14px);
 $paragraph-aside-line-height: 1.35;
 $paragraph-aside-font-style: italic;
@@ -266,8 +277,8 @@ $form-spacing: emCalc(16px);
 
 // We use these to style the labels in different ways
 $label-pointer: pointer;
-$label-font-size: emCalc(14px);
-$label-font-weight: 500;
+$label-font-size: 1em;
+$label-font-weight: normal;
 $label-font-color: lighten(#000, 30%);
 $label-bottom-margin: emCalc(3px);
 $input-font-family: inherit;
@@ -664,8 +675,8 @@ $label-padding: emCalc(3px) emCalc(10px) emCalc(4px);
 $label-radius: $global-radius;
 
 // We use these to style the label text
-$label-font-sizing: emCalc(14px);
-$label-font-weight: bold;
+$label-font-sizing: $paragraph-font-size;
+$label-font-weight: normal;
 
 //
 // Magellan Variables
@@ -749,7 +760,7 @@ $panel-border-color: darken($panel-bg, $panel-function-factor);
 
 // We use these to set default inner padding and bottom margin
 $panel-margin-bottom: emCalc(15px);
-$panel-padding: emCalc(10px);
+$panel-padding: emCalc(15px);
 
 // We use these to set default font colors
 $panel-font-color: #333;

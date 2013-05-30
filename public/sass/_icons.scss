@@ -28,7 +28,7 @@ Instead of a list of all class selectors,
 you can use the generic selector below, but it's slower:
 [class*="icon-"] {
 */
-.icon-star, .icon-star-2, .icon-star-3, .icon-undo, .icon-table, .icon-circle-arrow-left, .icon-circle-arrow-right, .icon-arrow-left, .icon-arrow-right, .icon-chevron-left, .icon-chevron-right, .icon-phone-sign, .icon-globe, .icon-upload-alt, .icon-calendar, .icon-wrench, .icon-caret-right, .icon-caret-left, .icon-caret-up, .icon-caret-down, .icon-sort, .icon-trash, .icon-home, .icon-download-alt, .icon-refresh, .icon-cogs, .icon-plus, .icon-minus, .icon-xing, .icon-tumblr, .icon-facebook, .icon-google-plus, .icon-linkedin, .icon-github, .icon-twitter, .icon-key, .icon-lock, .icon-unlocked, .icon-attachment, .icon-ok, .icon-remove, .icon-remove-sign, .icon-ok-sign, .icon-plus-sign, .icon-minus-sign, .icon-question-sign, .icon-info-sign, .icon-remove-circle, .icon-ok-circle, .icon-ban-circle, .icon-warning-sign, .icon-exclamation-sign, .icon-thumbs-up, .icon-thumbs-up-2, .icon-download, .icon-upload, .icon-off, .icon-user, .icon-search, .icon-signin, .icon-enter, .icon-picassa, .icon-mail, .icon-skype, .icon-android, .icon-tux, .icon-file-pdf, .icon-delicious, .icon-print, .icon-exit {
+.icon:before {
     font-family: 'icons';
     speak: none;
     font-style: normal;

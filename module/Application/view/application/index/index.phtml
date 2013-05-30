@@ -1,22 +1,22 @@
 <div id="index" class="row">
     <div class="small-12 columns">
         <div class="panel">
-            <h2 class="block-title"><?= $this->translate('Services and Technologies') ?></h2>
-            <h3><?= $this->translate('Services') ?></h3>
+            <h2 class="block-title"><?= $this->translate('Leistungen und Technologie') ?></h2>
+            <h3><?= $this->translate('Leistungen') ?></h3>
             <ul class="list">
             <?php foreach ($this->services->find() as $service): ?>
                 <?php $row = $service->getServiceDetails()->getFirst() ?>
                 <li><?= $row->getDescription() ?></li>
             <?php endforeach ?>
             </ul>
-            <h3><?= $this->translate('Technologies') ?></h3>
+            <h3><?= $this->translate('Technologie') ?></h3>
             <ul class="list">
             <?php foreach ($this->technologies->find() as $service): ?>
                 <?php $row = $service->getServiceDetails()->getFirst() ?>
                 <li><?= $row->getDescription() ?></li>
             <?php endforeach ?>
             </ul>
-            <p><?= $this->translate('Sollten Sie Interesse an meiner Mitarbeit bei der Realisierung Ihrer Ideen haben, nutzen Sie bitte das Kontaktformular. Ich werde Sie dann umgehend über meine Verfügbarkeit und die Möglichkeit zu einem persönlichen Gespräch unterrichten.') ?></p>
+            <p class="offer"><?= $this->translate('Sollten Sie Interesse an meiner Mitarbeit bei der Realisierung Ihrer Ideen haben, nutzen Sie bitte das Kontaktformular. Ich werde Sie dann umgehend über meine Verfügbarkeit und die Möglichkeit zu einem persönlichen Gespräch unterrichten.') ?></p>
         </div>
         <div class="hide-for-small block-logos panel">
             <a href="https://www.google.de/search?q=php" target="_blank"><img src="<?= $this->basePath() ?>/gfx/logos/php.png" alt="PHP" title="PHP"></a>

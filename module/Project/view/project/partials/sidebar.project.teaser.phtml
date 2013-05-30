@@ -3,7 +3,7 @@
         <?php if (!$this->sidebarProjects->isEmpty()): ?>
         <ul class="orbit" data-orbit>
             <?php if ($this->sidebarProjects): ?>
-                <?php foreach($this->projectsSlider as $project): ?>
+                <?php foreach($this->sidebarProjects as $project): ?>
                     <?php $projectDetails = $project->getProjectDetails()->getFirst() ?>
                     <li>
                         <div class="panel">
@@ -13,23 +13,32 @@
                                     <img class="img" src="<?= $this->image($this->basePath() . '/gfx/project/' . $project->getImg(), 0, 255) ?>"/>
                                 </div>
                                 <div class="orbit-slide-attrib">
-                                    <?php $client = $project->getContactRelatedByFkContactClientId() ?>
-                                    <?php if (!empty($client)): ?>
-                                        <dl class="client">
-                                            <dt class="label"><?= $this->translate('client') ?>:</dt>
-                                            <dd><?= $client->getLabel() ?></dd>
-                                        </dl>
-                                    <?php endif ?>
+
                                     <?php $employer = $project->getContactRelatedByFkContactEmployerId() ?>
                                     <?php if (!empty($employer)): ?>
                                         <dl class="employer">
-                                            <dt class="label"><?=  $this->translate('employer') ?>:</dt>
+                                            <dt class="label"><?=  $this->translate('Auftrag') ?>:</dt>
                                             <dd><?= $employer->getLabel() ?></dd>
                                         </dl>
                                     <?php endif ?>
+
+                                    <?php $client = $project->getContactRelatedByFkContactClientId() ?>
+                                    <?php if (!empty($client)): ?>
+                                        <dl class="client">
+                                            <dt class="label"><?= $this->translate('Kunde') ?>:</dt>
+                                            <dd><?= $client->getLabel() ?></dd>
+                                        </dl>
+                                    <?php endif ?>
+
                                     <dl class="url">
-                                        <dt class="label"><?= $this->translate('url') ?>:</dt>
-                                        <dd><a class="extUlr" href="<?= $project->getUrl() ?>" class="link-more"><?= $project->getUrl() ?></a></dd>
+                                        <dt class="label"><?= $this->translate('URL') ?>:</dt>
+                                        <dd>
+                                            <?php if ($project->getUrl()): ?>
+                                            <a class="extUlr" href="<?= $project->getUrl() ?>" class="link-more"><?= $project->getUrl() ?></a>
+                                            <?php else: ?>
+                                                <?= $this->translate('nicht veröffentlicht') ?>
+                                            <?php endif ?>
+                                        </dd>
                                     </dl>
                                     <div class="orbit-slide-description"><?= $projectDetails->getDescription() ?></div>
                                 </div>

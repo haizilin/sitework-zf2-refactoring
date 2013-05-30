@@ -15,7 +15,7 @@ class Google extends AbstractHelper implements ServiceLocatorAwareInterface
 {
     protected $map_key        = 'AIzaSyDd46CEoMqOQK_WJW7fJxSkJQ66BW_3zac';
 
-    protected $map_static_url = 'https://maps.googleapis.com/maps/api/staticmap';
+    protected $map_static_url = 'http://maps.googleapis.com/maps/api/staticmap';
     protected $map_sensor     = 'false';
     protected $map_format     = 'png';
     protected $map_type       = 'roadmap';
